@@ -1,0 +1,12 @@
+.wrapper_table_pricing{
+    background: none
+}
+.btn-menu{
+    background-color: #e6e6e6;
+}
+a.btn-menu.active, a:hover.btn-menu{
+    background-color: #4FCAFF;
+}
+a:hover.btn-menu.active {
+    background-color: #00afff;
+}

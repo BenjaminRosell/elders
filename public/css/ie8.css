@@ -1,0 +1,30 @@
+header{
+    height: 110px;
+}
+.btn-menu{
+    background-color: #e6e6e6;
+}
+a.btn-menu.active, a:hover.btn-menu{
+    background-color: #4FCAFF;
+}
+a:hover.btn-menu.active {
+    background-color: #00afff;
+}
+.wrapper_table_pricing{
+    background: none
+}
+ul.submenu li a:hover{
+    color: #00afff !important;
+}
+.social_icons_footer div, .social_icons div{
+    float: none;
+    text-align: right;
+}
+/* News Slider */
+.news_slides_container, .news_slides_container div, .news_slides_container div:hover, .news_slides_container i {
+    width: 300px !important;
+    background: none;
+    padding-bottom: 20px !important;
+    padding: 0;
+    height: auto !important;
+}
