@@ -1,13 +1,15 @@
-## Laravel 4.x
+## Elders
 
-### A Framework For Web Artisans
+### A web app designed to manage home teaching in a priesthood quorum
 
-[Official Documentation](http://four.laravel.com) (Under Active Development)
+Open source web app created with the specific goal to help home teacers to fulfill their duties.
 
-### Contributing To Laravel
+Built on Laravel 4 : [Official Documentation](http://four.laravel.com) (Under Active Development)
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+### Contributing To Elders
+
+**All issues and pull requests should be filed on the [beinir/elders](http://github.com/beinir/elders) repository.**
 
 ### License
 
-The Laravel framework is open-sourced software license under the [MIT license](http://opensource.org/licenses/MIT)
+Elders is open-sourced software license under the [MIT license](http://opensource.org/licenses/MIT)

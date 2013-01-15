@@ -1,6 +1,9 @@
 <?php
 
-class homes extends BaseController {
+class homes extends BaseController 
+{
+
+	 protected $layout = 'layouts.master';
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +12,9 @@ class homes extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$view['homes'] = Home::with(array('team', 'team.senior', 'team.junior'))->get();
+    
+        $this->layout->content = View::Make('home.index', $view);
 	}
 
 	/**
@@ -19,7 +24,9 @@ class homes extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		$view['teams'] = Team::with(array('senior', 'junior'))->get();
+
+        $this->layout->content = View::Make('home.new', $view);
 	}
 
 	/**
@@ -29,7 +36,19 @@ class homes extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$data = array(
+            'email' => Input::get('email'),
+            'name' => Input::get('name'),
+            'phone_number' => Input::get('phone'),
+            'team_id'  => Input::get('home_teachers'),
+            'address' => Input::get('address')
+            );
+        $home = Home::create($data);
+
+        if ($home) {
+     
+            return 'A new family has been created' . HTML::to('homes', 'Check out the families visited', array('id' => 'visits_link'));
+        }
 	}
 
 	/**
@@ -39,17 +58,26 @@ class homes extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
+
+        if ($view['home']) {
+            $this->layout->content = View::make('home.show', $view);
+        } else {
+        	return 'Nothing was found :(';
+        }
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 *
+	 * Edits the home information
+	 * @param  int $id Which is the related home ID
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		//
+		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
+        $view['teams'] = Team::with(array('senior', 'junior'))->get();
+
+        $this->layout->content = View::Make('home.edit', $view);
 	}
 
 	/**
@@ -59,7 +87,17 @@ class homes extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+	    $home = Home::find($id);
+
+        $home->email = Input::get('email');
+        $home->name = Input::get('name');
+        $home->phone_number = Input::get('phone_number');
+        $home->address = Input::get('address');
+        $home->team_id = Input::get('home_teachers');
+
+        $home->save();
+
+        return Redirect::to('homes/'.$id);
 	}
 
 	/**
@@ -69,7 +107,11 @@ class homes extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$home = Home::find($id);
+
+        $home->delete();
+
+        return Redirect::to('homes');
 	}
 
 }

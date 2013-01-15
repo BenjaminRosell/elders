@@ -14,4 +14,4 @@
 		{{Form::submit('Delete team', array('class' => 'btn btn-danger pull-right'))}}
 	{{Form::close()}}
 
-@end
+@stop
