@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-	<h3>Here is {{$user->firstname}}'s data</h3>
-    <p>The user username is {{ $user->username }} </p>
-    <p>The user name is {{$user->firstname .' '. $user->lastname }} </p>
+	<h3>Here is {{$user->first_name}}'s data</h3>
+    <p>The user username is {{ $user->user_name }} </p>
+    <p>The user name is {{$user->first_name .' '. $user->last_name }} </p>
     <p>The user email is {{ $user->email }}</p>
     <p>The user's phone number is {{ $user->phone }}</p>
     <p>The user's reminders are set to <?=$user->phone ? 'on' : 'off'; ?></p>

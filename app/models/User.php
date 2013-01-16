@@ -49,7 +49,7 @@ class User extends Eloquent implements UserInterface {
 		$user =  Static::find($id);
 
 		if($user){
-			return $user->firstname . ' ' . $user->lastname;
+			return $user->first_name . ' ' . $user->last_name;
 		}	
 
 		return $id;	

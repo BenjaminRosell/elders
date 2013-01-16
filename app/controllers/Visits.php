@@ -1,6 +1,9 @@
 <?php
 
-class Visits extends BaseController {
+class Visits extends BaseController 
+{
+
+	protected $layout = 'layouts.master';
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +12,9 @@ class Visits extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$view['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+
+        $this->layout->content = View::Make('visits.index', $view);
 	}
 
 	/**
@@ -19,7 +24,7 @@ class Visits extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		$this->layout->content = View::Make('visits.new');
 	}
 
 	/**

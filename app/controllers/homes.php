@@ -1,9 +1,9 @@
 <?php
 
-class homes extends BaseController 
+class Homes extends BaseController 
 {
 
-	 protected $layout = 'layouts.master';
+	protected $layout = 'layouts.master';
 
 	/**
 	 * Display a listing of the resource.

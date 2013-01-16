@@ -8,9 +8,9 @@
 		{{Form::label('username', 'Username')}}
 		{{Form::text('username', $user->username)}} <br>
 		{{Form::label('firstname', 'Your Firstname')}}
-		{{Form::text('firstname', $user->firstname)}} <br>
+		{{Form::text('firstname', $user->first_name)}} <br>
 		{{Form::label('lastname', 'Your Lastname')}}
-		{{Form::text('lastname', $user->lastname)}} <br>
+		{{Form::text('lastname', $user->last_name)}} <br>
 		{{Form::label('phone', 'Your Phone number')}}
 		{{Form::text('phone', $user->phone)}} <br>
 		{{Form::label('reminders', 'Want to get reminders ?')}}

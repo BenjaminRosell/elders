@@ -1,7 +1,7 @@
 <?php 
 
 foreach ( $teams as $team ) {
-	$teams_array[$team->id] = $team->senior->firstname . ' ' .$team->senior->lastname . ' and ' . $team->junior->firstname .' ' . $team->junior->lastname;
+	$teams_array[$team->id] = $team->senior->first_name . ' ' .$team->senior->last_name . ' and ' . $team->junior->first_name .' ' . $team->junior->last_name;
 }
 
 ?>

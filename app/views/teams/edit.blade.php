@@ -4,7 +4,7 @@
 	
 	$brothers[] = '';
 	foreach ( $users as $user ) {
-		$brothers[$user->id] = $user->firstname . ' ' . $user->lastname;
+		$brothers[$user->id] = $user->first_name . ' ' . $user->last_name;
 	}
 
 	$stewards = array(

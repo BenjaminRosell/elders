@@ -1,6 +1,6 @@
 <?php
 
-class teams extends BaseController {
+class Teams extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

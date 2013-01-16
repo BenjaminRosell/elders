@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => 'localhost',
-			'database' => 'elders',
+			'database' => 'laravel',
 			'username' => 'root',
 			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
 			'password' => 'root',

@@ -36,15 +36,28 @@ class Users extends BaseController {
 		$data = array(
             'email' => Input::get('email'),
             'username' => Input::get('username'),
-            'password' => Hash::make(Input::get('password')),
+            'password' => Input::get('password'),
             'phone' => Input::get('phone'),
-            'firstname' => Input::get('firstname'),
-            'lastname' => Input::get('lastname'),
+            'first_name' => Input::get('firstname'),
+            'last_name' => Input::get('lastname'),
             'reminder' => Input::get('reminder')
         	);
-        $user = User::create($data);
 
-        if ($user) {
+        try
+		{
+		    // Let's register a user.
+		    $user = Sentry::register( $data, true);
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+		    echo 'Login field required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+		    echo 'User already exists.';
+		}
+
+		if ($user) {
      
             return 'A user has been created' . HTML::to('users', 'Check out the users', array('id' => 'visits_link'));
         }
@@ -90,8 +103,8 @@ class Users extends BaseController {
         $user->email = Input::get('email');
         $user->username = Input::get('username');
         $user->phone = Input::get('phone');
-        $user->firstname = Input::get('firstname');
-        $user->lastname = Input::get('lastname');
+        $user->first_name = Input::get('firstname');
+        $user->last_name = Input::get('lastname');
         $user->reminder = Input::get('reminder');
 
         $user->save();

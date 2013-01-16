@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return 'We are the champions';
 });
 
 Route::resource('users', 'users');
@@ -21,3 +21,5 @@ Route::resource('users', 'users');
 Route::resource('homes', 'homes');
 
 Route::resource('teams', 'teams');
+
+Route::resource('visits', 'visits');

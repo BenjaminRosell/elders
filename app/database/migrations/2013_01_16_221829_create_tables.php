@@ -11,16 +11,10 @@ class CreateTables extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table) {
-			$table->increments('id');
+		Schema::table('users', function($table) {
 			$table->string('username');
-			$table->string('password');
-			$table->string('firstname');
-			$table->string('lastname');
-			$table->string('email')->unique;
 			$table->string('phone');
-			$table->boolean('reminder')->nullable;
-			$table->timestamps();
+			$table->boolean('reminder')->nullable();
 		});
 
 		Schema::create('teams', function($table) {
@@ -63,7 +57,12 @@ class CreateTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::table('users', function($table)
+		{
+		    $table->dropColumn('username');
+		    $table->dropColumn('phone');
+		    $table->dropColumn('reminder');
+		});
 		Schema::drop('teams');
 		Schema::drop('homes');
 		Schema::drop('visits');

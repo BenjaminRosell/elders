@@ -17,7 +17,7 @@
 			<td>{{ $home->email }}</td>
 			<td>{{ $home->phone_number }}</td>
 			<td>{{ $home->address }}</td>
-			<td>{{$home->team->senior->firstname}} {{$home->team->senior->lastname}} and {{$home->team->junior->firstname}} {{$home->team->senior->lastname}}</td>
+			<td>{{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->senior->last_name}}</td>
 		</tr>
 	@endforeach
 	</table>

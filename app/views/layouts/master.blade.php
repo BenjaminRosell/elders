@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="../../../../css/style.css">
         <link rel="stylesheet" href="../../../../css/responsive.css">
         <link rel="stylesheet" href="../../../../css/prettyPhoto.css">
+        <link rel="stylesheet" href="../../../../css/datepicker.css">
         <!-- SLIDERS -->
 		<link rel="stylesheet" href="../../../../css/royalslider.css">
         <link rel="stylesheet" href="../../../../css/rs-default-inverted.css">
@@ -253,7 +254,8 @@
                     <script type="text/javascript" src="../../../../js/bootstrap.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
-					<script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
+                    <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
+					<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
                 </footer><!-- end #footer -->
                 
