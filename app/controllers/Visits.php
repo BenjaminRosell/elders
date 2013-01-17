@@ -12,9 +12,9 @@ class Visits extends BaseController
 	 */
 	public function index()
 	{
-		$view['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+		$data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
 
-        $this->layout->content = View::Make('visits.index', $view);
+        $this->layout->content = View::Make('visits.index', $data);
 	}
 
 	/**

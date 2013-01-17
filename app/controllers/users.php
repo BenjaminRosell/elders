@@ -87,6 +87,20 @@ class Users extends BaseController {
 	public function edit($id)
 	{
 		$view['user'] = User::where('username',$id)->first();
+		$view['groups'] = Sentry::getGroupProvider()->findAll();
+
+		try
+		{
+		    // Find the user
+		    $user  = Sentry::getUserProvider()->findById($view['user']->id);
+
+		    // Get the user groups
+		    $view['user_group'] = $user->getGroups();
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    echo 'User does not exist.';
+		}
 
         return View::Make('users.edit', $view);
 	}
@@ -108,6 +122,32 @@ class Users extends BaseController {
         $user->reminder = Input::get('reminder');
 
         $user->save();
+
+        if (Input::get('group') !== Input::get('old_group') ){
+
+	        try
+			{
+			    // Find the user
+			    $user_data = Sentry::getUserProvider()->findByLogin($user->email);
+
+			    // Find the group
+			    $old_group = Sentry::getGroupProvider()->findByName(Input::get('old_group'));
+
+			    $group = Sentry::getGroupProvider()->findByName(Input::get('group'));
+
+			    $user_data->removeGroup($old_group);
+
+			    $user_data->addGroup($group);
+			}
+			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+			{
+			    echo 'User does not exist.';
+			}
+			catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+			{
+			    echo 'Group does not exist.';
+			}
+        }
 
         return Redirect::to('users/'.$user->username);
 	}
@@ -189,7 +229,7 @@ class Users extends BaseController {
 		    $user = Sentry::register(array(
 		        'email' => Input::get('email'),
 	    		'username' => Input::get('username'),
-	    		'password' => Hash::make(Input::get('password')),
+	    		'password' => Input::get('password'),
 	    		'phone' => Input::get('phone'),
 	    		'first_name' => Input::get('firstname'),
 	    		'last_name' => Input::get('lastname'),
@@ -198,6 +238,10 @@ class Users extends BaseController {
 
 		    // Let's get an activation code
 		    $activationCode = $user->getActivationCode();
+
+		    $group = Sentry::getGroupProvider()->findByName('users');
+
+			$user->addGroup($group);
 
 		    // Send activation code to user to activate their account
 		    if ($user) {

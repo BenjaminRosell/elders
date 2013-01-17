@@ -40,3 +40,8 @@ Route::filter('authorise', function()
 {
 	if ( ! Sentry::check()) return Redirect::to('login');
 });
+
+// Event::listen('laravel.query', function($sql)
+// {
+// 	return var_dump($sql);
+// });

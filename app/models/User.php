@@ -55,4 +55,18 @@ class User extends Eloquent implements UserInterface {
 		return $id;	
 	}
 
+	public static function findTeam($id){
+
+		$user = DB::table('users')
+        	->where('users.id', '=', $id)
+        	->join('teams', function($join)
+			{
+			    $join->on('users.id', '=', 'teams.lead')
+			    ->orOn('users.id', '=', 'teams.companion');
+			})
+			->first();
+
+		return $user;
+	}
+
 }
