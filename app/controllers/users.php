@@ -125,5 +125,99 @@ class Users extends BaseController {
 
         return Redirect::to('users');
 	}
+	/**
+	 * logs in a user :)
+	 * @return Response
+	 */
+	public function login()
+	{
+		return View::Make('users.login');
+	}
+
+	public function post_login()
+	{   
+	    try
+		{
+		    // Set login credentials
+		    $credentials = array(
+		        'email' => Input::get('email'),
+	    		'password' => Input::get('password'),
+	    	);
+
+		    if ($user = Sentry::authenticate($credentials))
+		    {
+		        return Redirect::to('visits');
+		    }
+		    else
+		    {
+		        echo 'You shall not pass';
+		    }
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+
+		    echo 'User not found. Maybe your pasword is wrong';
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+		    echo 'Login field is required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+		{
+		    echo 'User not activated.';
+		}
+		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+		{
+		    echo 'User suspended.';
+		}
+		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+		{
+		    echo 'User banned.';
+		}
+	}
+
+	public function register()
+    {
+    	return View::make('users.register');
+    }
+
+    public function post_register()
+    {
+    	try
+		{
+		    // Let's register a user. 
+		    $user = Sentry::register(array(
+		        'email' => Input::get('email'),
+	    		'username' => Input::get('username'),
+	    		'password' => Hash::make(Input::get('password')),
+	    		'phone' => Input::get('phone'),
+	    		'first_name' => Input::get('firstname'),
+	    		'last_name' => Input::get('lastname'),
+	    		'reminder' => Input::get('reminder')
+		    ), true);
+
+		    // Let's get an activation code
+		    $activationCode = $user->getActivationCode();
+
+		    // Send activation code to user to activate their account
+		    if ($user) {
+			    return 'Your user has been created ' . HTML::to('visits', 'Check out your visits', array('id' => 'visits_link'));
+	    	}
+		}
+		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+		{
+		    echo 'Login field required.';
+		}
+		catch (Cartalyst\Sentry\Users\UserExistsException $e)
+		{
+		    echo 'User already exists.';
+		}
+    }
+    
+    public function logout()
+    {
+	    Sentry::logout();
+	    return Redirect::to('/');
+    }
 
 }

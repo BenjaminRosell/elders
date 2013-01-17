@@ -16,10 +16,27 @@ Route::get('/', function()
 	return 'We are the champions';
 });
 
-Route::resource('users', 'users');
+Route::get('login', 'users@login');
+Route::post('login', 'users@post_login');
+Route::get('register', 'users@register');
+Route::post('register', 'users@post_register');
+Route::get('logout', 'users@logout');
 
-Route::resource('homes', 'homes');
+Route::group(array('before' => 'authorise'), function()
+{
+	Route::resource('homes', 'homes');
 
-Route::resource('teams', 'teams');
+	Route::resource('teams', 'teams');
 
-Route::resource('visits', 'visits');
+	Route::resource('visits', 'visits');
+
+	Route::resource('users', 'users');
+
+	Route::resource('groups', 'Groups');
+});
+
+
+Route::filter('authorise', function()
+{
+	if ( ! Sentry::check()) return Redirect::to('login');
+});

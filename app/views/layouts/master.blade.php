@@ -40,46 +40,35 @@
                             <div id="logo" class="pull-left">
                                 <a href="index.html"><img src="../../../../images/logo.png" alt="your logo goes here ! "></a>
                             </div><!-- end #logo -->
-                            @section('navigation')
+                            
                             <nav class="pull-right navmenu">
                                 <ul class="unstyled sf-menu">
                                     <li>
                                         <a href="/" class="btn-menu">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="homes" class="btn-menu">Families</a>
+                                    </li>
+                                    <li>
+                                        <a href="visits" class="btn-menu">Reports</a>
+                                    </li>
+                                    <li>
+                                        <a href="teams" class="btn-menu">Teams</a>
                                             <ul class="unstyled">
-                                                <li><a href="home2.html">Home page 2</a></li>
-                                                <li><a href="home3.html">Home page 3</a></li>
-                                                <li><a href="home4.html">Home page 4</a></li>
+                                                <li><a href="teams/create">New Team</a></li>
                                             </ul>
                                     </li>
                                     <li>
-                                        <a href="../../../homes" class="btn-menu">Homes</a>
+                                        <a href="users" class="btn-menu">Users</a>
                                             <ul class="unstyled">
-                                                <li><a href="portfolio_3col.html">Portfolio 3 columns</a></li>
-                                                <li><a href="portfolio_4col.html">Portfolio 4 columns</a></li>
-                                                <li><a href="portfolio_6col.html">Portfolio 6 columns</a></li>
-                                                <li><a href="single_project.html">A single project</a></li>
+                                                <li><a href="user/create">New User</a></li>
+                                                <li><a href="groups">Groups</a></li>
                                             </ul>
                                     </li>
-                                    <li>
-                                        <a href="../../../../teams" class="btn-menu">Teams</a>
-                                            <ul class="unstyled">
-                                                <li><a href="404_error.html">404 error</a></li>
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="faq.html">FAQ</a></li>
-                                                <li><a href="sitemap.html">Sitemap</a></li>
-                                            </ul>
-                                    </li>
-                                    <li>
-                                        <a href="../../../users" class="btn-menu">Users</a>
-                                            <ul class="unstyled">
-                                                <li><a href="blog_without_sidebar.html">Blog without sidebar</a></li>
-                                                <li><a href="single_post.html">Single post</a></li>
-                                            </ul>
-                                    </li>
-                                    <li><a href="contact.html" class="btn-menu">Contact</a></li>
+                                    <!-- <li><a href="contact.html" class="btn-menu">Contact</a></li> -->
                                 </ul>
                             </nav><!-- end nav -->
-                            @stop
+                            
                         </div><!-- end .container -->
                     </header><!-- end header -->
                 </div><!-- end #shadow_header_container -->

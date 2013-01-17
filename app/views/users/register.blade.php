@@ -1,4 +1,4 @@
-@layout('master')
+@extends('layouts.master')
 
 @section('content')
 	{{ Form::open() }}
@@ -18,5 +18,5 @@
 		{{Form::checkbox('reminder')}} <br>
 		{{Form::submit('submit')}}
 	{{ Form::close() }}
-	{{ HTML::link('register', 'Create an account', array('id' => 'register_link'));}}
-@endsection
+	{{ HTML::to('register', 'Create an account', array('id' => 'register_link'));}}
+@stop

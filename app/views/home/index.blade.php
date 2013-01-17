@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-	<h4>This is a list of our brethren</h4>
+	<h4>This is a list of our families</h4>
 	
 	<table class="table table-striped">
 		<tr>	
