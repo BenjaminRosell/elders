@@ -44,25 +44,30 @@
                             <nav class="pull-right navmenu">
                                 <ul class="unstyled sf-menu">
                                     <li>
-                                        <a href="/" class="btn-menu">Home</a>
+                                        <a href="/" class="btn-menu">My Account</a>
+                                        <ul class="unstyled">
+                                            <li><a href="../../../../login">Log In</a></li>
+                                            <li><a href="../../../../logout">Log Out</a></li>
+                                            <li><a href="../../../../users/1/edit">My profile</a></li>
+                                        </ul>
                                     </li>
                                     <li>
-                                        <a href="homes" class="btn-menu">Families</a>
+                                        <a href="../../../../homes" class="btn-menu">Families</a>
                                     </li>
                                     <li>
-                                        <a href="visits" class="btn-menu">Reports</a>
+                                        <a href="../../../../visits" class="btn-menu">Reports</a>
                                     </li>
                                     <li>
-                                        <a href="teams" class="btn-menu">Teams</a>
+                                        <a href="../../../../teams" class="btn-menu">Teams</a>
                                             <ul class="unstyled">
-                                                <li><a href="teams/create">New Team</a></li>
+                                                <li><a href="../../../../teams/create">New Team</a></li>
                                             </ul>
                                     </li>
                                     <li>
-                                        <a href="users" class="btn-menu">Users</a>
+                                        <a href="../../../../users" class="btn-menu">Users</a>
                                             <ul class="unstyled">
-                                                <li><a href="user/create">New User</a></li>
-                                                <li><a href="groups">Groups</a></li>
+                                                <li><a href="../../../../users/create">New User</a></li>
+                                                <li><a href="../../../../groups">Groups</a></li>
                                             </ul>
                                     </li>
                                     <!-- <li><a href="contact.html" class="btn-menu">Contact</a></li> -->
@@ -246,6 +251,11 @@
                     <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
 					<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($) {
+                            $('.datepicker').datepicker()
+                        });
+                    </script>
                 </footer><!-- end #footer -->
                 
             </section><!-- end #wrapper_footer -->

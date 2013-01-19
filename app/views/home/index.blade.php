@@ -11,6 +11,7 @@
 			<td>Address</td>
 			<td>Home Teachers</td>
 		</tr>
+		
 	@foreach ($homes as $home)
     	<tr>
 			<td>{{ HTML::to('homes/'.$home->id, $home->name, array('id' => 'register_link'));}}</td>

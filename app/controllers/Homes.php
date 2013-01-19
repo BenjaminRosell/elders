@@ -4,6 +4,15 @@ class Homes extends BaseController
 {
 
 	protected $layout = 'layouts.master';
+	
+	public function __construct()
+    {
+        $this->user = Sentry::getUser();
+
+        $this->admin =  $this->user->hasAccess('admin');
+
+        $this->userTeam = User::findTeam($this->user->id);
+    }
 
 	/**
 	 * Display a listing of the resource.
@@ -11,22 +20,18 @@ class Homes extends BaseController
 	 * @return Response
 	 */
 	public function index()
-	{	
-		$user = Sentry::getUser();
+	{		
 
-		if ( $user->hasAccess('admin'))
+		if ( $this->admin )
 	    {
 	        $view['homes'] = Home::with(array('team', 'team.senior', 'team.junior'))->get();
 	    }
 	    else
 	    {
-	    	$user_team = User::findTeam($user->id);
-	    	$team = $user_team->id;
+	    	$user_team = User::findTeam($this->user->id);
 
-	    	$view['homes'] = Home::with(array('team' => function($query)
-	    	{
-	    		$query->where('team.id', '=', $team);
-	    	}, 'team.senior', 'team.junior'))->get();
+	    	$view['homes'] = Home::where('team_id', '=', $user_team->id)->get();
+
 	    }
     
         $this->layout->content = View::Make('home.index', $view);

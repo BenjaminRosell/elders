@@ -1,5 +1,5 @@
 @section('content')
-	<h4>This is a list of teams</h4>
+	<h4>This is a list of your last visits</h4>
 	
 	<table class="table table-striped">
 		<tr>	
@@ -8,8 +8,6 @@
 			<td>Family</td>
 			<td>Visited ?</td>
  			<td>Status</td>
-			<td>Message</td>
-			<td>Issues</td>
 			<td>Visit date</td>
 			<td>Report date</td>
 		</tr>
@@ -20,8 +18,6 @@
 			<td>{{ $visit->home->name }}</td>
 			<td>{{ $visit->visited == 1 ? 'Yes' : 'No'}}</td>
 			<td>{{ $visit->status }}</td>
-			<td>{{ $visit->message }}</td>
-			<td>{{ $visit->issues }}</td>
 			<td>{{ $visit->visit_date }}</td>
 			<td>{{ $visit->report_date }}</td>
 		</tr>

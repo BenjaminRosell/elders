@@ -2,13 +2,23 @@
 
 class Teams extends BaseController {
 
-	/**
+	public function __construct()
+    {
+        $this->user = Sentry::getUser();
+
+        $this->admin =  $this->user->hasAccess('admin');
+
+        $this->userTeam = User::findTeam($this->user->id);
+    }
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
+
 		$view['teams'] = Team::all();
     
         return View::Make('teams.index', $view);

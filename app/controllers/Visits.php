@@ -5,6 +5,15 @@ class Visits extends BaseController
 
 	protected $layout = 'layouts.master';
 
+	public function __construct()
+    {
+        $this->user = Sentry::getUser();
+
+        $this->admin =  $this->user->hasAccess('admin');
+
+        $this->userTeam = User::findTeam($this->user->id);
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -12,7 +21,17 @@ class Visits extends BaseController
 	 */
 	public function index()
 	{
-		$data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+		
+		$user = Sentry::getUser();
+
+		if ( $this->admin )
+	    {
+	        $data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+
+	    } else {
+
+	    	$data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->where('team_id', '=', $this->userTeam->id)->get();
+	    }
 
         $this->layout->content = View::Make('visits.index', $data);
 	}
@@ -24,7 +43,20 @@ class Visits extends BaseController
 	 */
 	public function create()
 	{
-		$this->layout->content = View::Make('visits.new');
+
+		if ( $this->admin )
+	    {
+	        
+	        $view['teams'] = Team::with(array('senior', 'junior'))->get();
+			$view['homes'] = Home::all();
+
+	    } else {
+
+	    	$view['teams'] = Team::with(array('senior', 'junior'))->where('id', '=', $this->userTeam->id)->get();
+			$view['homes'] = Home::where('team_id', '=', $this->userTeam->id)->get();
+	    }
+
+		$this->layout->content = View::Make('visits.new', $view);
 	}
 
 	/**
@@ -34,7 +66,23 @@ class Visits extends BaseController
 	 */
 	public function store()
 	{
-		//
+		$data = array(
+            'family_id' => Input::get('family'),
+            'team_id' => Input::get('team'),
+            'visited' => Input::get('visited'),
+            'month' => Input::get('visit_date'),
+            'status'  => Input::get('status'),
+            'message' => Input::get('message'),
+            'issues' => Input::get('issues'),
+            'visit_date' => Input::get('visit_date'),
+            'report_date' => date('Y-m-d')
+            );
+        $visit = Visit::create($data);
+
+        if ($visit) {
+     
+            return Redirect::to('visits');
+        }
 	}
 
 	/**
@@ -44,7 +92,11 @@ class Visits extends BaseController
 	 */
 	public function show($id)
 	{
-		//
+		$view['teams'] = Team::with(array('senior', 'junior'))->get();
+		$view['homes'] = Home::all();
+		$view['visit'] = Visit::find($id);
+
+		$this->layout->content = View::Make('visits.show', $view);
 	}
 
 	/**
@@ -54,7 +106,22 @@ class Visits extends BaseController
 	 */
 	public function edit($id)
 	{
-		//
+
+		if ( $this->admin )
+	    {
+	        
+	        $view['teams'] = Team::with(array('senior', 'junior'))->get();
+			$view['homes'] = Home::all();
+
+	    } else {
+
+	    	$view['teams'] = Team::with(array('senior', 'junior'))->where('id', '=', $this->userTeam->id)->get();
+			$view['homes'] = Home::where('team_id', '=', $this->userTeam->id)->get();
+	    }
+
+		$view['visit'] = Visit::find($id);
+
+		$this->layout->content = View::Make('visits.edit', $view);
 	}
 
 	/**
@@ -64,7 +131,23 @@ class Visits extends BaseController
 	 */
 	public function update($id)
 	{
-		//
+		$visit = Visit::find($id);
+
+        $visit->family_id = Input::get('family');
+        $visit->team_id = Input::get('team');
+        $visit->visited = Input::get('visited');
+        $visit->month = Input::get('visit_date');
+        $visit->status  = Input::get('status');
+        $visit->message = Input::get('message');
+        $visit->issues = Input::get('issues');
+        $visit->visit_date = Input::get('visit_date');
+        
+        $visit->save();
+
+        if ($visit) {
+     
+            return Redirect::to('visits/'.$id);
+        }
 	}
 
 	/**

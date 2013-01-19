@@ -14,21 +14,21 @@ foreach ($homes as $home) {
 
 @section('content')
 	<h3>Monthly Home teaching report</h3>
-	{{ Form::open('visits', 'POST', array('class'=>'form')) }}
+	{{ Form::open('visits/'.$visit->id, 'PUT', array('class'=>'form')) }}
 		{{Form::label('family', 'Family Name')}}
-		{{Form::select('family', $home_array)}} <br>
+		{{Form::select('family', $home_array, $visit->family_id)}} <br>
 		{{Form::label('team', "Home Teaching team")}}
-		{{Form::select('team', $teams_array)}}
+		{{Form::select('team', $teams_array, $visit->team_id)}}
 		{{Form::label('visited', "Did you visit this family during this month ?")}}
-		{{Form::select('visited', $visited_array)}} <br>
+		{{Form::select('visited', $visited_array, $visit->visited)}} <br>
 		{{Form::label('status', 'How are they doing ?')}}
-		{{Form::text('status')}} <br>
+		{{Form::text('status', $visit->status)}} <br>
 		{{Form::label('message', 'What was the message you tought ?')}}
-		{{Form::textarea('message')}} <br>
+		{{Form::textarea('message', $visit->message)}} <br>
 		{{Form::label('issues', 'What are the main issues the family is facing ?')}}
-		{{Form::textarea('issues')}} <br>
+		{{Form::textarea('issues', $visit->issues)}} <br>
 		{{Form::label('visit_date', 'What was the exact date of your visit ?')}}
-		{{Form::text('visit_date', '', array('class' => 'datepicker'))}} <br>
-		{{Form::submit('Submit Report', array('class'=>'btn'))}}
+		{{Form::text('visit_date', $visit->visit_date, array('class' => 'datepicker'))}} <br>
+		{{Form::submit('Edit my report', array('class'=>'btn'))}}
 	{{ Form::close() }}
 @stop

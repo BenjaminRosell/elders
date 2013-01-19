@@ -3,6 +3,11 @@
 class Groups extends BaseController {
 
 	protected $layout = 'layouts.master';
+
+	public function __construct()
+    {
+        $this->beforeFilter('isAdmin');
+    }
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return 'We are the champions';
+	return HTML::to('login', 'Log In');
 });
 
 Route::get('login', 'users@login');
@@ -39,6 +39,13 @@ Route::group(array('before' => 'authorise'), function()
 Route::filter('authorise', function()
 {
 	if ( ! Sentry::check()) return Redirect::to('login');
+});
+
+Route::filter('isAdmin', function()
+{
+	$user = Sentry::getUser();
+
+	if ( ! $user->hasAccess('admin')) return 'Job 38:11' ;
 });
 
 // Event::listen('laravel.query', function($sql)
