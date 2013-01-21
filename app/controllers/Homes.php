@@ -25,12 +25,16 @@ class Homes extends BaseController
 		if ( $this->admin )
 	    {
 	        $view['homes'] = Home::with(array('team', 'team.senior', 'team.junior'))->get();
+
+	        $view['admin'] = false;
 	    }
 	    else
 	    {
 	    	$user_team = User::findTeam($this->user->id);
 
 	    	$view['homes'] = Home::where('team_id', '=', $user_team->id)->get();
+
+	    	$view['admin'] = false;
 
 	    }
     
@@ -78,7 +82,12 @@ class Homes extends BaseController
 	 */
 	public function show($id)
 	{
+
 		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
+
+		if ( $this->userTeam->id !== $view['home']->team_id ) return 'You are not allowed to see this page, friend !';
+
+		$view['admin'] = $this->admin ? true : false;
 
         if ($view['home']) {
             $this->layout->content = View::make('home.show', $view);

@@ -26,6 +26,17 @@
         <!--[if IE 8]><link rel="stylesheet" href="css/ie8.css" type="text/css" media="screen" /><![endif]-->
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
+    <?php 
+
+        $userData = Sentry::getUser();
+
+        if ($userData) {
+            $isAdmin =  $userData->hasAccess('admin');
+        } else {
+            $isAdmin = false;
+        }
+    ?>
+    
 	<body>
 		<div id="page">
             <!-- ///////////////////////////////////////////////////////////////////
@@ -38,19 +49,24 @@
                     <header>
                         <div class="container">
                             <div id="logo" class="pull-left">
-                                <a href="index.html"><img src="../../../../images/logo.png" alt="your logo goes here ! "></a>
+                                <a href="../../../../"><img src="../../../../images/logo.png" alt="your logo goes here ! "></a>
                             </div><!-- end #logo -->
                             
                             <nav class="pull-right navmenu">
                                 <ul class="unstyled sf-menu">
+                                    @if ($userData)
                                     <li>
                                         <a href="/" class="btn-menu">My Account</a>
                                         <ul class="unstyled">
-                                            <li><a href="../../../../login">Log In</a></li>
                                             <li><a href="../../../../logout">Log Out</a></li>
-                                            <li><a href="../../../../users/1/edit">My profile</a></li>
+                                            <li><a href="../../../../users/<?php echo $userData->username ?>/edit">My profile</a></li>
                                         </ul>
                                     </li>
+                                    @else
+                                    <li>
+                                        <a href="../../../../login" class="btn-menu">Log In</a>
+                                    </li>
+                                    @endif
                                     <li>
                                         <a href="../../../../homes" class="btn-menu">Families</a>
                                     </li>
@@ -59,10 +75,13 @@
                                     </li>
                                     <li>
                                         <a href="../../../../teams" class="btn-menu">Teams</a>
+                                            @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>
                                             </ul>
+                                            @endif
                                     </li>
+                                    @if ($isAdmin)
                                     <li>
                                         <a href="../../../../users" class="btn-menu">Users</a>
                                             <ul class="unstyled">
@@ -70,6 +89,7 @@
                                                 <li><a href="../../../../groups">Groups</a></li>
                                             </ul>
                                     </li>
+                                    @endif
                                     <!-- <li><a href="contact.html" class="btn-menu">Contact</a></li> -->
                                 </ul>
                             </nav><!-- end nav -->

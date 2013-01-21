@@ -13,7 +13,7 @@ Some of the features that are planned on this app are :
 - Families and assignment management
 - Team stewardship management
 - Automatic stewardship interviews schelduling
-- Interviews confirmation confirmation (via email)
+- Interviews confirmation (via email)
 - Interviews remiders via email
 - Automatic home teaching appointment reminders via email
 - Google Calendar integration

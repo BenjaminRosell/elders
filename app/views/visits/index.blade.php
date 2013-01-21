@@ -23,5 +23,7 @@
 		</tr>
 	@endforeach
 	</table>
-	{{ HTML::to('visits/create', 'Create a new visit', array('class' => 'btn' ))}}
+	@if ($admin)
+    	{{ HTML::to('visits/create', 'Create a new visit', array('class' => 'btn' ))}}
+	@endif
 @stop

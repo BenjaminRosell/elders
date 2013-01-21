@@ -22,7 +22,7 @@
 		</tr>
 	@endforeach
 	</table>
-
-	{{ HTML::to('homes/create', 'Add a new home', array('id' => 'add_link', 'class' => 'btn'));}}
-
+	@if ($admin)
+		{{ HTML::to('homes/create', 'Add a new home', array('id' => 'add_link', 'class' => 'btn'));}}
+	@endif
 @stop

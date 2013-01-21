@@ -29,6 +29,6 @@ foreach ($homes as $home) {
 		{{Form::textarea('issues', $visit->issues)}} <br>
 		{{Form::label('visit_date', 'What was the exact date of your visit ?')}}
 		{{Form::text('visit_date', $visit->visit_date, array('class' => 'datepicker'))}} <br>
-		{{Form::submit('Edit my report', array('class'=>'btn'))}}
+		{{Form::submit('Save changes', array('class'=>'btn'))}}
 	{{ Form::close() }}
 @stop

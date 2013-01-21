@@ -9,7 +9,9 @@
 	    {{ HTML::to('homes/' . $home->id .'/edit', 'Edit this user', array('id' => 'edit_link', 'class' => 'btn'));}}
 		{{ HTML::to('homes', 'Back to home list', array('id' => 'back_link', 'class' => 'btn'));}}
 		
-		{{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
+		@if($admin)
+			{{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
+		@endif
 	{{Form::close()}}
 
 @stop

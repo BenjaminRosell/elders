@@ -27,10 +27,11 @@ class Visits extends BaseController
 		if ( $this->admin )
 	    {
 	        $data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+	        $data['admin'] = true;
 
 	    } else {
-
 	    	$data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->where('team_id', '=', $this->userTeam->id)->get();
+	    	$data['admin'] = false;
 	    }
 
         $this->layout->content = View::Make('visits.index', $data);
@@ -92,11 +93,37 @@ class Visits extends BaseController
 	 */
 	public function show($id)
 	{
-		$view['teams'] = Team::with(array('senior', 'junior'))->get();
-		$view['homes'] = Home::all();
+		if ( $this->admin )
+	    {
+	        
+	        $view['teams'] = Team::with(array('senior', 'junior'))->get();
+			$view['homes'] = Home::all();
+
+	    } else {
+
+	    	$view['teams'] = Team::with(array('senior', 'junior'))->where('id', '=', $this->userTeam->id)->get();
+			$view['homes'] = Home::where('team_id', '=', $this->userTeam->id)->get();
+	    }
+
 		$view['visit'] = Visit::find($id);
 
-		$this->layout->content = View::Make('visits.show', $view);
+		if ($view['visit']) {
+
+			if ( ! $this->admin AND $this->userTeam->id !== $view['visit']->team_id ) {
+				
+				$data['error'] = 'You are not allowed to see this page, friend !';
+				$this->layout->content =  View::Make('errors.permissions', $data);
+			
+			} else {
+
+			$this->layout->content = View::Make('visits.show', $view);
+
+			}
+
+		} else {
+			return 'Nothing was found';
+		}
+		
 	}
 
 	/**
