@@ -35,6 +35,8 @@ Route::group(array('before' => 'authorise'), function()
 	Route::resource('groups', 'Groups');
 });
 
+Route::get('/crons/visits', 'crons@visitsCron');
+
 
 Route::filter('authorise', function()
 {

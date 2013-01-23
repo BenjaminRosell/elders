@@ -26,7 +26,7 @@ class Homes extends BaseController
 	    {
 	        $view['homes'] = Home::with(array('team', 'team.senior', 'team.junior'))->get();
 
-	        $view['admin'] = false;
+	        $view['admin'] = true;
 	    }
 	    else
 	    {
@@ -85,7 +85,7 @@ class Homes extends BaseController
 
 		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
 
-		if ( $this->userTeam->id !== $view['home']->team_id ) return 'You are not allowed to see this page, friend !';
+		if ( !$this->admin AND $this->userTeam->id !== $view['home']->team_id ) return 'You are not allowed to see this page, friend !';
 
 		$view['admin'] = $this->admin ? true : false;
 
