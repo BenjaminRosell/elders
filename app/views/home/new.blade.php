@@ -5,20 +5,47 @@ foreach ( $teams as $team ) {
 }
 ?>
 
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Create a new family</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  teams</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	<h3>Create new family</h3>
 	{{ Form::open('homes', 'POST', array('class'=>'form')) }}
-		{{Form::label('name', 'A name for the new family')}}
-		{{Form::text('name')}} <br>
-		{{Form::label('email', "E-mail Address")}}
-		{{Form::text('email')}} <br>
-		{{Form::label('address', "What's the address ?")}}
-		{{Form::text('address')}} <br>
-		{{Form::label('phone', 'Their Phone number')}}
-		{{Form::text('phone')}} <br>
-		{{Form::label('home_teachers', 'Home Teachers')}}
-		{{Form::select('home_teachers', $teams_array)}} <br>
-		{{Form::submit('Create new family', array('class'=>'btn'))}}
+		<div class="control-group">
+		    {{Form::label('name', 'A name for the new family', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('name')}} 
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('email', "E-mail Address", array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('email')}} 
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('address', "What's their address ?", array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('address')}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('phone', 'Their Phone number', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('phone', '', array('class'=>'phone'))}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('home_teachers', 'Home Teachers', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::select('home_teachers', $teams_array)}}
+		    </div>
+		</div>
+
+		{{Form::submit('Create new family', array('class'=>'btn btn-inverse'))}}
 	{{ Form::close() }}
-	{{ HTML::to('register', 'Create an account', array('id' => 'register_link'));}}
+
 @stop

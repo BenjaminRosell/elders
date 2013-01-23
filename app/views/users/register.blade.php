@@ -1,5 +1,15 @@
 @extends('layouts.master')
 
+@if(Session::get('success_message'))
+	<div class="alert alert-success">{{Session::get('success_message')}}</div>
+@endif
+
+@if(Session::get('error_message'))
+	<div class="alert alert-error">{{Session::get('error_message')}}</div>
+@endif
+
+<br>
+
 @section('content')
 	{{ Form::open() }}
 		{{Form::label('email', 'E-Mail Address')}}

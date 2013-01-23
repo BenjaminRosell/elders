@@ -5,19 +5,45 @@ foreach ( $teams as $team ) {
 }
 
 ?>
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Edit the {{$home->name}}'s family record</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Users</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	<h3>Edit the {{$home->name}}'s family record</h3>
 	{{ Form::open('homes/'.$home->id, 'PUT', array('class' => 'form')) }}
-		{{Form::label('name', 'Family name')}}
-		{{Form::text('name', $home->name)}} <br>
-		{{Form::label('email', 'E-Mail Address')}}
-		{{Form::text('email', $home->email)}} <br>
-		{{Form::label('phone_number', 'Your Phone number')}}
-		{{Form::text('phone_number', $home->phone_number)}} <br>
-		{{Form::label('address', 'The address')}}
-		{{Form::text('address', $home->address)}} <br>
-		{{Form::label('home_teachers', 'Home Teachers')}}
-		{{Form::select('home_teachers', $teams_array, $home->team_id)}} <br><br>
-		{{Form::submit('submit', array('class' =>'btn'))}}
+		<div class="control-group">
+		    {{Form::label('name', 'A name for the new family', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('name', $home->name)}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('email', "E-mail Address", array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('email', $home->email)}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('address', "What's their address ?", array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('address', $home->address)}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('phone', 'Their Phone number', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::text('phone_number', $home->phone_number, array('class'=>'phone'))}}
+		    </div>
+		</div>
+		<div class="control-group">
+		    {{Form::label('home_teachers', 'Home Teachers', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::select('home_teachers', $teams_array, $home->team_id)}}
+		    </div>
+		</div>
+		{{Form::submit('submit', array('class' =>'btn-inverse btn'))}}
 	{{ Form::close() }}
 @stop

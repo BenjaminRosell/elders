@@ -1,8 +1,13 @@
 @extends('layouts.master')
 
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Home Teaching teams</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Teams</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	<h4>This is a list of teams</h4>
-	
 	<table class="table table-striped">
 		<tr>	
 			<td>Team number</td>
@@ -20,6 +25,6 @@
 	@endforeach
 	</table>
 
-	{{ HTML::to('teams/create', 'Add a new team', array('id' => 'add_link', 'class' => 'btn'));}}
+	<a href="../../teams/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new team</a>
 
 @stop

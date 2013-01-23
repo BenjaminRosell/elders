@@ -1,6 +1,11 @@
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Create a new group</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Groups</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
 
 @section('content')
-	<h4>Creating Groups</h4>
 
 	{{ Form::open('groups', 'POST', array('class' => 'form')) }}
 

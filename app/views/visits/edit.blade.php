@@ -11,24 +11,69 @@ foreach ($homes as $home) {
 }
 
 ?>
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Edit visit report</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Visits</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
 
 @section('content')
-	<h3>Monthly Home teaching report</h3>
-	{{ Form::open('visits/'.$visit->id, 'PUT', array('class'=>'form')) }}
-		{{Form::label('family', 'Family Name')}}
-		{{Form::select('family', $home_array, $visit->family_id)}} <br>
-		{{Form::label('team', "Home Teaching team")}}
-		{{Form::select('team', $teams_array, $visit->team_id)}}
-		{{Form::label('visited', "Did you visit this family during this month ?")}}
-		{{Form::select('visited', $visited_array, $visit->visited)}} <br>
-		{{Form::label('status', 'How are they doing ?')}}
-		{{Form::text('status', $visit->status)}} <br>
-		{{Form::label('message', 'What was the message you tought ?')}}
-		{{Form::textarea('message', $visit->message)}} <br>
-		{{Form::label('issues', 'What are the main issues the family is facing ?')}}
-		{{Form::textarea('issues', $visit->issues)}} <br>
-		{{Form::label('visit_date', 'What was the exact date of your visit ?')}}
-		{{Form::text('visit_date', $visit->visit_date, array('class' => 'datepicker'))}} <br>
-		{{Form::submit('Save changes', array('class'=>'btn'))}}
-	{{ Form::close() }}
+{{ Form::open('visits/'.$visit->id, 'PUT', array('class'=>'form')) }}
+	<div class="control-group">
+	    {{Form::label('family', 'Family Name', array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::select('family', $home_array, $visit->family_id)}}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('team', "Home Teaching team", array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::select('team', $teams_array, $visit->team_id)}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('visited', "Did you visit this family during this month ?", array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::select('visited', $visited_array)}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('status', 'How are they doing ?', array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::text('status', $visit->status)}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('message', 'What was the message you tought ?', array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::textarea('message', $visit->message)}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('issues', 'What are the main issues the family is facing ?', array('class' => 'control-label'))}}
+	    <div class="controls">
+	    	{{Form::textarea('issues', $visit->issues)}}
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    {{Form::label('visit_date', 'What was the exact date of your visit ?', array('class' => 'control-label'))}}
+		 <div class="controls">
+	    	{{Form::text('visit_date', $visit->visit_date, array('class' => 'datepicker'))}}
+
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    <div class="controls">
+	    	{{Form::submit('Submit Report', array('class'=>'btn btn-inverse'))}}
+	    </div>
+	</div>
+ {{ Form::close() }}
 @stop

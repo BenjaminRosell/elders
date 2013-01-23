@@ -1,35 +1,45 @@
-<?php 
-
-$visited_array = array('1' => 'Yes', '0' => 'No');
-
-foreach ( $teams as $team ) {
-	$teams_array[$team->id] = $team->senior->first_name . ' ' .$team->senior->last_name . ' and ' . $team->junior->first_name .' ' . $team->junior->last_name;
-}
-
-foreach ($homes as $home) {
-	$home_array[$home->id] = $home->name; 
-}
-
-?>
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Monthly Home teaching report for {{$visit->home->name}}</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Visit</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
 
 @section('content')
-	<h3>Monthly Home teaching report</h3>
-		{{'<h5>Family Name : </h3>'. $visit->family_id}}
-		<br>
-		{{"Home Teaching team : ".$visit->team_id}}
-		<br>
-		{{"Did you visit this family during this month ? : ". $visit->visited == 1 ? 'Yes' : 'No'}} 
-		<br>
-		{{ 'How are they doing ? : '.$visit->status}}
-		<br>
-		{{ 'What was the message you tought ?'}}<br>
-		{{$visit->message}}
-		 <br>
-		{{'What are the main issues the family is facing ?'}} <br>
-		{{ $visit->issues}} 
-		<br>
-		{{ 'What was the exact date of your visit ?' }} <br>
-		{{ $visit->visit_date }} <br>
+	@if(Session::get('success_message'))
+		<div class="alert alert-success">{{Session::get('success_message')}}</div>
+	@endif
 
-		{{HTML::to('visits/'.$visit->id.'/edit', 'Edit my report', array('class'=>'btn'))}}
+	@if(Session::get('error_message'))
+		<div class="alert alert-error">{{Session::get('error_message')}}</div>
+	@endif
+	
+	<h5>Home Teaching team : </h5>	
+	<div>
+		{{ User::name($visit->lead_id) . ' and ' . User::name($visit->companion_id)}}
+	</div>
+	<h5>Did you visit this family during this month ?</h5>
+
+	{{$visit->visited == 1 ? 'Yes' : 'No'}} 
+
+	<h5>How are they doing ?</h5>
+	{{$visit->status}}
+
+	<h5>What are the main issues the family is facing ?</h5>
+	<div class="well">
+		{{ $visit->issues}} 
+	</div>
+	
+	<h5>What was the message tought ?</h5>
+	<div class="well">
+		{{$visit->message}}
+	</div>
+
+	<h5>What was the date of your visit ?</h5>
+	{{ $visit->visit_date }}
+
+	<br>
+	<br>
+
+	<a href="../visits/<?=$visit->id?>/edit" class="btn btn-inverse"> <i class="icon-pencil icon-white"></i> Edit my report </a>
 @stop

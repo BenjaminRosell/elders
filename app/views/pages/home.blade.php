@@ -5,7 +5,7 @@
                         <!-- // Say Welcome !// -->
                         <div class="span12 text_shadow center">
                             <h1 class="center">Welcome !</h1>
-                            <p class="m1" id="showing"> "<strong>For the power is in them</strong>, wherein they are agents unto themselves. <br> And inasmuch as men do good they shall in nowise lose their breward "</p>
+                            <p class="m1" id="showing"> "<strong>For the power is in them</strong>, wherein they are agents unto themselves. <br> And inasmuch as men do good they shall in nowise lose their reward "</p>
                             <p>Doctrine and Covenants 58:27</p>
                         </div><!-- end .span12 -->
                         <div class="span12 text_shadow center">

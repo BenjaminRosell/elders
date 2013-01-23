@@ -84,8 +84,7 @@ class Visits extends BaseController
         $visit = Visit::create($data);
 
         if ($visit) {
-     
-            return Redirect::to('visits');
+            return Redirect::to('visits')->with('success_message', 'A new report has been created successfully');
         }
 	}
 
@@ -96,19 +95,8 @@ class Visits extends BaseController
 	 */
 	public function show($id)
 	{
-		if ( $this->admin )
-	    {
-	        
-	        $view['teams'] = Team::with(array('senior', 'junior'))->get();
-			$view['homes'] = Home::all();
 
-	    } else {
-
-	    	$view['teams'] = Team::with(array('senior', 'junior'))->where('id', '=', $this->userTeam->id)->get();
-			$view['homes'] = Home::where('team_id', '=', $this->userTeam->id)->get();
-	    }
-
-		$view['visit'] = Visit::find($id);
+		$view['visit'] = Visit::with('home', 'team', 'team.senior', 'team.junior')->find($id);
 
 		if ($view['visit']) {
 
@@ -124,7 +112,7 @@ class Visits extends BaseController
 			}
 
 		} else {
-			return 'Nothing was found';
+			return Redirect::to('visits')->with('error_message', 'Noting was found.');
 		}
 		
 	}
@@ -176,7 +164,7 @@ class Visits extends BaseController
 
         if ($visit) {
      
-            return Redirect::to('visits/'.$id);
+            return Redirect::to('visits/'.$id)->with('success_message', 'Your report has been updated successfully');
         }
 	}
 

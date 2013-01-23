@@ -22,6 +22,17 @@ class Users extends BaseController {
 	public function create()
 	{
 		$view['users'] = User::all();
+		$view['groups'] = Sentry::getGroupProvider()->findAll();
+
+		$user = Sentry::getUser();
+
+        $admin = $user->hasAccess('admin');
+
+		if ($admin) {
+			$view['admin'] = true;
+		} else {
+			$view['admin'] = false;
+		}
 
         return View::Make('users.new', $view);
 	}
@@ -50,17 +61,37 @@ class Users extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 		{
-		    echo 'Login field required.';
+		    return Redirect::to('users')->with('error_message', 'Login field required.');
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
-		    echo 'User already exists.';
+		    return Redirect::to('users')->with('error_message', 'User already exists.');
 		}
 
-		if ($user) {
-     
-            return 'A user has been created' . HTML::to('users', 'Check out the users', array('id' => 'visits_link'));
+        if (Input::get('group')){
+
+	        try
+			{
+			    // Find the user
+			    $user_data = Sentry::getUserProvider()->findByLogin(Input::get('email'));
+
+			    $group = Sentry::getGroupProvider()->findByName(Input::get('group'));
+
+			    $user_data->addGroup($group);
+			}
+			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+			{
+			    return Redirect::to('users')->with('error_message', 'User does not exist.');
+			}
+			catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+			{
+			    return Redirect::to('users')->with('error_message', 'Group does not exist.');
+			}
         }
+        if ($user)
+        {
+	        return Redirect::to('users')->with('success_message', 'The user has been created with success');
+	    }
 	}
 
 	/**
@@ -76,7 +107,7 @@ class Users extends BaseController {
             return View::make('users.show', $view);
         }
 
-        return 'No user recorded';
+        return Redirect::to('users')->with('error_message', 'No users were found');
 	}
 
 	/**
@@ -89,6 +120,16 @@ class Users extends BaseController {
 		$view['user'] = User::where('username',$id)->first();
 		$view['groups'] = Sentry::getGroupProvider()->findAll();
 
+		$user = Sentry::getUser();
+
+        $admin = $user->hasAccess('admin');
+
+		if ($admin) {
+			$view['admin'] = true;
+		} else {
+			$view['admin'] = false;
+		}
+
 		try
 		{
 		    // Find the user
@@ -99,7 +140,7 @@ class Users extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-		    echo 'User does not exist.';
+		    return Redirect::to('users')->with('error_message', 'User does not exist');
 		}
 
         return View::Make('users.edit', $view);
@@ -141,11 +182,11 @@ class Users extends BaseController {
 			}
 			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 			{
-			    echo 'User does not exist.';
+			    return Redirect::to('users')->with('error_message', 'User does not exist.');
 			}
 			catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
 			{
-			    echo 'Group does not exist.';
+			    return Redirect::to('users')->with('error_message', 'User does not exist.');
 			}
         }
 
@@ -196,23 +237,23 @@ class Users extends BaseController {
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 
-		    echo 'User not found. Maybe your pasword is wrong';
+		    return Redirect::to('login')->with('error_message', 'User not found. Maybe your pasword is wrong.');
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 		{
-		    echo 'Login field is required.';
+		    return Redirect::to('login')->with('error_message', 'Login field is required..');
 		}
 		catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
 		{
-		    echo 'User not activated.';
+		    return Redirect::to('login')->with('error_message', 'User not activated.');
 		}
 		catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
 		{
-		    echo 'User suspended.';
+		    return Redirect::to('login')->with('error_message', 'User suspended.');
 		}
 		catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
 		{
-		    echo 'User banned.';
+		    return Redirect::to('login')->with('error_message', 'User banned.');
 		}
 	}
 
@@ -245,16 +286,16 @@ class Users extends BaseController {
 
 		    // Send activation code to user to activate their account
 		    if ($user) {
-			    return 'Your user has been created ' . HTML::to('visits', 'Check out your visits', array('id' => 'visits_link'));
+			    return Redirect::to('login')->with('success_message', 'Your user has been created succesfully, why not logging in now ?');
 	    	}
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
 		{
-		    echo 'Login field required.';
+		    return Redirect::to('register')->with('error_message', 'Login field required.');
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
-		    echo 'User already exists.';
+		    return Redirect::to('register')->with('error_message', 'User already exists.');
 		}
     }
     

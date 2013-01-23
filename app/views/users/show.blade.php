@@ -1,7 +1,14 @@
 @extends('layouts.master')
 
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">{{$user->first_name}} {{$user->last_name}}</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Users</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	<h3>Here is {{$user->first_name}}'s data</h3>
+	<h5>Here is {{$user->first_name}}'s data</h5>
     <p>The user username is {{ $user->user_name }} </p>
     <p>The user name is {{$user->first_name .' '. $user->last_name }} </p>
     <p>The user email is {{ $user->email }}</p>

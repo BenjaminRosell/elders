@@ -1,17 +1,26 @@
 @extends('layouts.master')
 
-@section('content')
-	<h3>Here is the team data</h3>
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Home Teaching team profile</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Teams</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
 
-    <p>The team number is {{ $team->id }} </p>
-    <p>The team leader is {{ User::name($team->lead) }} </p>
+@section('content')
+	<h4>Home Teaching # {{ $team->id }}</h4>
+
+    <p>The team senior companion is {{ User::name($team->lead) }} </p>
     <p>The team junior companion is {{ User::name($team->companion) }}</p>
     <p>The steward is {{ $team->steward }}</p>
+    <br>
     {{ Form::open('teams/'.$team->id, 'DELETE', array('class' => 'form')) }}
-	    {{ HTML::to('teams/' . $team->id .'/edit', 'Edit this team', array('id' => 'edit_link', 'class' => 'btn'));}}
-		{{ HTML::to('teams', 'Back to teams', array('id' => 'back_link', 'class' => 'btn'));}}
-		
-		{{Form::submit('Delete team', array('class' => 'btn btn-danger pull-right'))}}
+
+		<a href="../../teams" class="btn btn-inverse"><i class="icon-chevron-left icon-white"></i> Back to teams</a>
+		<a href="../../teams/<?php echo $team->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i> Edit this team</a>
+
+		<button class="btn btn-danger pull-right"><i class="icon-trash  icon-white"></i> Delete team</button>
+
 	{{Form::close()}}
 
 @stop

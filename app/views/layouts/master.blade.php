@@ -97,13 +97,7 @@
                         </div><!-- end .container -->
                     </header><!-- end header -->
                 </div><!-- end #shadow_header_container -->
-                @section('pagebar')
-                <!-- // Big area for the slider or the page name// -->
-                <section id="wrapper_slider" class="container">
-                    <h2 class="page_name text_shadow">Page Name</h2>
-                    <h3 class="breadcrumb text_shadow">Home / ...</h3>
-                </section><!-- end #wrapper_slider -->
-                @stop
+                @yield('pagebar')
 
                 @yield('slider')
                 
@@ -272,13 +266,18 @@
                     <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
+                    <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
 					<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
                     <script type="text/javascript">
                         jQuery(document).ready(function($) {
                             $('.datepicker').datepicker({
                                 format : 'yyyy-mm-dd'
-                            })
+                            });
+
+                            $(function($){
+                               $(".phone").mask("(999) 999-9999");
+                            });
                         });
                     </script>
                 </footer><!-- end #footer -->

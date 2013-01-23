@@ -1,7 +1,21 @@
 @extends('layouts.master')
 
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Log in to your account</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Users</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	
+	@if(Session::get('success_message'))
+		<div class="alert alert-success">{{Session::get('success_message')}}</div>
+	@endif
+
+	@if(Session::get('error_message'))
+		<div class="alert alert-error">{{Session::get('error_message')}}</div>
+	@endif
+	<br>
 	{{ Form::open('login', 'POST', array('class' => 'form')) }}
 
 		<div class="control-group">
@@ -18,8 +32,8 @@
 		    </div>
 		</div>
 		
-		{{Form::submit('Log-in', array('class' => 'btn'))}}
-		{{ HTML::to('register', 'Create an account', array('id' => 'register_link', 'class' => 'btn'));}}
+		{{Form::submit('Log-in', array('class' => 'btn btn-inverse'))}}
+		<!--{{ HTML::to('register', 'Create an account', array('id' => 'register_link', 'class' => 'btn'));}}-->
 
 	{{ Form::close() }}
 

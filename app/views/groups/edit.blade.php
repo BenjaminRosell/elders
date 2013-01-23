@@ -1,6 +1,10 @@
-
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Editing group</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Groups</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
 @section('content')
-	<h4>Creating Groups</h4>
 
 	{{ Form::open('groups/'.$group->id, 'PUT', array('class' => 'form')) }}
 
@@ -28,7 +32,7 @@
 
 	{{ Form::open('groups/'.$group->id, 'DELETE', array('class' => 'form')) }}
 
-		{{Form::submit('Delete group', array('class' => 'btn btn-warning'))}}
+		{{Form::submit('Delete group', array('class' => 'btn btn-danger'))}}
 
 	{{ Form::close() }}
 

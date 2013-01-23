@@ -1,21 +1,34 @@
+@section('pagebar')
+	<section id="wrapper_slider" class="container">
+        <h2 class="page_name text_shadow">Home teaching visit reports</h2>
+        <h3 class="breadcrumb text_shadow">Home  /  Reports</h3>
+    </section><!-- end #wrapper_slider -->
+@stop
+
 @section('content')
-	<h4>This is a list of your last visits</h4>
-	
+	@if(Session::get('success_message'))
+		<div class="alert alert-success">{{Session::get('success_message')}}</div>
+	@endif
+
+	@if(Session::get('error_message'))
+		<div class="alert alert-error">{{Session::get('error_message')}}</div>
+	@endif
+	<br>
 	<table class="table table-striped">
 		<tr>	
-			<td>Month</td>
-			<td>Team</td>
-			<td>Family</td>
-			<td>Visited ?</td>
- 			<td>Status</td>
-			<td>Visit date</td>
-			<td>Report date</td>
+			<td><strong>Month</strong></td>
+			<td><strong>Family</strong></td>
+			<td><strong>Team</strong></td>
+			<td><strong>Visited ?</strong></td>
+ 			<td><strong>Status</strong></td>
+			<td><strong>Visit date</strong></td>
+			<td><strong>Report date</strong></td>
 		</tr>
 	@foreach ($visits as $visit)
 		<tr>
 			<td>{{ HTML::to('visits/'.$visit->id, $visit->month, array('id' => 'visit_link'));}}</td>
-			<td>{{ $visit->team->senior->first_name . ' ' . $visit->team->senior->last_name }} and {{ $visit->team->junior->first_name . ' ' . $visit->team->junior->last_name }}</td>
 			<td>{{ $visit->home->name }}</td>
+			<td>{{ $visit->team->senior->first_name . ' ' . $visit->team->senior->last_name }} and {{ $visit->team->junior->first_name . ' ' . $visit->team->junior->last_name }}</td>
 			<td>{{ $visit->visited == 1 ? 'Yes' : 'No'}}</td>
 			<td>{{ $visit->status }}</td>
 			<td>{{ $visit->visit_date }}</td>
@@ -24,6 +37,6 @@
 	@endforeach
 	</table>
 	@if ($admin)
-    	{{ HTML::to('visits/create', 'Create a new visit', array('class' => 'btn' ))}}
+    	<a href="../../visits/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new visit</a>
 	@endif
 @stop

@@ -71,7 +71,7 @@ class Homes extends BaseController
 
         if ($home) {
      
-            return 'A new family has been created' . HTML::to('homes', 'Check out the families visited', array('id' => 'visits_link'));
+           return Redirect::to('homes')->with('success_message', 'A new family has been created');
         }
 	}
 
@@ -85,14 +85,14 @@ class Homes extends BaseController
 
 		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
 
-		if ( !$this->admin AND $this->userTeam->id !== $view['home']->team_id ) return 'You are not allowed to see this page, friend !';
+		if ( !$this->admin AND $this->userTeam->id !== $view['home']->team_id ) return Redirect::to('homes')->with('error_message', 'You are not allowed to see this page, friend !');
 
 		$view['admin'] = $this->admin ? true : false;
 
         if ($view['home']) {
             $this->layout->content = View::make('home.show', $view);
         } else {
-        	return 'Nothing was found :(';
+        	return Redirect::to('homes')->with('error_message', 'Nothing was found');
         }
 	}
 
