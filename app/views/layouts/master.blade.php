@@ -276,7 +276,9 @@
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
                     <script type="text/javascript">
                         jQuery(document).ready(function($) {
-                            $('.datepicker').datepicker()
+                            $('.datepicker').datepicker({
+                                format : 'yyyy-mm-dd'
+                            })
                         });
                     </script>
                 </footer><!-- end #footer -->
