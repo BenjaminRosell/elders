@@ -84,6 +84,7 @@ class Homes extends BaseController
 	{
 
 		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior'))->find($id);
+		$view['visits'] = Visit::where('family_id', '=', $id)->get();
 
 		if ( !$this->admin AND $this->userTeam->id !== $view['home']->team_id ) return Redirect::to('homes')->with('error_message', 'You are not allowed to see this page, friend !');
 
