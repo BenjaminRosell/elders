@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return HTML::to('login', 'Log In');
+	return View::make('pages.home');
 });
 
 Route::get('login', 'users@login');

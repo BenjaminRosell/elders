@@ -136,7 +136,7 @@ TWITTER FEED
 jQuery.noConflict()(function($){
     $(document).ready(function() {
          $(".widget_twitter").tweet({
-            username: "2F_webd", //Your twitter name goes here
+            username: "benjaminrosell", //Your twitter name goes here
             join_text: "auto",
             avatar_size: null,
             count: 2,

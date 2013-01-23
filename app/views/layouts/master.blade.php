@@ -104,8 +104,11 @@
                     <h3 class="breadcrumb text_shadow">Home / ...</h3>
                 </section><!-- end #wrapper_slider -->
                 @stop
+
+                @yield('slider')
                 
             </section><!-- end #wrapper_top -->
+
 
 			<!-- ///////////////////////////////////////////////////////////////////
             Main container
