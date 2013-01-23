@@ -21,9 +21,6 @@ class Visits extends BaseController
 	 */
 	public function index()
 	{
-		
-		$user = Sentry::getUser();
-
 		if ( $this->admin )
 	    {
 	        $data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
@@ -78,6 +75,12 @@ class Visits extends BaseController
             'visit_date' => Input::get('visit_date'),
             'report_date' => date('Y-m-d')
             );
+
+		$team = Team::with('senior', 'junior')->find(Input::get('team'));
+
+		$data['lead_id'] = $team->senior->id;
+		$data['companion_id'] = $team->junior->id;
+
         $visit = Visit::create($data);
 
         if ($visit) {

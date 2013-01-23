@@ -6,12 +6,12 @@ class Visit extends Eloquent
 
 	public function team()
 	{
-	  return $this->belongsTo('Team', 'id');
+	  return $this->belongsTo('Team', 'team_id');
 	}
 
 	public function home()
 	{
-	  return $this->belongsTo('Home', 'id');
+	  return $this->belongsTo('Home', 'family_id');
 	}
 
 }
