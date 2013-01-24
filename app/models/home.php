@@ -9,4 +9,9 @@ class Home extends Eloquent
     {
         return $this->belongsTo('Team');
     }
+
+    public function goal()
+    {
+        return $this->hasMany('Goal');
+    }
 }

@@ -49,7 +49,6 @@ class Homes extends BaseController
 	public function create()
 	{
 		$view['teams'] = Team::with(array('senior', 'junior'))->get();
-
         $this->layout->content = View::Make('home.new', $view);
 	}
 
