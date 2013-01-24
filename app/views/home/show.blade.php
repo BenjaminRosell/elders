@@ -18,6 +18,15 @@
 			{{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
 		@endif
 	{{Form::close()}}
+	
+	<div class="heading center m2">
+        <div class="separation"></div>
+        <h2>Goals</h2>
+    </div>
+
+    <a href="../../goals/create/<?php echo $home->id ?>?iframe=true" data-rel="prettyPhoto" class="btn btn-inverse"><i class="icon-white icon-plus"></i> Add Goal</a>
+
+
 	<div class="heading center m2">
         <div class="separation"></div>
         <h2>Visit Reports</h2>

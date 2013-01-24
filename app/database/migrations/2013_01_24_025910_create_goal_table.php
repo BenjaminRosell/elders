@@ -11,7 +11,7 @@ class CreateGoalTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('interviews', function($table) {
+		Schema::create('goals', function($table) {
 			$table->increments('id');
 			$table->integer('home_id');
 			$table->integer('completed');
@@ -30,7 +30,7 @@ class CreateGoalTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('interviews');
+		Schema::drop('goals');
 	}
 
 }

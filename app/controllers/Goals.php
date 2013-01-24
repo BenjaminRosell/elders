@@ -9,7 +9,9 @@ class Goals extends BaseController {
 	 */
 	public function index()
 	{
-		//
+		$data['goals'] = Goal::all();
+
+		return View::make('goals.index', $data);
 	}
 
 	/**
@@ -17,9 +19,9 @@ class Goals extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		//
+		return View::make('goals.new');
 	}
 
 	/**
@@ -29,7 +31,14 @@ class Goals extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		//$table->increments('id');
+			//$table->integer('home_id');
+			//$table->integer('completed');
+			//$table->date('date_due');
+			//$table->date('date_completed');
+			//$table->text('name');
+			//$table->text('description');
+			//$table->timestamps();
 	}
 
 	/**

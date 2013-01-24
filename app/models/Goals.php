@@ -7,6 +7,6 @@ class Goal extends Eloquent
 
   public function Home()
   {
-    return $this->belongsTo('Home',);
+    return $this->belongsTo('Home');
   }
 }

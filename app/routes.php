@@ -33,6 +33,10 @@ Route::group(array('before' => 'authorise'), function()
 	Route::resource('users', 'users');
 
 	Route::resource('groups', 'Groups');
+	
+	Route::get('goals/create/{id}', 'goals@create');
+
+	Route::resource('goals', 'goals', array('only' => array('index', 'show', 'store', 'edit', 'update', 'destroy')));
 });
 
 Route::get('/crons/visits', 'crons@visitsCron');
