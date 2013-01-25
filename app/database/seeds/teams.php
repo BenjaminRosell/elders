@@ -3,7 +3,7 @@
 return array(
    
    array(
-    'id' => 2,
+    'id' => 1,
     'lead' => 0,
     'companion' => 0,
     'steward' => 1,
@@ -12,7 +12,7 @@ return array(
     ),
 
    array(
-    'id' => 1,
+    'id' => 2,
     'lead' => 1,
     'companion' => 0,
     'steward' => 1,
