@@ -12,6 +12,7 @@
         /////////////////////////////////////////////////////////////////////-->
         <link rel="stylesheet" href="../../../../css/bootstrap.min.css" media="screen"  />
         <link rel="stylesheet" href="../../../../css/bootstrap-responsive.min.css" media="screen"  />
+        <link rel="stylesheet" href="../../../../css/font-awesome.min.css" media="screen"  />
         <link rel="stylesheet" href="../../../../css/style.css">
         <link rel="stylesheet" href="../../../../css/responsive.css">
         <link rel="stylesheet" href="../../../../css/prettyPhoto.css">
@@ -57,21 +58,21 @@
                                 <ul class="unstyled sf-menu">
                                     @if ($userData)
                                     <li>
-                                        <a href="../../../../users/<?php echo $userData->username ?>/edit" class="btn-menu">Welcome {{$userData->first_name}} !</a>
+                                        <a href="../../../../users/<?php echo $userData->username ?>/edit" class="btn-menu"><i class="icon-white icon-user"></i> Welcome {{$userData->first_name}} !</a>
                                     </li>
                                     @else
                                     <li>
-                                        <a href="../../../../login" class="btn-menu">Log In</a>
+                                        <a href="../../../../login" class="btn-menu"><i class="icon-white icon-off"></i> Log In</a>
                                     </li>
                                     @endif
                                     <li>
-                                        <a href="../../../../homes" class="btn-menu">Families</a>
+                                        <a href="../../../../homes" class="btn-menu"><i class="icon-white icon-home"></i> Families</a>
                                     </li>
                                     <li>
-                                        <a href="../../../../visits" class="btn-menu">Reports</a>
+                                        <a href="../../../../visits" class="btn-menu"><i class="icon-white icon-signal"></i> Reports</a>
                                     </li>
                                     <li>
-                                        <a href="../../../../teams" class="btn-menu">@if ($isAdmin)Teams @else My Team @endif</a>
+                                        <a href="../../../../teams" class="btn-menu"><i class="icon-white icon-home"></i> @if ($isAdmin)Teams @else My Team @endif</a>
                                             @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>

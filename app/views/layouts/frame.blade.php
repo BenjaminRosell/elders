@@ -12,6 +12,7 @@
         /////////////////////////////////////////////////////////////////////-->
         <link rel="stylesheet" href="../../../../css/bootstrap.min.css" media="screen"  />
         <link rel="stylesheet" href="../../../../css/bootstrap-responsive.min.css" media="screen"  />
+        <link rel="stylesheet" href="../../../../css/font-awesome.min.css" media="screen"  />
         <link rel="stylesheet" href="../../../../css/style.css">
         <link rel="stylesheet" href="../../../../css/responsive.css">
         <link rel="stylesheet" href="../../../../css/prettyPhoto.css">
