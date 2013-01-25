@@ -21,7 +21,9 @@ class Goals extends BaseController {
 	 */
 	public function create($id)
 	{
-		return View::make('goals.new');
+		
+		$data['id'] = $id;
+		return View::make('goals.new', $data);
 	}
 
 	/**
@@ -31,14 +33,20 @@ class Goals extends BaseController {
 	 */
 	public function store()
 	{
-		//$table->increments('id');
-			//$table->integer('home_id');
-			//$table->integer('completed');
-			//$table->date('date_due');
-			//$table->date('date_completed');
-			//$table->text('name');
-			//$table->text('description');
-			//$table->timestamps();
+
+		$data = array(
+			'home_id' => Input::get('home_id'),
+			'date_due' => Input::get('date_due'),
+			'name' => Input::get('name'),
+			'description' => Input::get('description'), 
+		 );
+		
+		$goal = Goal::create($data);
+
+		if ( $goal )
+		{
+			echo "<script language=javascript>parent.window.location.reload()</script>";
+		}
 	}
 
 	/**
@@ -48,7 +56,10 @@ class Goals extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$data['goal'] = Goal::find($id);
+
+		return View::make('goals.show');
+
 	}
 
 	/**

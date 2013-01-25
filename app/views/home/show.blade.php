@@ -6,6 +6,14 @@
 @stop
 
 @section('content')
+	@if(Session::get('success_message'))
+		<div class="alert alert-success">{{Session::get('success_message')}}</div>
+	@endif
+
+	@if(Session::get('error_message'))
+		<div class="alert alert-error">{{Session::get('error_message')}}</div>
+	@endif
+	<br>
     <p>The home email is <a href="maito:{{$home->email}}">{{ $home->email }}</a></p>
     <p>The home's phone number is {{ $home->phone_number }}</p>
     <p>Their address is {{$home->address}}</p>
@@ -24,7 +32,24 @@
         <h2>Goals</h2>
     </div>
 
-    <a href="../../goals/create/<?php echo $home->id ?>?iframe=true" data-rel="prettyPhoto" class="btn btn-inverse"><i class="icon-white icon-plus"></i> Add Goal</a>
+    @if ($home->goal)
+    <table class="table table-striped">
+		<tr>	
+			<td><strong>Goal</strong></td>
+			<td><strong>Due Date</strong></td>
+			<td><strong>Status</strong></td>
+		</tr>
+	@foreach ($home->goal as $goal)
+		<tr>
+			<td>{{ HTML::to('goals/'.$goal->id, $goal->name, array('class' => 'fancybox', 'data-fancybox-type' =>'iframe'));}}</td>
+			<td>{{$goal->date_due}}</td>
+			<td><?=($goal->complete == 1) ? 'Completed' : 'Ongoing';?></td>
+		</tr>
+	@endforeach
+	</table>
+    @endif
+
+    <a href="../../goals/create/<?php echo $home->id ?>" data-fancybox-type="iframe" class="btn btn-inverse fancybox"><i class="icon-white icon-plus"></i> Add Goal</a>
 
 
 	<div class="heading center m2">
