@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="../../../../css/responsive.css">
         <link rel="stylesheet" href="../../../../css/prettyPhoto.css">
         <link rel="stylesheet" href="../../../../css/datepicker.css">
+        <link rel="stylesheet" href="../../../../css/jquery.fancybox.css">
         <!-- SLIDERS -->
 		<link rel="stylesheet" href="../../../../css/royalslider.css">
         <link rel="stylesheet" href="../../../../css/rs-default-inverted.css">
@@ -116,7 +117,7 @@
                         </div>
                         
                         <div id="scroll_top" class="span12 ">
-                            <a href="#container_header" class="scroll_top_a" data-tip="top" data-original-title="Go to the top !"><img src="images/scroll_top_bg.png" alt="Go to the top"></a>
+                            <a href="#container_header" class="scroll_top_a" data-tip="top" data-original-title="Go to the top !"><img src="../../../images/scroll_top_bg.png" alt="Go to the top"></a>
                         </div><!-- end #scroll_top -->
                     </div><!-- end .row -->
                 </div><!-- end #main_container -->
@@ -264,6 +265,7 @@
                     <script type="text/javascript" src="../../../../js/jquery.royalslider.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/bootstrap.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
+                    <script type="text/javascript" src="../../../../js/jquery.fancybox.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
@@ -278,6 +280,8 @@
                             $(function($){
                                $(".phone").mask("(999) 999-9999");
                             });
+                            
+                            $(".fancybox").fancybox();
                         });
                     </script>
                 </footer><!-- end #footer -->

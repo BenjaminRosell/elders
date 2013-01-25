@@ -37,50 +37,45 @@
         }
     ?>
     
-	<body>
-			<!-- ///////////////////////////////////////////////////////////////////
-            Main container
-            /////////////////////////////////////////////////////////////////////-->
-            <section id="wrapper_main_container">
+	<body class="iframe">
+    	<!-- ///////////////////////////////////////////////////////////////////
+        Main container
+        /////////////////////////////////////////////////////////////////////-->
+        <section id="wrapper_main_container">
+            
+            <div id="main_container" class="container">
+                <div class="row">
+                    <div class="span12">
+                       @yield('content')
+                    </div>
+                </div><!-- end .row -->
+            </div><!-- end #main_container -->
+        </section><!-- end #wrapper_main_container -->
+           
                 
-                <div id="main_container" class="container">
-                    <div class="row">
-                        <div class="span12">
-                           @yield('content')
-                        </div>
-                        
-                        <div id="scroll_top" class="span12 ">
-                            <a href="#container_header" class="scroll_top_a" data-tip="top" data-original-title="Go to the top !"><img src="images/scroll_top_bg.png" alt="Go to the top"></a>
-                        </div><!-- end #scroll_top -->
-                    </div><!-- end .row -->
-                </div><!-- end #main_container -->
-            </section><!-- end #wrapper_main_container -->
-               
-                    
-            <!-- ///////////////////////////////////////////////////////////////////
-            Javascript files
-            /////////////////////////////////////////////////////////////////////-->
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-            <script type="text/javascript" src="../../../../js/superfish.js" ></script>
-            <script type="text/javascript" src="../../../../js/jquery.royalslider.min.js" ></script>
-            <script type="text/javascript" src="../../../../js/bootstrap.min.js" ></script>
-            <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
-            <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
-            <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
-            <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
-			<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
-            <script type="text/javascript" src="../../../../js/main.js" ></script>
-            <script type="text/javascript">
-                jQuery(document).ready(function($) {
-                    $('.datepicker').datepicker({
-                        format : 'yyyy-mm-dd'
-                    });
-
-                    $(function($){
-                       $(".phone").mask("(999) 999-9999");
-                    });
+        <!-- ///////////////////////////////////////////////////////////////////
+        Javascript files
+        /////////////////////////////////////////////////////////////////////-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="../../../../js/superfish.js" ></script>
+        <script type="text/javascript" src="../../../../js/jquery.royalslider.min.js" ></script>
+        <script type="text/javascript" src="../../../../js/bootstrap.min.js" ></script>
+        <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
+        <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
+        <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
+        <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
+    	<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
+        <script type="text/javascript" src="../../../../js/main.js" ></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $('.datepicker').datepicker({
+                    format : 'yyyy-mm-dd'
                 });
-            </script>
-        </div><!-- end #page -->
+
+                $(function($){
+                   $(".phone").mask("(999) 999-9999");
+                });
+            });
+        </script>
 	</body>
 </html>
