@@ -6,9 +6,12 @@ class Teams extends BaseController {
     {
         $this->user = Sentry::getUser();
 
-        $this->admin =  $this->user->hasAccess('admin');
+        if ($this->user) {
 
-        $this->userTeam = User::findTeam($this->user->id);
+        	$this->admin =  $this->user->hasAccess('admin');
+
+        	$this->userTeam = User::findTeam($this->user->id);
+        }
     }
 
     /**
@@ -18,9 +21,15 @@ class Teams extends BaseController {
 	 */
 	public function index()
 	{
+		if ($this->admin) {
+			
+			$view['teams'] = Team::all();
 
-		$view['teams'] = Team::all();
-    
+		} else {
+			
+			$view['teams'] = Team::where('id', $this->userTeam->id)->get();
+		}
+
         return View::Make('teams.index', $view);
 	}
 
@@ -64,6 +73,10 @@ class Teams extends BaseController {
 	public function show($id)
 	{
 		$view['team'] = Team::find($id);
+
+		if ( !$this->admin AND $this->userTeam->id !== $view['team']->id ) return Redirect::to('teams')->with('error_message', 'You are not allowed to see this page, friend !');
+
+		$view['admin'] = $this->admin ? true : false;
 
         if ($view['team']) {
             return View::make('teams.show', $view);

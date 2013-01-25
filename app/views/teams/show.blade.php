@@ -14,6 +14,8 @@
     <p>The team junior companion is {{ User::name($team->companion) }}</p>
     <p>The steward is {{ $team->steward }}</p>
     <br>
+
+    @if ($admin)
     {{ Form::open('teams/'.$team->id, 'DELETE', array('class' => 'form')) }}
 
 		<a href="../../teams" class="btn btn-inverse"><i class="icon-chevron-left icon-white"></i> Back to teams</a>
@@ -22,5 +24,6 @@
 		<button class="btn btn-danger pull-right"><i class="icon-trash  icon-white"></i> Delete team</button>
 
 	{{Form::close()}}
+    @endif
 
 @stop

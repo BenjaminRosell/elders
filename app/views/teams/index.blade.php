@@ -7,7 +7,16 @@
     </section><!-- end #wrapper_slider -->
 @stop
 
+
+
 @section('content')
+	@if(Session::get('success_message'))
+		<div class="alert alert-success">{{Session::get('success_message')}}</div>
+	@endif
+
+	@if(Session::get('error_message'))
+		<div class="alert alert-error">{{Session::get('error_message')}}</div>
+	@endif
 	<table class="table table-striped">
 		<tr>	
 			<td>Team number</td>

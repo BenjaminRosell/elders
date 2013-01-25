@@ -2,6 +2,18 @@
 
 class Users extends BaseController {
 
+	public function __construct()
+    {
+        $this->user = Sentry::getUser();
+
+        if ($this->user) {
+
+        	$this->admin =  $this->user->hasAccess('admin');
+
+        	$this->userTeam = User::findTeam($this->user->id);
+        }
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,6 +21,7 @@ class Users extends BaseController {
 	 */
 	public function index()
 	{
+		
 		$view['users'] = User::all();
     
         return View::Make('users.index', $view);
@@ -24,11 +37,7 @@ class Users extends BaseController {
 		$view['users'] = User::all();
 		$view['groups'] = Sentry::getGroupProvider()->findAll();
 
-		$user = Sentry::getUser();
-
-        $admin = $user->hasAccess('admin');
-
-		if ($admin) {
+		if ($this->$admin) {
 			$view['admin'] = true;
 		} else {
 			$view['admin'] = false;

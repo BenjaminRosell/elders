@@ -2,3 +2,5 @@
 composer.phar
 composer.lock
 .DS_Store
+/elders.sublime-project
+/elders.sublime-workspace
