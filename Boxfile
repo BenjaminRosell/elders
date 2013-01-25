@@ -27,6 +27,6 @@ web1:
   after_deploy:
     - "rm -f app/storage/cache/*"
     - "rm -f app/storage/views/*"
-db1: #component type & number 
-  name: melchisedeck            #component settings
+db1: 
+  name: melchisedeck
   type: mysql
