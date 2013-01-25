@@ -110,6 +110,8 @@ class Users extends BaseController {
 	 */
 	public function show($id)
 	{
+		$view['admin'] = ($this->admin) ? true : false;
+
 		$view['user'] = User::where('username',$id)->first();
 
         if ($view['user']) {
