@@ -29,7 +29,7 @@
     </head>
     <?php 
 
-        $userData = Sentry::getUser();
+        $userData = Sentry::check();
 
         if ($userData) {
             $isAdmin =  $userData->hasAccess('admin');
@@ -57,11 +57,7 @@
                                 <ul class="unstyled sf-menu">
                                     @if ($userData)
                                     <li>
-                                        <a href="/" class="btn-menu">My Account</a>
-                                        <ul class="unstyled">
-                                            <li><a href="../../../../logout">Log Out</a></li>
-                                            <li><a href="../../../../users/<?php echo $userData->username ?>/edit">My profile</a></li>
-                                        </ul>
+                                        <a href="../../../../users/<?php echo $userData->username ?>/edit" class="btn-menu">Welcome {{$userData->first_name}} !</a>
                                     </li>
                                     @else
                                     <li>
@@ -75,7 +71,7 @@
                                         <a href="../../../../visits" class="btn-menu">Reports</a>
                                     </li>
                                     <li>
-                                        <a href="../../../../teams" class="btn-menu">Teams</a>
+                                        <a href="../../../../teams" class="btn-menu">@if ($isAdmin)Teams @else My Team @endif</a>
                                             @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>
@@ -89,6 +85,11 @@
                                                 <li><a href="../../../../users/create">New User</a></li>
                                                 <li><a href="../../../../groups">Groups</a></li>
                                             </ul>
+                                    </li>
+                                    @endif
+                                    @if ($userData)
+                                    <li>
+                                        <a href="../../../../logout" class="btn-menu"><i class="icon-white icon-off"></i> Log Out</a>
                                     </li>
                                     @endif
                                     <!-- <li><a href="contact.html" class="btn-menu">Contact</a></li> -->

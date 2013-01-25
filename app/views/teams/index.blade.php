@@ -33,7 +33,8 @@
 		</tr>
 	@endforeach
 	</table>
-
+	
+	@if ($admin)
 	<a href="../../teams/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new team</a>
-
+	@endif
 @stop

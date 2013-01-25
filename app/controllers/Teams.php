@@ -24,10 +24,12 @@ class Teams extends BaseController {
 		if ($this->admin) {
 			
 			$view['teams'] = Team::all();
+			$view['admin'] = true;
 
 		} else {
 			
 			$view['teams'] = Team::where('id', $this->userTeam->id)->get();
+			$view['admin'] = false;
 		}
 
         return View::Make('teams.index', $view);
