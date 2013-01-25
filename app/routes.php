@@ -28,7 +28,7 @@ Route::group(array('before' => 'authorise'), function()
 
 	Route::resource('teams', 'Teams');
 
-	Route::resource('visits', 'Tisits');
+	Route::resource('visits', 'Visits');
 
 	Route::resource('users', 'Users');
 
