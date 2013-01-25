@@ -6,11 +6,13 @@ return array(
     'id' => 1,
     'email' => 'user@elders.com',
     'username' => 'notassigned',
-    'password' => Hash::make('admin'),
-    'phone' => '5140000000',
+    'password' => '$2y$10$xiSDuLYRAN5ujKCp2uSNauxUA1Nt3WP1Wa.Emg6dfqkRWyPCnoGh.',
+    'activated' => '1',
     'first_name' => 'Not',
     'last_name' => 'Assigned',
-    'reminder' => 0
+    'phone' => '5142361889',
+    'created_at' => new DateTime,
+    'updated_at' => new DateTime,
     ),
 
    array(
@@ -18,11 +20,12 @@ return array(
     'email' => 'admin@elders.com',
     'username' => 'admin',
     'password' => '$2y$10$xiSDuLYRAN5ujKCp2uSNauxUA1Nt3WP1Wa.Emg6dfqkRWyPCnoGh.',
-    'phone' => '5140000000',
     'activated' => '1',
     'first_name' => 'Administrator',
     'last_name' => 'by Default',
-    'reminder' => 1
+    'phone' => '5142361889',
+    'created_at' => new DateTime,
+    'updated_at' => new DateTime,
     ),
 
 );
