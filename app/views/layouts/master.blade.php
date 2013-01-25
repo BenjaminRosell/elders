@@ -58,7 +58,7 @@
                                 <ul class="unstyled sf-menu">
                                     @if ($userData)
                                     <li>
-                                        <a href="../../../../users/<?php echo $userData->username ?>/edit" class="btn-menu"><i class="icon-white icon-user"></i> Welcome {{$userData->first_name}} !</a>
+                                        <a href="../../../../users/<?php echo $userData->username ?>" class="btn-menu"><i class="icon-white icon-user"></i> Welcome {{$userData->first_name}} !</a>
                                     </li>
                                     @else
                                     <li>
