@@ -13,6 +13,7 @@ class Users extends BaseController {
         	$this->userTeam = User::findTeam($this->user->id);
         }
     }
+    
 
 	/**
 	 * Display a listing of the resource.

@@ -16,30 +16,30 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
-Route::get('login', 'users@login');
-Route::post('login', 'users@post_login');
-Route::get('register', 'users@register');
-Route::post('register', 'users@post_register');
-Route::get('logout', 'users@logout');
+Route::get('login', 'Users@login');
+Route::post('login', 'Users@post_login');
+Route::get('register', 'Users@register');
+Route::post('register', 'Users@post_register');
+Route::get('logout', 'Users@logout');
 
 Route::group(array('before' => 'authorise'), function()
 {
-	Route::resource('homes', 'homes');
+	Route::resource('homes', 'Homes');
 
-	Route::resource('teams', 'teams');
+	Route::resource('teams', 'Teams');
 
-	Route::resource('visits', 'visits');
+	Route::resource('visits', 'Tisits');
 
-	Route::resource('users', 'users');
+	Route::resource('users', 'Users');
 
 	Route::resource('groups', 'Groups');
 	
-	Route::get('goals/create/{id}', 'goals@create');
+	Route::get('goals/create/{id}', 'Goals@create');
 
-	Route::resource('goals', 'goals', array('only' => array('index', 'show', 'store', 'edit', 'update', 'destroy')));
+	Route::resource('goals', 'Goals', array('only' => array('index', 'show', 'store', 'edit', 'update', 'destroy')));
 });
 
-Route::get('/crons/visits', 'crons@visitsCron');
+Route::get('/crons/visits', 'Crons@visitsCron');
 
 
 Route::filter('authorise', function()
