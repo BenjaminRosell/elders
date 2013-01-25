@@ -14,7 +14,7 @@ return array(
    array(
     'id' => 2,
     'lead' => 1,
-    'companion' => 0,
+    'companion' => 1,
     'steward' => 1,
     'created_at' => new DateTime,
     'updated_at' => new DateTime,
