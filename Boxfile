@@ -1,14 +1,25 @@
 global:
   env:
-    - APP_NAME: keeper
-    - ENV: production
     - LARAVEL_ENV: production
 web1:
   name: keeper
-  document_root: /public
-  php_version: 5.4.4
   after_build:
     - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install"
+  name: application name
+  shared_writable_dirs:
+    - /app/storage/cache
+    - /app/storage/logs
+    - /app/storage/meta
+    - /app/storage/sessions
+    - /app/storage/views
+  document_root: public
+  php_version: 5.3.10
+  php_extensions:
+    - zip
+    - pdo_mysql
+    - mcrypt
+    - eaccelerator
+    - memcached
   before_deploy:
     - "php artisan migrate --package=cartalyst/sentry"
     - "php artisan migrate"
@@ -16,18 +27,3 @@ web1:
   after_deploy:
     - "rm -f app/storage/cache/*"
     - "rm -f app/storage/views/*"
-  shared_writable_dirs:
-      - /app/storage
-      - /app/storage/cache
-      - /app/storage/logs
-      - /app/storage/meta
-      - /app/storage/sessions
-      - /app/storage/views
-  php_display_errors: "1"
-  php_extensions:
-      - memcached
-      - mysql
-      - gd
-      - zip
-      - mcrypt
-      - pdo_mysql
