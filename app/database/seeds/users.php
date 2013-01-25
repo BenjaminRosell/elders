@@ -19,6 +19,7 @@ return array(
     'username' => 'admin',
     'password' => Hash::make('admin'),
     'phone' => '5140000000',
+    'activated' => '1',
     'first_name' => 'Administrator',
     'last_name' => 'by Default',
     'reminder' => 1
