@@ -3,7 +3,7 @@
 return array(
    
    array(
-    'id' => 0,
+    'id' => 2,
     'email' => 'user@elders.com',
     'username' => 'notassigned',
     'password' => Hash::make('admin'),
