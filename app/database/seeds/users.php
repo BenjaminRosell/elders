@@ -17,7 +17,7 @@ return array(
     'id' => 1,
     'email' => 'admin@elders.com',
     'username' => 'admin',
-    'password' => Hash::make('admin'),
+    'password' => '$2y$10$xiSDuLYRAN5ujKCp2uSNauxUA1Nt3WP1Wa.Emg6dfqkRWyPCnoGh.',
     'phone' => '5140000000',
     'activated' => '1',
     'first_name' => 'Administrator',
