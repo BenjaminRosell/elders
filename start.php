@@ -41,7 +41,8 @@ $app->instance('path.base', __DIR__);
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('your-machine-name'),
+	'local' => array('local.elders.dev'),
+	'production' => array('*.com'),
 
 ));
 
