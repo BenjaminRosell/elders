@@ -257,7 +257,7 @@
             <section id="wrapper_footer">
                 
                 <footer class="container text_shadow">
-                    <p><strong>Sun Rising</strong> &#169; 2012 All rights reserved | Designed by <a href="http://bit.ly/SARKnL">F&#178; </a></p>
+                    <p><strong>Keeper</strong> &#169; 2013 All rights reserved | Developed by <a href="https://github.com/beinir/elders">Ben + JM </a></p>
                     
                     <!-- ///////////////////////////////////////////////////////////////////
                     Javascript files
