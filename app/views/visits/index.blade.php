@@ -1,3 +1,5 @@
+@extends('layouts.master')
+
 @section('pagebar')
 	<section id="wrapper_slider" class="container">
         <h2 class="page_name text_shadow">Home teaching visit reports</h2>
@@ -13,7 +15,12 @@
 	@if(Session::get('error_message'))
 		<div class="alert alert-error">{{Session::get('error_message')}}</div>
 	@endif
+	@if(isset($error_message))
+		<div class="alert alert-error">{{$error_message}}</div>
+	@endif
 	<br>
+	
+	@if(isset($visits))
 	<table class="table table-striped">
 		<tr>	
 			<td><strong>Month</strong></td>
@@ -36,6 +43,7 @@
 		</tr>
 	@endforeach
 	</table>
+	@endif
 	@if ($admin)
     	<a href="../../visits/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new visit</a>
 	@endif

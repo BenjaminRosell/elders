@@ -16,6 +16,11 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
+Route::get('/error', function()
+{
+	return View::make('errors.index');
+});
+
 Route::get('login', 'Users@login');
 Route::post('login', 'Users@post_login');
 Route::get('register', 'Users@register');

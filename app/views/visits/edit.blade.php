@@ -1,3 +1,5 @@
+@extends('layouts.master')
+
 <?php 
 
 $visited_array = array('1' => 'Yes', '0' => 'No');

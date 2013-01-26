@@ -21,15 +21,18 @@ class Teams extends BaseController {
 	 */
 	public function index()
 	{
+		$view['admin'] = ($this->admin) ? true : false;
+
+		if( ! $this->admin and ! $this->userTeam ) return Redirect::to('error')->with('error_message', 'Unfortunatly, you have no companion yet. Please come back soon !');
+
 		if ($this->admin) {
 			
 			$view['teams'] = Team::all();
-			$view['admin'] = true;
 
 		} else {
 			
 			$view['teams'] = Team::where('id', $this->userTeam->id)->get();
-			$view['admin'] = false;
+
 		}
 
         return View::Make('teams.index', $view);

@@ -21,15 +21,19 @@ class Visits extends BaseController
 	 */
 	public function index()
 	{
+		$data['admin'] = ($this->admin) ? true : false;
+
+		if( ! $this->userTeam ) return Redirect::to('error')->with('error_message', 'You have no assigned families yet. Please come back soon !');
+
 		if ( $this->admin )
 	    {
 	        $data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
-	        $data['admin'] = true;
 
 	    } else {
+	    	
 	    	$data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->where('team_id', '=', $this->userTeam->id)->get();
-	    	$data['admin'] = false;
-	    }
+
+ 		}
 
         $this->layout->content = View::Make('visits.index', $data);
 	}
@@ -47,12 +51,16 @@ class Visits extends BaseController
 	        
 	        $view['teams'] = Team::with(array('senior', 'junior'))->get();
 			$view['homes'] = Home::all();
+			$view['admin'] = true;
 
 	    } else {
 
 	    	$view['teams'] = Team::with(array('senior', 'junior'))->where('id', '=', $this->userTeam->id)->get();
 			$view['homes'] = Home::where('team_id', '=', $this->userTeam->id)->get();
+			$view['admin'] = false;
 	    }
+
+	    if (count($view['homes']) == 0) return Redirect::to('error')->with('error_message', 'There are no famillies to report on yet !'); 
 
 		$this->layout->content = View::Make('visits.new', $view);
 	}

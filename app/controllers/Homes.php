@@ -21,21 +21,19 @@ class Homes extends BaseController
 	 */
 	public function index()
 	{		
+		$view['admin'] = ($this->admin) ? true : false;
+
+		if( ! $this->userTeam ) return Redirect::to('error')->with('error_message', 'You have no assigned families yet. Please come back soon !');
 
 		if ( $this->admin )
 	    {
 	        $view['homes'] = Home::with(array('team', 'team.senior', 'team.junior'))->get();
-
-	        $view['admin'] = true;
 	    }
 	    else
 	    {
 	    	$user_team = User::findTeam($this->user->id);
 
 	    	$view['homes'] = Home::where('team_id', '=', $user_team->id)->get();
-
-	    	$view['admin'] = false;
-
 	    }
     
         $this->layout->content = View::Make('home.index', $view);

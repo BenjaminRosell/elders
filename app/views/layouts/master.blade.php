@@ -72,7 +72,7 @@
                                         <a href="../../../../visits" class="btn-menu"><i class="icon-white icon-signal"></i> Reports</a>
                                     </li>
                                     <li>
-                                        <a href="../../../../teams" class="btn-menu"><i class="icon-white icon-home"></i> @if ($isAdmin)Teams @else My Team @endif</a>
+                                        <a href="../../../../teams" class="btn-menu"><i class="icon-white icon-briefcase"></i> @if ($isAdmin)Teams @else My Team @endif</a>
                                             @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>
@@ -81,7 +81,7 @@
                                     </li>
                                     @if ($isAdmin)
                                     <li>
-                                        <a href="../../../../users" class="btn-menu">Users</a>
+                                        <a href="../../../../users" class="btn-menu"><i class="icon-white icon-group"></i> Users</a>
                                             <ul class="unstyled">
                                                 <li><a href="../../../../users/create">New User</a></li>
                                                 <li><a href="../../../../groups">Groups</a></li>

@@ -1,3 +1,5 @@
+@extends('layouts.master')
+
 @section('pagebar')
 	<section id="wrapper_slider" class="container">
         <h2 class="page_name text_shadow">Monthly Home teaching report for {{$visit->home->name}}</h2>

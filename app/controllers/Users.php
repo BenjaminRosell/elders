@@ -7,7 +7,6 @@ class Users extends BaseController {
         $this->user = Sentry::getUser();
 
         if ($this->user) {
-
         	$this->admin =  $this->user->hasAccess('admin');
 
         	$this->userTeam = User::findTeam($this->user->id);
@@ -37,12 +36,8 @@ class Users extends BaseController {
 	{
 		$view['users'] = User::all();
 		$view['groups'] = Sentry::getGroupProvider()->findAll();
-
-		if ($this->$admin) {
-			$view['admin'] = true;
-		} else {
-			$view['admin'] = false;
-		}
+		
+		$view['admin'] = ($this->admin) ? true : false;
 
         return View::Make('users.new', $view);
 	}
