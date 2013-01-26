@@ -16,7 +16,7 @@ class CreateGoalTable extends Migration {
 			$table->integer('home_id');
 			$table->integer('completed');
 			$table->date('date_due');
-			$table->date('date_completed');
+			$table->date('date_completed')->nullable();
 			$table->text('name');
 			$table->text('description');
 			$table->timestamps();

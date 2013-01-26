@@ -9,9 +9,9 @@ class Goals extends BaseController {
 	 */
 	public function index()
 	{
-		$data['goals'] = Goal::all();
+		$view['goals'] = Goal::all();
 
-		return View::make('goals.index', $data);
+		return View::make('goals.index', $view);
 	}
 
 	/**
@@ -22,8 +22,8 @@ class Goals extends BaseController {
 	public function create($id)
 	{
 		
-		$data['id'] = $id;
-		return View::make('goals.new', $data);
+		$view['id'] = $id;
+		return View::make('goals.new', $view);
 	}
 
 	/**
@@ -34,14 +34,14 @@ class Goals extends BaseController {
 	public function store()
 	{
 
-		$data = array(
+		$view = array(
 			'home_id' => Input::get('home_id'),
 			'date_due' => Input::get('date_due'),
 			'name' => Input::get('name'),
 			'description' => Input::get('description'), 
 		 );
 		
-		$goal = Goal::create($data);
+		$goal = Goal::create($view);
 
 		if ( $goal )
 		{
@@ -56,10 +56,9 @@ class Goals extends BaseController {
 	 */
 	public function show($id)
 	{
-		$data['goal'] = Goal::find($id);
+		$view['goal'] = Goal::find($id);
 
-		return View::make('goals.show');
-
+		return View::make('goals.show', $view);
 	}
 
 	/**
@@ -69,7 +68,9 @@ class Goals extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$view['goal'] = Goal::find($id);
+
+		return View::make('goals.edit', $view);
 	}
 
 	/**
@@ -79,7 +80,18 @@ class Goals extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		
+		$goal = Goal::find($id);
+
+		$goal->date_due = Input::get('date_due');
+		$goal->name = Input::get('name');
+		$goal->description = Input::get('description');
+		$goal->completed = Input::get('completed');
+		$goal->date_completed = Input::get('date_completed');
+		
+		$goal->save();
+
+		echo "<script language=javascript>parent.window.location.reload()</script>";
 	}
 
 	/**

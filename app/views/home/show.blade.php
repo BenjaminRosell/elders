@@ -40,10 +40,10 @@
 			<td><strong>Status</strong></td>
 		</tr>
 	@foreach ($home->goal as $goal)
-		<tr>
+		<tr <?=($goal->completed == 1) ? 'class="success"' : '';?>>
 			<td>{{ HTML::to('goals/'.$goal->id, $goal->name, array('class' => 'fancybox', 'data-fancybox-type' =>'iframe'));}}</td>
 			<td>{{$goal->date_due}}</td>
-			<td><?=($goal->complete == 1) ? 'Completed' : 'Ongoing';?></td>
+			<td><?=($goal->completed == 1) ? 'Completed' : 'Ongoing';?></td>
 		</tr>
 	@endforeach
 	</table>

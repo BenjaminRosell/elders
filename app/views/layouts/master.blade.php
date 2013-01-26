@@ -215,12 +215,12 @@
                     
                     <div class="social_icons_footer">
                         <div class="pull-right">
-                            <a href="#" data-tip="top" data-original-title="Join us on facebook"><img src="images/icons_social/facebook.png" alt="facebook icon"  height="22" width="22" class="a_social_icon  facebook"></a>
-                            <a href="#" data-tip="top" data-original-title="Follow us on twitter"><img src="images/icons_social/twitter.png" alt="twitter icon" height="22" width="22" class="a_social_icon twitter"></a>
-                            <a href="#" data-tip="top" data-original-title="Join us on google +"><img src="images/icons_social/gplus.png" alt="gplus icon"  height="22" width="22" class="a_social_icon gplus"></a>
-                            <a href="#" data-tip="top" data-original-title="Join us on youtube"><img src="images/icons_social/youtube.png" alt="youtube icon"  height="22" width="22" class="a_social_icon youtube"></a>
-                            <a href="#" data-tip="top" data-original-title="Join us on vimeo"><img src="images/icons_social/vimeo.png" alt="vimeo icon"  height="22" width="22" class="a_social_icon vimeo"></a>
-                            <a href="#" data-tip="top" data-original-title="Subscribe our rss feed"><img src="images/icons_social/rss.png" alt="rss icon"  height="22" width="22" class="a_social_icon rss"></a>
+                            <a href="#" data-tip="top" data-original-title="Join us on facebook"><img src="../../../images/icons_social/facebook.png" alt="facebook icon"  height="22" width="22" class="a_social_icon  facebook"></a>
+                            <a href="#" data-tip="top" data-original-title="Follow us on twitter"><img src="../../../images/icons_social/twitter.png" alt="twitter icon" height="22" width="22" class="a_social_icon twitter"></a>
+                            <a href="#" data-tip="top" data-original-title="Join us on google +"><img src="../../../images/icons_social/gplus.png" alt="gplus icon"  height="22" width="22" class="a_social_icon gplus"></a>
+                            <a href="#" data-tip="top" data-original-title="Join us on youtube"><img src="../../../images/icons_social/youtube.png" alt="youtube icon"  height="22" width="22" class="a_social_icon youtube"></a>
+                            <a href="#" data-tip="top" data-original-title="Join us on vimeo"><img src="../../../images/icons_social/vimeo.png" alt="vimeo icon"  height="22" width="22" class="a_social_icon vimeo"></a>
+                            <a href="#" data-tip="top" data-original-title="Subscribe our rss feed"><img src="../../../images/icons_social/rss.png" alt="rss icon"  height="22" width="22" class="a_social_icon rss"></a>
                             <!-- disabled // choose yours !
                             <a href="#" data-original-title=""><img src="images/icons_social/addthis.png" alt="addthis icon"  height="22" width="22" class="a_social_icon addthis"></a>
                             <a href="#" data-tip="top" data-original-title="Follow us on behance"><img src="images/icons_social/behance.png" alt="behance icon"  height="22" width="22" class="a_social_icon behance"></a>
@@ -286,6 +286,7 @@
                             $(".fancybox").fancybox();
                         });
                     </script>
+                    @yield('javascript')
                 </footer><!-- end #footer -->
                 
             </section><!-- end #wrapper_footer -->
