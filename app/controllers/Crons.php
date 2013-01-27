@@ -32,6 +32,7 @@ class Crons extends BaseController
 			}
 
 			// Send email with links to their reports
+			$data = array();
 
 			Mail::send('emails.report', $data, function($m) use ($team)
 			{

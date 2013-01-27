@@ -23,6 +23,7 @@
 			<td>Leader</td>
 			<td>Junior companion</td>
 			<td>Steward</td>
+			<td>Assignments</td>
 		</tr>
 	@foreach ($teams as $team)
     	<tr>
@@ -30,6 +31,13 @@
 			<td>{{ User::name($team->lead) }}</td>
 			<td>{{ User::name($team->companion) }}</td>
 			<td>{{ $team->steward }}</td>
+			<td><?php 
+				if ($team->assignments) {
+					foreach ($team->assignments as $assignment ){
+						echo '<a href="../../../homes/'.$assignment->id.'">'.$assignment->name . '</a><br />';
+					}
+				}
+			    ?></td>
 		</tr>
 	@endforeach
 	</table>

@@ -14,16 +14,17 @@
 		<div class="alert alert-error">{{Session::get('error_message')}}</div>
 	@endif
 	<br>
-    <p>The home email is <a href="maito:{{$home->email}}">{{ $home->email }}</a></p>
+    <p>The home email is <a href="mailto:{{$home->email}}">{{ $home->email }}</a></p>
     <p>The home's phone number is {{ $home->phone_number }}</p>
     <p>Their address is {{$home->address}}</p>
     <p>Their home teachers are {{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->senior->last_name}}</p>
+    <br>
     {{ Form::open('homes/'.$home->id, 'DELETE', array('class' => 'form')) }}
-	    {{ HTML::to('homes/' . $home->id .'/edit', 'Edit this family', array('id' => 'edit_link', 'class' => 'btn btn-inverse'));}}
-		{{ HTML::to('homes', 'Back to family list', array('id' => 'back_link', 'class' => 'btn btn-inverse'));}}
+	    <a href="../../../homes/<?php echo $home->id ?>/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i> Edit this family</a>
+	    <a href="../../../homes" class="btn btn-inverse"><i class="icon-white icon-chevron-left"></i> Back to family list</a>
 		
 		@if($admin)
-			{{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
+			<button class="btn btn-danger pull-right" value="Submit" type="submit"><i class="icon-white icon-trash"></i> Delete Family</button>
 		@endif
 	{{Form::close()}}
 	
@@ -32,21 +33,21 @@
         <h2>Goals</h2>
     </div>
 
-    @if ($home->goal)
-    <table class="table table-striped">
-		<tr>	
-			<td><strong>Goal</strong></td>
-			<td><strong>Due Date</strong></td>
-			<td><strong>Status</strong></td>
-		</tr>
-	@foreach ($home->goal as $goal)
-		<tr <?=($goal->completed == 1) ? 'class="success"' : '';?>>
-			<td>{{ HTML::to('goals/'.$goal->id, $goal->name, array('class' => 'fancybox', 'data-fancybox-type' =>'iframe'));}}</td>
-			<td>{{$goal->date_due}}</td>
-			<td><?=($goal->completed == 1) ? 'Completed' : 'Ongoing';?></td>
-		</tr>
-	@endforeach
-	</table>
+    @if (count($home->goal) > 0)
+	    <table class="table table-striped">
+			<tr>	
+				<td><strong>Goal</strong></td>
+				<td><strong>Due Date</strong></td>
+				<td><strong>Status</strong></td>
+			</tr>
+		@foreach ($home->goal as $goal)
+			<tr <?=($goal->completed == 1) ? 'class="success"' : '';?>>
+				<td>{{ HTML::to('goals/'.$goal->id, $goal->name, array('class' => 'fancybox', 'data-fancybox-type' =>'iframe'));}}</td>
+				<td>{{$goal->date_due}}</td>
+				<td><?=($goal->completed == 1) ? 'Completed' : 'Ongoing';?></td>
+			</tr>
+		@endforeach
+		</table>
     @endif
 
     <a href="../../goals/create/<?php echo $home->id ?>" data-fancybox-type="iframe" class="btn btn-inverse fancybox"><i class="icon-white icon-plus"></i> Add Goal</a>

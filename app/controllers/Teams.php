@@ -27,11 +27,11 @@ class Teams extends BaseController {
 
 		if ($this->admin) {
 			
-			$view['teams'] = Team::all();
+			$view['teams'] = Team::with('assignments')->get();
 
 		} else {
 			
-			$view['teams'] = Team::where('id', $this->userTeam->id)->get();
+			$view['teams'] = Team::with('assignments')->where('id', $this->userTeam->id)->get();
 
 		}
 

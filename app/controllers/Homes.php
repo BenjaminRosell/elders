@@ -61,7 +61,7 @@ class Homes extends BaseController
             'email' => Input::get('email'),
             'name' => Input::get('name'),
             'phone_number' => Input::get('phone'),
-            'team_id'  => Input::get('home_teachers') ? Input::get('home_teachers') : 0 ,
+            'team_id'  => Input::get('home_teachers') ? Input::get('home_teachers') : 1 ,
             'address' => Input::get('address')
             );
         $home = Home::create($data);
