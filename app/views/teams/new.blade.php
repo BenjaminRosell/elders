@@ -13,6 +13,11 @@
 		$districts_array[$district->id] = $district->name . ' (' . User::name($district->steward). ')';
 	}
 
+	$homes_array[] = ' -- Choose -- ';
+	foreach ( $homes as $home ) {
+		$homes_array[$home->id] = $home->name;
+	}
+
  ?>
 
  @section('pagebar')
@@ -32,16 +37,23 @@
 		</div>
 
 		<div class="control-group">
-		    {{Form::label('lead', 'Junior Companion', array('class' => 'control-label'))}}
+		    {{Form::label('companion', 'Junior Companion', array('class' => 'control-label'))}}
 		    <div class="controls">
 		    	{{Form::select('companion', $brothers, '')}}
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    {{Form::label('lead', 'Steward', array('class' => 'control-label'))}}
+		    {{Form::label('steward', 'Steward', array('class' => 'control-label'))}}
 		    <div class="controls">
 		    	{{Form::select('steward', $districts_array)}} <br>
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    {{Form::label('assignments', 'Assigned homes (Press Ctrl or cmd for multiple selection)', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::select('assignments[]', $homes_array, '', array('multiple' => 'multiple', 'style' => 'height:300px;'))}} <br>
 		    </div>
 		</div>
 

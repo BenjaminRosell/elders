@@ -27,11 +27,22 @@ class Teams extends BaseController {
 
 		if ($this->admin) {
 			
-			$view['teams'] = Team::with('assignments', 'district')->get();
+			$view['teams'] = Team::with('assignments', 'district', 'senior', 'junior')->get();
+			$users = User::all();
+
+			if ($users) {
+				foreach ($users as $user) {
+					$user_team = User::findTeam($user->id);
+
+					if ($user_team == NULL) {
+						$view['unassignedUsers'][$user->id] = $user->first_name . ' ' . $user->last_name; 
+					}
+				}
+			}
 
 		} else {
 			
-			$view['teams'] = Team::with('assignments', 'district')->where('id', $this->userTeam->id)->get();
+			$view['teams'] = Team::with('assignments', 'district', 'senior', 'junior')->where('id', $this->userTeam->id)->get();
 
 		}
 
@@ -47,6 +58,7 @@ class Teams extends BaseController {
 	{
         $view['users'] = User::all();
         $view['districts'] = District::all();
+        $view['homes'] = Home::all();
 
         return View::Make('teams.new', $view);
 	}
@@ -66,6 +78,15 @@ class Teams extends BaseController {
         
         $team = Team::create($data);
 
+        foreach (Input::get('assignments') as $assignment)
+        {
+        	$home = Home::find($assignment);
+
+        	$home->team_id = $team->id;
+
+        	$home->save();
+        }
+
         if ($team) {
             return Redirect::to('teams')->with('success_message', 'A new team has benn added.');
         }
@@ -79,6 +100,7 @@ class Teams extends BaseController {
 	public function show($id)
 	{
 		$view['team'] = Team::with('district')->find($id);
+		$view['homes'] = Home::all();
 
 		if ( !$this->admin AND $this->userTeam->id !== $view['team']->id ) return Redirect::to('teams')->with('error_message', 'You are not allowed to see this page, friend !');
 
@@ -99,8 +121,9 @@ class Teams extends BaseController {
 	public function edit($id)
 	{
 		$view['users'] = User::all();
-        $view['team'] = Team::find($id);
+        $view['team'] = Team::with('assignments')->find($id);
         $view['districts'] = District::all();
+        $view['homes'] = Home::all();
 
         return View::Make('teams.edit', $view);
 	}
@@ -120,6 +143,15 @@ class Teams extends BaseController {
 
         $team->save();
 
+        foreach (Input::get('assignments') as $assignment)
+        {
+        	$home = Home::find($assignment);
+
+        	$home->team_id = $team->id;
+
+        	$home->save();
+        }
+
         return Redirect::to('teams')->with('success_message', 'You changes have been saved');
 	}
 
@@ -130,7 +162,16 @@ class Teams extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$team = Team::find($id);
+		$team = Team::with('assignments')->find($id);
+
+		foreach ($team->assignments as $assignment) {
+
+			$home = Home::find($assignment->id);
+
+       		$home->team_id = 1;
+
+       		$home->save();
+       	}
 
         $team->delete();
 

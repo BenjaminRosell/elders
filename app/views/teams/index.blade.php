@@ -22,29 +22,42 @@
 			<td>Team number</td>
 			<td>Leader</td>
 			<td>Junior companion</td>
-			<td>District</td>
-			<td>Steward</td>
 			<td>Assignments</td>
+			<td>District (Steward)</td>
+			@if ($admin)
+			<td>Edit</td>
+			@endif
 		</tr>
 	@foreach ($teams as $team)
     	<tr>
 			<td>{{ HTML::to('teams/'.$team->id, $team->id, array('id' => 'register_link'));}}</td>
-			<td>{{ User::name($team->lead) }}</td>
-			<td>{{ User::name($team->companion) }}</td>
-			<td>{{ isset($team->district->name) ? $team->district->name : 'Not assigned yet'; }}</td>
-			<td>{{ isset($team->district->name) ? User::name($team->district->steward) : 'Not assigned yet'; }}</td>
+			<td>{{ $team->senior->first_name . ' ' . $team->senior->last_name }}</td>
+			<td>{{ $team->junior->first_name . ' ' . $team->junior->last_name }}</td>
 			<td><?php 
 				if ($team->assignments) {
 					foreach ($team->assignments as $assignment ){
 						echo '<a href="../../../homes/'.$assignment->id.'">'.$assignment->name . '</a><br />';
 					}
 				}
-			    ?></td>
+			    ?>
+			</td>
+			<td>{{ isset($team->district->name) ? $team->district->name : 'Not assigned yet'; }} <br> ({{ isset($team->district->name) ? User::name($team->district->steward) : 'Not assigned yet'; }})</td>
+			@if ($admin)
+			<td><a href="../../teams/<?php echo $team->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
+			@endif
 		</tr>
 	@endforeach
 	</table>
 	
 	@if ($admin)
 	<a href="../../teams/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new team</a>
+
+	<div class="heading center m2">
+        <div class="separation"></div>
+        <h2>Unasigned Bretheren</h2>
+    </div>
+    @foreach ($unassignedUsers as $key => $value)
+    <li><?php echo $value ?></li>
+    @endforeach
 	@endif
 @stop

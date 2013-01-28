@@ -11,6 +11,18 @@
 	foreach ( $districts as $district ) {
 		$districts_array[$district->id] = $district->name . ' (' . User::name($district->steward). ')';
 	}
+
+	$homes_array[] = ' -- Choose -- ';
+	foreach ( $homes as $home ) {
+		$homes_array[$home->id] = $home->name;
+	}
+
+	if ($team->assignments)
+	{
+		foreach ($team->assignments as $assignment){
+			$assigned_families[] = $assignment->id;
+		}
+	}
  ?>
 
  @section('pagebar')
@@ -40,6 +52,13 @@
 		    {{Form::label('lead', 'Steward', array('class' => 'control-label'))}}
 		    <div class="controls">
 		    	{{Form::select('steward', $districts_array, $team->steward)}}
+		    </div>
+		</div>
+
+		<div class="control-group">
+		    {{Form::label('assignments', 'Assigned homes (Press Ctrl or cmd for multiple selection)', array('class' => 'control-label'))}}
+		    <div class="controls">
+		    	{{Form::select('assignments[]', $homes_array, isset($assigned_families) ? $assigned_families : '', array('multiple' => 'multiple', 'style' => 'height:300px;'))}} <br>
 		    </div>
 		</div>
 

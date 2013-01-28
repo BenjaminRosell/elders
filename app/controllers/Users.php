@@ -197,7 +197,7 @@ class Users extends BaseController {
 			}
         }
 
-        return Redirect::to('users/'.$user->username);
+        return Redirect::to('users')->with('success_message', 'The user was updated succesfully');
 	}
 
 	/**
