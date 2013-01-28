@@ -38,6 +38,8 @@ Route::group(array('before' => 'authorise'), function()
 	Route::resource('users', 'Users');
 
 	Route::resource('groups', 'Groups');
+
+	Route::resource('districts', 'Districts');
 	
 	Route::get('goals/create/{id}', 'Goals@create');
 

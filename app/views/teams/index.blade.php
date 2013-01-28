@@ -22,6 +22,7 @@
 			<td>Team number</td>
 			<td>Leader</td>
 			<td>Junior companion</td>
+			<td>District</td>
 			<td>Steward</td>
 			<td>Assignments</td>
 		</tr>
@@ -30,7 +31,8 @@
 			<td>{{ HTML::to('teams/'.$team->id, $team->id, array('id' => 'register_link'));}}</td>
 			<td>{{ User::name($team->lead) }}</td>
 			<td>{{ User::name($team->companion) }}</td>
-			<td>{{ $team->steward }}</td>
+			<td>{{ isset($team->district->name) ? $team->district->name : 'Not assigned yet'; }}</td>
+			<td>{{ isset($team->district->name) ? User::name($team->district->steward) : 'Not assigned yet'; }}</td>
 			<td><?php 
 				if ($team->assignments) {
 					foreach ($team->assignments as $assignment ){

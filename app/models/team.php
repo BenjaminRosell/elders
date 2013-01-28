@@ -19,4 +19,9 @@ class Team extends Eloquent
   {
     return $this->belongsTo('User', 'companion');
   }
+
+  public function district()
+  {
+    return $this->belongsTo('District', 'steward');
+  }
 }

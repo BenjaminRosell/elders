@@ -27,11 +27,11 @@ class Teams extends BaseController {
 
 		if ($this->admin) {
 			
-			$view['teams'] = Team::with('assignments')->get();
+			$view['teams'] = Team::with('assignments', 'district')->get();
 
 		} else {
 			
-			$view['teams'] = Team::with('assignments')->where('id', $this->userTeam->id)->get();
+			$view['teams'] = Team::with('assignments', 'district')->where('id', $this->userTeam->id)->get();
 
 		}
 
@@ -46,6 +46,7 @@ class Teams extends BaseController {
 	public function create()
 	{
         $view['users'] = User::all();
+        $view['districts'] = District::all();
 
         return View::Make('teams.new', $view);
 	}
@@ -66,7 +67,7 @@ class Teams extends BaseController {
         $team = Team::create($data);
 
         if ($team) {
-            return Redirect::to('teams');
+            return Redirect::to('teams')->with('success_message', 'A new team has benn added.');
         }
 	}
 
@@ -77,7 +78,7 @@ class Teams extends BaseController {
 	 */
 	public function show($id)
 	{
-		$view['team'] = Team::find($id);
+		$view['team'] = Team::with('district')->find($id);
 
 		if ( !$this->admin AND $this->userTeam->id !== $view['team']->id ) return Redirect::to('teams')->with('error_message', 'You are not allowed to see this page, friend !');
 
@@ -99,6 +100,7 @@ class Teams extends BaseController {
 	{
 		$view['users'] = User::all();
         $view['team'] = Team::find($id);
+        $view['districts'] = District::all();
 
         return View::Make('teams.edit', $view);
 	}
@@ -118,7 +120,7 @@ class Teams extends BaseController {
 
         $team->save();
 
-        return Redirect::to('teams/'.$id);
+        return Redirect::to('teams')->with('success_message', 'You changes have been saved');
 	}
 
 	/**

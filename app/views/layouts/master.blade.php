@@ -76,6 +76,7 @@
                                             @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>
+                                                <li><a href="../../../../districts">Districts and Stewards</a></li>
                                             </ul>
                                             @endif
                                     </li>
@@ -84,7 +85,7 @@
                                         <a href="../../../../users" class="btn-menu"><i class="icon-white icon-group"></i> Users</a>
                                             <ul class="unstyled">
                                                 <li><a href="../../../../users/create">New User</a></li>
-                                                <li><a href="../../../../groups">Groups</a></li>
+                                                <li><a href="../../../../groups">User Groups</a></li>
                                             </ul>
                                     </li>
                                     @endif

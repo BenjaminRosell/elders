@@ -7,11 +7,10 @@
 		$brothers[$user->id] = $user->first_name . ' ' . $user->last_name;
 	}
 
-	$stewards = array(
-			''	=>	'',
-			'1'	=>	'Benjamin Gonzalez', 
-			'2'	=>	'Guillaume Plouffe', 
-		);
+	$districts_array[] = ' -- Choose -- ';
+	foreach ( $districts as $district ) {
+		$districts_array[$district->id] = $district->name . ' (' . User::name($district->steward). ')';
+	}
  ?>
 
  @section('pagebar')
@@ -40,7 +39,7 @@
 		<div class="control-group">
 		    {{Form::label('lead', 'Steward', array('class' => 'control-label'))}}
 		    <div class="controls">
-		    	{{Form::select('steward', $stewards, $team->steward)}}
+		    	{{Form::select('steward', $districts_array, $team->steward)}}
 		    </div>
 		</div>
 

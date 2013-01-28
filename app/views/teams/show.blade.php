@@ -12,7 +12,8 @@
 
     <p>The team senior companion is {{ User::name($team->lead) }} </p>
     <p>The team junior companion is {{ User::name($team->companion) }}</p>
-    <p>The steward is {{ $team->steward }}</p>
+    <p>Their district is {{ $team->district->name }}</p>
+    <p>The steward is {{ User::name($team->district->steward) }}</p>
     <br>
 
     @if ($admin)
