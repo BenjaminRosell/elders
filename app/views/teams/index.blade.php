@@ -51,13 +51,14 @@
 	
 	@if ($admin)
 	<a href="../../teams/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new team</a>
-
-	<div class="heading center m2">
-        <div class="separation"></div>
-        <h2>Unasigned Bretheren</h2>
-    </div>
-    @foreach ($unassignedUsers as $key => $value)
-    <li><?php echo $value ?></li>
-    @endforeach
+		@if(isset($unassignedUsers)
+			<div class="heading center m2">
+		        <div class="separation"></div>
+		        <h2>Unasigned Bretheren</h2>
+		    </div>
+		    @foreach ($unassignedUsers as $key => $value)
+		    <li><?php echo $value ?></li>
+		    @endforeach
+	    @endif
 	@endif
 @stop
