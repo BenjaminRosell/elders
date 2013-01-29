@@ -51,7 +51,7 @@
 	
 	@if ($admin)
 	<a href="../../teams/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new team</a>
-		@if(isset($unassignedUsers)
+		@if(isset($unassignedUsers))
 			<div class="heading center m2">
 		        <div class="separation"></div>
 		        <h2>Unasigned Bretheren</h2>
