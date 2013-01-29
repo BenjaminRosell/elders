@@ -32,7 +32,7 @@
 	@foreach ($homes as $home)
     	<tr>
 			<td>{{ HTML::to('homes/'.$home->id, $home->name, array('id' => 'register_link'));}}</td>
-			<td>{{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->senior->last_name}}</td>
+			<td>{{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->junior->last_name}}</td>
 			<td><a href="mailto:{{ $home->email }}"> {{ $home->email }}</a></td>
 			<td>{{ $home->phone_number }}</td>
 			@if ($admin)

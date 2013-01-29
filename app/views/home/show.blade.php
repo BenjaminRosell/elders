@@ -17,7 +17,7 @@
     <p>The home email is <a href="mailto:{{$home->email}}">{{ $home->email }}</a></p>
     <p>The home's phone number is {{ $home->phone_number }}</p>
     <p>Their address is {{$home->address}}</p>
-    <p>Their home teachers are {{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->senior->last_name}}</p>
+    <p>Their home teachers are {{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->junior->last_name}}</p>
     <br>
     {{ Form::open('homes/'.$home->id, 'DELETE', array('class' => 'form')) }}
 	    <a href="../../../homes/<?php echo $home->id ?>/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i> Edit this family</a>

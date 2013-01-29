@@ -209,9 +209,29 @@ class Users extends BaseController {
 	{
 		$user = User::where('username',$id)->first();
 
+		$team_id = User::findTeam($user->id);
+
+		$team = Team::with('senior', 'junior')->find($team_id->id);
+
+		if($team){
+
+			if($team->senior->id == $user->id) {
+
+				$team->lead = 1;
+				
+				$team->save();
+				
+			} else if ($team->junior->id == $user->id) {
+				
+				$team->companion =1;
+
+				$team->save();
+			}
+		}
+        
         $user->delete();
 
-        return Redirect::to('users');
+        return Redirect::to('users')->with('success_message', 'The user was deleted succesfully');
 	}
 	/**
 	 * logs in a user :)
