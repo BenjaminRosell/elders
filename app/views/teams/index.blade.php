@@ -26,6 +26,7 @@
 			<td>District (Steward)</td>
 			@if ($admin)
 			<td>Edit</td>
+			<td>Delete</td>
 			@endif
 		</tr>
 	@foreach ($teams as $team)
@@ -44,6 +45,7 @@
 			<td>{{ isset($team->district->name) ? $team->district->name : 'Not assigned yet'; }} <br> ({{ isset($team->district->name) ? User::name($team->district->steward) : 'Not assigned yet'; }})</td>
 			@if ($admin)
 			<td><a href="../../teams/<?php echo $team->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
+			<td>{{ Form::open('teams/'.$district->id, 'DELETE') }}<button type="Submit" value="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i></button>{{ Form::close()}}</td>
 			@endif
 		</tr>
 	@endforeach
