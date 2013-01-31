@@ -1,0 +1,3 @@
+web1:
+  before_deploy:
+    - "php artisan db:seed"

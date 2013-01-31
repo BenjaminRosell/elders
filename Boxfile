@@ -23,7 +23,6 @@ web1:
   before_deploy:
     - "php artisan migrate --package=cartalyst/sentry"
     - "php artisan migrate"
-    - "php artisan db:seed"
   after_deploy:
     - "rm -f app/storage/cache/*"
     - "rm -f app/storage/views/*"
