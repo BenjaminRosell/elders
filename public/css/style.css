@@ -945,5 +945,32 @@ footer p, footer a, footer a:hover {
 .isotope-hidden.isotope-item {
 	pointer-events: none;
 	z-index: 1; }
+
+.team-header{
+	margin-bottom: 10px;
+	border-bottom: 1px solid gray;
+}
+
+.team-container{
+	overflow: visible;
+	min-height:190px;
+	margin-bottom:20px;
+	background-color:#f5f5f5;
+/*	border:1px solid #e3e3e3;*/
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,0.05)
+}
+
+.team-margin{
+	margin: 15px;
+}
+
+.families{
+	min-height: 100px;
+}
  
  

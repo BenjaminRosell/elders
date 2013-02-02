@@ -275,7 +275,8 @@
                     <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
-					<script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
+                    <script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
+                    <script type="text/javascript" src="../../../../js/jquery-ui-1.10.0.custom.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
                     <script type="text/javascript">
                         jQuery(document).ready(function($) {

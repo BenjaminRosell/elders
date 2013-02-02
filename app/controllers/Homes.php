@@ -140,5 +140,4 @@ class Homes extends BaseController
 
         return Redirect::to('homes');
 	}
-
 }

@@ -34,6 +34,9 @@ Route::group(array('before' => 'authorise'), function()
 
 	Route::resource('homes', 'Homes');
 
+	Route::get('assignments', 'Assignments@index');
+	Route::post('assignments', 'Assignments@assign');
+
 	Route::resource('teams', 'Teams');
 
 	Route::resource('visits', 'Visits');
