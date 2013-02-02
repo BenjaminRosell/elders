@@ -29,6 +29,9 @@ Route::get('logout', 'Users@logout');
 
 Route::group(array('before' => 'authorise'), function()
 {
+	Route::get('password', 'Users@password');
+	Route::post('password', 'Users@post_password');
+
 	Route::resource('homes', 'Homes');
 
 	Route::resource('teams', 'Teams');

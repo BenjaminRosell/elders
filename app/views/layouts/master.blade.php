@@ -59,6 +59,9 @@
                                     @if ($userData)
                                     <li>
                                         <a href="../../../../users/<?php echo $userData->username ?>" class="btn-menu"><i class="icon-white icon-user"></i> Welcome {{$userData->first_name}} !</a>
+                                            <ul class="unstyled">
+                                                <li><a href="../../../../password">Change my password</a></li>
+                                            </ul>
                                     </li>
                                     @else
                                     <li>

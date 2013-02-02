@@ -332,4 +332,52 @@ class Users extends BaseController {
 	    return Redirect::to('/');
     }
 
+    public function password()
+    {
+	    $view['user'] = Sentry::check();
+	    
+	    return View::make('users.password');
+    }
+
+    public function post_password()
+    {
+	    // Find the user
+	    $user = Sentry::check();
+
+	    try
+		{
+		    $userMatch = Sentry::getUserProvider()->findByCredentials(array(
+		        'email'      => $user->email,
+		        'password'   => Input::get('old'),
+		    ));
+		}
+		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+		    return Redirect::to('password')->with('error_message', 'The old password did not match !');
+		}
+
+	    if ($userMatch) {
+
+		    $resetCode = $userMatch->getResetPasswordCode();
+
+		    try
+			{
+
+			    // Attempt to reset the user password
+			    if ($userMatch->attemptResetPassword($resetCode, Input::get('password')))
+			    {
+			        return Redirect::to('password')->with('success_message', 'Congratulations, you have a new password !');
+			    }
+			    else
+			    {
+			       	return Redirect::to('password')->with('error_message', 'Something went wrong... Please try again latter');
+			    }
+			}
+			catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+			{
+			    echo 'User does not exist.';
+			}
+		}
+    }
+
 }
