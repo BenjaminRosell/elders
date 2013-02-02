@@ -79,6 +79,7 @@
                                             @if ($isAdmin)
                                             <ul class="unstyled">
                                                 <li><a href="../../../../teams/create">New Team</a></li>
+                                                <li><a href="../../../../assignments">Assignments interface</a></li>
                                                 <li><a href="../../../../districts">Districts and Stewards</a></li>
                                             </ul>
                                             @endif
