@@ -31,11 +31,13 @@ Route::group(array('before' => 'authorise'), function()
 {
 	Route::get('password', 'Users@password');
 	Route::post('password', 'Users@post_password');
+	Route::get('assignments', 'Assignments@index');
+	Route::post('assignments', 'Assignments@assign');
+	Route::post('interviews/district', 'Interviews@getDistrictTeams');
 
 	Route::resource('homes', 'Homes');
 
-	Route::get('assignments', 'Assignments@index');
-	Route::post('assignments', 'Assignments@assign');
+	Route::resource('interviews', 'Interviews');
 
 	Route::resource('teams', 'Teams');
 
