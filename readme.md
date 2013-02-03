@@ -8,16 +8,16 @@ Open source web app created with the specific goal to help home teacers to fulfi
 
 Some of the features that are planned on this app are :
 
-- User and permissions management
-- Home teaching teams management
-- Families and assignment management
-- Team stewardship management
-- Automatic stewardship interviews schelduling
-- Interviews confirmation (via email)
+- User and permissions management [Completed]
+- Home teaching teams management [Completed]
+- Families and assignment management [Completed]
+- Team stewardship management [Completed]
+- Automatic stewardship interviews schelduling [On the works]
+- Interviews confirmation (via email) 
 - Interviews remiders via email
 - Automatic home teaching appointment reminders via email
 - Google Calendar integration
-- Home teachers can log in and report on their assigned families
+- Home teachers can log in and report on their assigned families [Completed]
 - Quorum graphs and trends
 - Detailed team report and trends
 - Automatic email warnings when a family has not been visited for 3 months...
