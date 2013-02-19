@@ -33,7 +33,6 @@
 		</div>
 		
 		{{Form::submit('Log-in', array('class' => 'btn btn-inverse'))}}
-		<!--{{ HTML::to('register', 'Create an account', array('id' => 'register_link', 'class' => 'btn'));}}-->
 
 	{{ Form::close() }}
 

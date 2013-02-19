@@ -16,6 +16,40 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
+Route::get('/test', function()
+{
+
+$today = date('d');
+$monthYear = date('Y-m');
+$nextMonthYear = date('Y-m', strtotime('+1 month'));
+
+if ($today <= 4) {
+	
+	//Send emails cause next sunday will be 1st Sunday...
+	$firstSunday = date('Y-m-d', strtotime("first sunday of $monthYear"));
+
+} else {
+	
+	//Check of we'll be next sunday
+	$firstSunday = date('Y-m-d', strtotime("first sunday of $nextMonthYear"));
+	$nextSunday = date('Y-m-d', strtotime("next sunday"));
+
+	if ($firstSunday == $nextSunday) {
+
+		//Send emails to all teams :)
+		echo 'test';
+
+	} else{
+
+		echo 'false';
+	}
+
+}
+});
+
+
+
+
 Route::get('/error', function()
 {
 	return View::make('errors.index');
