@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'rD9SNg0mnuD5yBm+khq7taKA)vu01vcT',
+	'key' => '-#Tp1bDjD)8)xW4$$q1rNg9#TJnpCEzp',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,6 +113,7 @@ return array(
 		'Meido\Form\FormServiceProvider',
 		'Meido\HTML\HTMLServiceProvider',
 
+		'Way\Generators\GeneratorsServiceProvider'
 	),
 
 	/*
