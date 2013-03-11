@@ -126,5 +126,8 @@ class Interviews extends BaseController {
 
 		return (string) $teams;
 				
+	}public function getCompleteTeams()
+	{
+		return Team::with('senior', 'junior')->where('steward', '=', Input::get('id'))->get();
 	}
 }

@@ -6,6 +6,7 @@
 		$districts_array[$district->id] = $district->name;
 	}
 
+	$explosion = explode(':', $interview->time);
 	for($i=7;$i<=20;$i++) {$hours[str_pad($i, 2, "0", STR_PAD_LEFT)]=$i;}
 	for($i=00;$i<=55;$i=$i+5) {$minutes[str_pad($i, 2, "0", STR_PAD_LEFT)]=$i;}
 
@@ -23,7 +24,7 @@
 		<div class="control-group">
 		    {{Form::label('district', 'District', array('class' => 'control-label'))}}
 		    <div class="controls">
-		    	{{Form::select('district', $districts_array, '')}}
+		    	{{Form::select('district', $districts_array, $interview->district)}}
 		    </div>
 		</div>
 
@@ -37,7 +38,7 @@
 		<div class="control-group">
 		    {{Form::label('time', 'Interview Time', array('class' => 'control-label'))}}
 		    <div class="controls">
-		    	{{Form::select('hour', $hours, '', array('class' => 'span1'))}} : {{Form::select('minutes', $minutes, '', array('class' => 'span1'))}}
+		    	{{Form::select('hour', $hours, $explosion[0], array('class' => 'span1'))}} : {{Form::select('minutes', $minutes, $explosion[1], array('class' => 'span1'))}}
 		    </div>
 		</div>
 
@@ -55,7 +56,7 @@
 jQuery(document).ready(function($) {
 	$('select[name=district]').change(function() {
 		var TeamId = $('select[name=district]').val();
-		$.post("district", { id: TeamId })
+		$.post("../district", { id: TeamId })
         	.done(function(data) {
     	   		
 				obj = jQuery.parseJSON(data);
@@ -69,8 +70,25 @@ jQuery(document).ready(function($) {
 					.attr("value", this.id).text(this.senior.first_name + ' ' + this.senior.last_name + ' and ' + this.junior.first_name + ' ' + this.junior.last_name));
 				});
 		});
-
 	})
+
+	var TeamId = $('select[name=district]').val();
+	var $el = $("select[name=team]");
+	$.post("../teams", { id: TeamId })
+
+		.done(function(data) {
+			
+			$el.empty(); // remove old options
+			
+			//setting options from DB
+			$(data).each(function() {
+				$el.append($("<option></option>")
+				.attr("value", this.id).text(this.senior.first_name + ' ' + this.senior.last_name + ' and ' + this.junior.first_name + ' ' + this.junior.last_name));
+			});
+
+			//Selecting data accordingly
+			$el.val({{$interview->team_id}});
+		});
 });
 </script>
 @stop
