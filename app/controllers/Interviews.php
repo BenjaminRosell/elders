@@ -12,7 +12,10 @@ class Interviews extends BaseController {
 	public function index()
 	{
 		
-		$view['districts'] = District::with('interviews', 'team', 'team.junior', 'team.senior')->get();
+		$view['districts'] = District::with(array('interviews' => function($query)
+		{
+		    $query->orderBy('time', 'asc');
+		}), 'team', 'team.junior', 'team.senior')->get();
 
 		$this->layout->content = View::make('interviews.index', $view);
 	}
@@ -66,7 +69,10 @@ class Interviews extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$view['districts'] = District::all();
+		$view['interview'] = Master::find($id);
+
+		$this->layout->content = View::make('interviews.edit', $view);
 	}
 
 	/**
