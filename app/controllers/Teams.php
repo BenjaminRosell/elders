@@ -143,13 +143,16 @@ class Teams extends BaseController {
 
         $team->save();
 
-        foreach (Input::get('assignments') as $assignment)
-        {
-        	$home = Home::find($assignment);
+        if (Input::get('assignments')) {
 
-        	$home->team_id = $team->id;
+        	foreach (Input::get('assignments') as $assignment) {
+	        	$home = Home::find($assignment);
 
-        	$home->save();
+	        	$home->team_id = $team->id;
+
+	        	$home->save();
+	        }
+	        
         }
 
         return Redirect::to('teams')->with('success_message', 'You changes have been saved');

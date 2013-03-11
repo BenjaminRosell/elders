@@ -31,7 +31,7 @@
 		</tr>
 	@foreach ($teams as $team)
     	<tr>
-			<td>{{ HTML::to('teams/'.$team->id, $team->id, array('id' => 'register_link'))}}</td>
+			<td><a href="teams/{{$team->id}}"> {{$team->id}}</a></td>
 			<td>{{ $team->senior->first_name . ' ' . $team->senior->last_name }}</td>
 			<td>{{ $team->junior->first_name . ' ' . $team->junior->last_name }}</td>
 			<td><?php 
@@ -44,8 +44,8 @@
 			</td>
 			<td>{{ isset($team->district->name) ? $team->district->name : 'Not assigned yet' }} <br> ({{ isset($team->district->name) ? User::name($team->district->steward) : 'Not assigned yet' }})</td>
 			@if ($admin)
-			<td><a href="../../teams/<?php echo $team->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
-			<td>{{ Form::open('teams/'.$team->id, 'DELETE') }}<button type="Submit" value="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i></button>{{ Form::close()}}</td>
+			<td><a href="../../teams/{{$team->id}}/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
+			<td>{{ Form::open( array('action' => "teams/$team->id", 'method' => 'DELETE')) }}<button type="Submit" value="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i></button>{{ Form::close()}}</td>
 			@endif
 		</tr>
 	@endforeach

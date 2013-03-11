@@ -16,7 +16,7 @@ if($admin) {
 @stop
 
 @section('content')
-	{{ Form::open('users') }}
+	{{ Form::open(array('url' => 'users')) }}
 		<div class="control-group">
 		    {{Form::label('email', 'E-Mail Address', array('class' => 'control-label'))}}
 		    <div class="controls">

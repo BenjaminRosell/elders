@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
-<?php 
-	var_dump($district);	
+<?php 	
 	$brothers[] = ' -- Choose -- ';
 	foreach ( $users as $user ) {
 		$brothers[$user->id] = $user->first_name . ' ' . $user->last_name;
@@ -11,13 +10,13 @@
 
  @section('pagebar')
 	<section id="wrapper_slider" class="container">
-        <h2 class="page_name text_shadow">Editing the <?php echo $district->name ?> district</h2>
+        <h2 class="page_name text_shadow">Editing the {{$district->name}} district</h2>
         <h3 class="breadcrumb text_shadow">Home  /  Teams / Districts</h3>
     </section><!-- end #wrapper_slider -->
 @stop
 
 @section('content')
-	{{ Form::open('districts/'.$district->id, 'PUT', array('class' => 'form')) }}
+	{{ Form::open(array('url' => "districts/$district->id", 'method' => 'PUT', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('lead', 'District Name', array('class' => 'control-label'))}}
 		    <div class="controls">

@@ -28,7 +28,7 @@
 		</tr>
 	@foreach ($users as $user)
     	<tr>
-			<td>{{ HTML::to('users/'.$user->username, $user->username, array('id' => 'register_link'));}}</td>
+			<td><a href="users/{{$user->username}}">{{$user->username}}</a></td>
 			<td>{{ $user->first_name .' '. $user->last_name }}</td>
 			<td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
 			<td>{{ $user->phone }}</td>

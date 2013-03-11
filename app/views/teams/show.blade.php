@@ -17,7 +17,7 @@
     <br>
 
     @if ($admin)
-    {{ Form::open('teams/'.$team->id, 'DELETE', array('class' => 'form')) }}
+    {{ Form::open(array('url' => 'teams/'.$team->id, 'method' => 'DELETE', 'class' => 'form')) }}
 
 		<a href="../../teams" class="btn btn-inverse"><i class="icon-chevron-left icon-white"></i> Back to teams</a>
 		<a href="../../teams/<?php echo $team->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i> Edit this team</a>

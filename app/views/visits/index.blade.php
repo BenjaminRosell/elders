@@ -33,7 +33,7 @@
 		</tr>
 	@foreach ($visits as $visit)
 		<tr>
-			<td>{{ HTML::to('visits/'.$visit->id, $visit->month, array('id' => 'visit_link'))}}</td>
+			<td><a href="visits/{{$visit->id}}"> {{$visit->month}}</a></td>
 			<td>{{ $visit->home->name }}</td>
 			<td>{{ $visit->team->senior->first_name . ' ' . $visit->team->senior->last_name }} and {{ $visit->team->junior->first_name . ' ' . $visit->team->junior->last_name }}</td>
 			<td>{{ $visit->visited == 1 ? 'Yes' : 'No'}}</td>

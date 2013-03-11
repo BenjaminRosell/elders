@@ -28,7 +28,7 @@ if (isset($permissions['admin']) AND !isset($permissions['observer'])){
 
 @section('content')
 	<h5>Edit {{$user->first_name . ' ' . $user->last_name}}</h5>
-	{{ Form::open('users/'.$user->username, 'PUT', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'users/'.$user->username,'method' => 'PUT', 'class' => 'form')) }}
 		
 		<div class="control-group">
 		    {{Form::label('email', 'E-Mail Address', array('class' => 'control-label'))}}

@@ -19,8 +19,8 @@
     <p>Their address is {{$home->address}}</p>
     <p>Their home teachers are {{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->junior->last_name}}</p>
     <br>
-    {{ Form::open('homes/'.$home->id, 'DELETE', array('class' => 'form')) }}
-	    <a href="../../../homes/<?php echo $home->id ?>/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i> Edit this family</a>
+    {{ Form::open(array('url' =>'homes/'.$home->id, 'method' => 'DELETE', 'class' => 'form')) }}
+	    <a href="../../../homes/{{$home->id}}/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i> Edit this family</a>
 	    <a href="../../../homes" class="btn btn-inverse"><i class="icon-white icon-chevron-left"></i> Back to family list</a>
 		
 		@if($admin)
@@ -42,7 +42,7 @@
 			</tr>
 		@foreach ($home->goal as $goal)
 			<tr <?=($goal->completed == 1) ? 'class="success"' : '';?>>
-				<td>{{ HTML::to('goals/'.$goal->id, $goal->name, array('class' => 'fancybox', 'data-fancybox-type' =>'iframe'));}}</td>
+				<td><a href="../../goals/{{$goal->id}}" class="fancybox" data-fancybox-type="iframe"> {{$goal->name}}</a></td>
 				<td>{{$goal->date_due}}</td>
 				<td><?=($goal->completed == 1) ? 'Completed' : 'Ongoing';?></td>
 			</tr>
@@ -50,7 +50,7 @@
 		</table>
     @endif
 
-    <a href="../../goals/create/<?php echo $home->id ?>" data-fancybox-type="iframe" class="btn btn-inverse fancybox"><i class="icon-white icon-plus"></i> Add Goal</a>
+    <a href="../../goals/create/{{$home->id}}" data-fancybox-type="iframe" class="btn btn-inverse fancybox"><i class="icon-white icon-plus"></i> Add Goal</a>
 
 
 	<div class="heading center m2">
@@ -69,7 +69,7 @@
 		</tr>
 	@foreach ($visits as $visit)
 		<tr>
-			<td>{{ HTML::to('visits/'.$visit->id, $visit->month, array('id' => 'visit_link'));}}</td>
+			<td><a href="visits/{{$visit->id}}" > {{$visit->month}}</a></td>
 			<td>{{ $visit->home->name }}</td>
 			<td>{{ $visit->team->senior->first_name . ' ' . $visit->team->senior->last_name }} and {{ $visit->team->junior->first_name . ' ' . $visit->team->junior->last_name }}</td>
 			<td>{{ $visit->visited == 1 ? 'Yes' : 'No'}}</td>

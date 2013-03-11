@@ -6,7 +6,7 @@
 @stop
 @section('content')
 
-	{{ Form::open('groups/'.$group->id, 'PUT', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'groups/'.$group->id, 'method' => 'PUT', 'class' => 'form')) }}
 
 		<div class="control-group">
 		    {{Form::label('name', 'Group Name', array('class' => 'control-label'))}}

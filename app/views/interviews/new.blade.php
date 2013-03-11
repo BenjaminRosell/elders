@@ -19,7 +19,7 @@
 @stop
 
 @section('content')
-	{{ Form::open('interviews', 'POST', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'interviews', 'method' => 'POST', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('district', 'District', array('class' => 'control-label'))}}
 		    <div class="controls">

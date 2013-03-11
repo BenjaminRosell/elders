@@ -28,5 +28,5 @@
 		{{Form::checkbox('reminder')}} <br>
 		{{Form::submit('submit')}}
 	{{ Form::close() }}
-	{{ HTML::to('register', 'Create an account', array('id' => 'register_link'));}}
+	<a href="register">Create an account</a>
 @stop

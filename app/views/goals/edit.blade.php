@@ -1,7 +1,7 @@
 @extends('layouts.frame')
 
 @section('content')
-		{{ Form::open('goals/'.$goal->id, 'PUT', array('class'=>'form')) }}
+		{{ Form::open(array('url' => 'goals/'.$goal->id, 'method' => 'PUT', 'class'=>'form')) }}
 		<div class="control-group">
 		    {{Form::label('name', 'What is their goal ?', array('class' => 'control-label'))}}
 		    <div class="controls">

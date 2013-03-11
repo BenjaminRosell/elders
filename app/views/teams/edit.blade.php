@@ -33,7 +33,7 @@
 @stop
 
 @section('content')
-	{{ Form::open('teams/'.$team->id, 'PUT', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'teams/'.$team->id, 'method'=> 'PUT', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('lead', 'Senior Companion', array('class' => 'control-label'))}}
 		    <div class="controls">

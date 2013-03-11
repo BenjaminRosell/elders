@@ -17,24 +17,24 @@
 	@endif
 	<br>
 
-	{{{ Form::open('password', 'POST', array('class' => 'form')) }}}
+	{{ Form::open(array('url' => 'password','method' => 'POST', 'class' => 'form')) }}
 
 		<div class="control-group">
-		    {{{Form::label('old', 'Please type your old password', array('class' => 'control-label'))}}}
+		    {{Form::label('old', 'Please type your old password', array('class' => 'control-label'))}}
 		    <div class="controls">
-		    	{{{Form::password('old')}}}
+		    	{{Form::password('old')}}
 		    </div>
 		</div>
 
 		<div class="control-group">
-		    {{{Form::label('password', 'Your new password', array('class' => 'control-label'))}}}
+		    {{Form::label('password', 'Your new password', array('class' => 'control-label'))}}
 		    <div class="controls">
-		    	{{{Form::password('password')}}}
+		    	{{Form::password('password')}}
 		    </div>
 		</div>
 		
-		{{{Form::submit('Change Password', array('class' => 'btn btn-inverse'))}}}
+		{{Form::submit('Change Password', array('class' => 'btn btn-inverse'))}}
 
-	{{{ Form::close() }}}
+	{{ Form::close() }}
 	
 @stop

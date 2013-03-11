@@ -7,7 +7,7 @@
 
 @section('content')
 
-	{{ Form::open('groups', 'POST', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'groups', 'method' => 'POST', 'class' => 'form')) }}
 
 		<div class="control-group">
 		    {{Form::label('name', 'Group Name', array('class' => 'control-label'))}}

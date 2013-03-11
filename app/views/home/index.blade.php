@@ -31,12 +31,12 @@
 		
 	@foreach ($homes as $home)
     	<tr>
-			<td>{{ HTML::to('homes/'.$home->id, $home->name, array('id' => 'register_link'));}}</td>
+			<td><a href="homes/{{$home->id}}">{{$home->name}}</a></td>
 			<td>{{$home->team->senior->first_name}} {{$home->team->senior->last_name}} and {{$home->team->junior->first_name}} {{$home->team->junior->last_name}}</td>
 			<td><a href="mailto:{{ $home->email }}"> {{ $home->email }}</a></td>
 			<td>{{ $home->phone_number }}</td>
 			@if ($admin)
-			<td><a href="../../homes/<?php echo $home->id ?>/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
+			<td><a href="../../homes/{{$home->id}}/edit" class="btn btn-inverse"><i class="icon-pencil icon-white"></i></a></td>
 			@endif
 		</tr>
 	@endforeach

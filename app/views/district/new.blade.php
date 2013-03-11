@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-	{{ Form::open('districts', 'POST', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'districts', 'method' => 'POST', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('lead', 'District Name', array('class' => 'control-label'))}}
 		    <div class="controls">

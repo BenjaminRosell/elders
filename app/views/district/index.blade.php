@@ -24,10 +24,10 @@
 		</tr>
 	@foreach ($districts as $district)
     	<tr>
-			<td>{{ HTML::to('districts/'.$district->id.'/edit', $district->name, array('id' => 'register_link'));}}</td>
+			<td><a href="districts/{{$district->id}}/edit"> {{$district->name}}</a></td>
 			<td>{{ User::name($district->steward) }}</td>
-			<td><a href="../../../districts/<?php echo $district->id; ?>/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i></a></td>
-			<td>{{ Form::open('districts/'.$district->id, 'DELETE') }}<button type="Submit" value="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i></button>{{ Form::close()}}</td>
+			<td><a href="../../../districts/{{$district->id}}/edit" class="btn btn-inverse"><i class="icon-white icon-pencil"></i></a></td>
+			<td>{{ Form::open(array('url' => 'districts/'.$district->id, 'method' => 'DELETE')) }} <button type="Submit" value="submit" class="btn btn-danger"><i class="icon-white icon-trash"></i></button>{{ Form::close()}}</td>
 		</tr>
 	@endforeach
 	</table>

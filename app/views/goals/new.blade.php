@@ -1,7 +1,7 @@
 @extends('layouts.frame')
 
 @section('content')
-	{{ Form::open('goals', 'POST', array('class'=>'form')) }}
+	{{ Form::open(array('url' => 'goals', 'method' => 'POST', 'class'=>'form')) }}
 		<div class="control-group">
 		    {{Form::label('name', 'What is their goal ?', array('class' => 'control-label'))}}
 		    <div class="controls">
@@ -20,7 +20,7 @@
 		    	{{Form::text('date_due', '', array('class' => 'datepicker'))}}
 		    </div>
 		</div>
-		<input type="hidden" name="home_id" value="<?php echo $id ?>" \>
+		<input type="hidden" name="home_id" value="{{$id}}" \>
 		<br>
 		<br>
 

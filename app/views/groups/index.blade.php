@@ -15,7 +15,7 @@
 		</tr>
 	@foreach ($groups as $group)
     	<tr>
-			<td>{{ HTML::to('groups/'.$group->id, $group->name, array('id' => 'group_details'));}}</td>
+			<td><a href="groups/{{$group->id}}" > {{$group->name}}</a></td>
 			<td>
 				{{ isset($group->permissions['users']) ? 'User ' : '' }}
 				{{ isset($group->permissions['admin']) ? '- Admin ' : '' }}

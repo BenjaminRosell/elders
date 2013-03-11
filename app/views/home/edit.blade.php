@@ -13,7 +13,7 @@ foreach ( $teams as $team ) {
 @stop
 
 @section('content')
-	{{ Form::open('homes/'.$home->id, 'PUT', array('class' => 'form')) }}
+	{{ Form::open(array('url' => 'homes/'.$home->id, 'method' => 'PUT', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('name', 'A name for the new family', array('class' => 'control-label'))}}
 		    <div class="controls">

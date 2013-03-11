@@ -13,13 +13,12 @@
     <p>The user email is {{ $user->email }}</p>
     <p>The user's phone number is {{ $user->phone }}</p>
     <p>The user's reminders are set to <?=$user->phone ? 'on' : 'off'; ?></p>
-    {{ Form::open('users/'.$user->username, 'DELETE', array('class' => 'form')) }}
+    {{ Form::open(array('url' => 'users/'.$user->username,'method' => 'DELETE', 'class' => 'form')) }}
 	    
-        {{ HTML::to('users/' . $user->username .'/edit', 'Edit this user', array('id' => 'edit_link', 'class' => 'btn'));}}
+        <a href="../users/{{$user->username}}/edit" class="btn">Edit this user</a>
         @if( $admin )
-		{{ HTML::to('users', 'Back to users', array('id' => 'back_link', 'class' => 'btn'));}}
-		
-		{{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
+		  <a href="users" class="btn">Back to users</a>
+		  {{Form::submit('Delete user', array('class' => 'btn btn-danger pull-right'))}}
         @endif
 	{{Form::close()}}
 

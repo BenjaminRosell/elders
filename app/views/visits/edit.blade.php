@@ -21,11 +21,11 @@ foreach ($homes as $home) {
 @stop
 
 @section('content')
-{{ Form::open('visits/'.$visit->id, 'PUT', array('class'=>'form')) }}
+{{ Form::open(array('url' => 'visits/'.$visit->id, 'method' => 'PUT', 'class'=>'form')) }}
 	<div class="control-group">
 	    {{Form::label('family', 'Family Name', array('class' => 'control-label'))}}
 	    <div class="controls">
-	    	{{Form::select('family', $home_array, $visit->family_id)}}}
+	    	{{Form::select('family', $home_array, $visit->family_id)}}
 	    </div>
 	</div>
 

@@ -211,7 +211,7 @@ class Users extends BaseController {
 
 		$team_id = User::findTeam($user->id);
 
-		$team = Team::with('senior', 'junior')->find($team_id->id);
+		$team = $team_id ? Team::with('senior', 'junior')->find($team_id->id) : false;
 
 		if($team){
 

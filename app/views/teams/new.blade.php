@@ -28,7 +28,7 @@
 @stop
 
 @section('content')
-	{{ Form::open('teams', 'POST', array('class' => 'form')) }}
+	{{ Form::open(array('action' => 'teams', 'method' => 'POST', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('lead', 'Senior Companion', array('class' => 'control-label'))}}
 		    <div class="controls">
@@ -58,7 +58,6 @@
 		</div>
 
 		<div class="control-group">
-		    
 		    <div class="controls">
 		    	{{Form::submit('Create team', array('class'=>'btn btn-inverse'))}}
 		    </div>

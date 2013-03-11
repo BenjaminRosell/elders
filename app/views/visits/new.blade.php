@@ -21,7 +21,7 @@ foreach ($homes as $home) {
 @stop
 
 @section('content')
-	{{ Form::open('visits', 'POST', array('class'=>'form')) }}
+	{{ Form::open(array('url' => 'visits','method' => 'POST', 'class'=>'form')) }}
 		<div class="control-group">
 		    {{Form::label('family', 'Family Name', array('class' => 'control-label'))}}
 		    <div class="controls">

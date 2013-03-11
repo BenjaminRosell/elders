@@ -14,7 +14,7 @@
 @stop
 
 @section('content')
-	{{ Form::open('homes', 'POST', array('class'=>'form')) }}
+	{{ Form::open(array('url' => 'homes', 'method' => 'POST', 'class'=>'form')) }}
 		<div class="control-group">
 		    {{Form::label('name', 'A name for the new family', array('class' => 'control-label'))}}
 		    <div class="controls">
