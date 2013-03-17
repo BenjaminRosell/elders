@@ -80,6 +80,8 @@ class Homes extends BaseController
 	public function show($id)
 	{
 
+		$view['stats'] = $this->getFamilyStats($id);
+
 		$view['home'] = Home::with(array('team', 'team.senior', 'team.junior', 'goal'))->find($id);
 		$view['visits'] = Visit::where('family_id', '=', $id)->get();
 
@@ -139,5 +141,15 @@ class Homes extends BaseController
         $home->delete();
 
         return Redirect::to('homes');
+	}
+
+	/**
+	 * [getFamilyStats description]
+	 * @param  int $id A family ID
+	 * @return json     The last stats for the family.
+	 */
+	public function getFamilyStats($id)
+	{
+		return Visit::where('family_id', $id)->take(12)->orderBy('month')->get()->toArray();
 	}
 }
