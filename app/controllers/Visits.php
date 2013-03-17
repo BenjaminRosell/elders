@@ -76,7 +76,7 @@ class Visits extends BaseController
             'family_id' => Input::get('family'),
             'team_id' => Input::get('team'),
             'visited' => Input::get('visited'),
-            'month' => Input::get('visit_date'),
+            'month' => date('Y-m-01', strtotime(Input::get('visit_date'))),
             'status'  => Input::get('status'),
             'message' => Input::get('message'),
             'issues' => Input::get('issues'),
@@ -162,7 +162,7 @@ class Visits extends BaseController
         $visit->family_id = Input::get('family');
         $visit->team_id = Input::get('team');
         $visit->visited = Input::get('visited');
-        $visit->month = Input::get('visit_date');
+        $visit->month = date('Y-m-01', strtotime(Input::get('visit_date')));
         $visit->status  = Input::get('status');
         $visit->message = Input::get('message');
         $visit->issues = Input::get('issues');

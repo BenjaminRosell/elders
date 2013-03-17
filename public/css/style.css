@@ -972,5 +972,7 @@ footer p, footer a, footer a:hover {
 .families{
 	min-height: 100px;
 }
- 
+ #chart {
+ 	padding-bottom: 50px;
+ }
  

@@ -56,7 +56,7 @@ $artisan = Illuminate\Console\Application::start($app);
 |
 */
 
-$artisan->run();
+$status = $artisan->run();
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +70,8 @@ $artisan->run();
 */
 
 $app->shutdown();
+<<<<<<< HEAD
+=======
+
+exit($status);
+>>>>>>> 36e7b132d4602428eba497b8a782e8b398c9c3a3
