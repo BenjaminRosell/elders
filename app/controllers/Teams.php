@@ -143,6 +143,10 @@ class Teams extends BaseController {
 
         $team->save();
 
+        $team->interview->district = Input::get('steward');
+
+        $team->interview->save();
+
         if (Input::get('assignments')) {
 
         	foreach (Input::get('assignments') as $assignment) {

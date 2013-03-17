@@ -24,4 +24,9 @@ class Team extends Eloquent
   {
     return $this->belongsTo('District', 'steward');
   }
+
+  public function interview()
+  {
+    return $this->hasOne('Master');
+  }
 }
