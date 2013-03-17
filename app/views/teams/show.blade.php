@@ -7,13 +7,36 @@
     </section><!-- end #wrapper_slider -->
 @stop
 
+<?php 
+    
+    $oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -1 year") );
+    
+    for ($i = 1; $i <= 12; $i++) {
+        $monthsArray[] = date("M", strtotime( $oneYearAgo." +$i months"));
+        $monthsDates[] = date("Y-m-01", strtotime( $oneYearAgo." +$i months"));
+    }
+
+    $monthsJson = json_encode($monthsArray);
+
+    $data = json_encode(array_values($stats));
+
+?>
+
 @section('content')
-	<h4>Home Teaching # {{ $team->id }}</h4>
+	<h4>Home Teaching team # {{ $team->id }}</h4>
 
     <p>The team senior companion is {{ User::name($team->lead) }} </p>
     <p>The team junior companion is {{ User::name($team->companion) }}</p>
     <p>Their district is {{ $team->district->name }}</p>
     <p>The steward is {{ User::name($team->district->steward) }}</p>
+    @if ($team->assignments)
+    <p>The families assigned to this team are :</p>
+    <ul class="icons">
+        @foreach($team->assignments as $assignment)
+        <li> <i class="icon-user"></i> <a href="../../../homes/{{$assignment->id}}">{{$assignment->name}}</a></li>
+        @endforeach
+    </ul>
+    @endif
     <br>
 
     @if ($admin)
@@ -27,4 +50,68 @@
 	{{Form::close()}}
     @endif
 
+
+    <div class="heading center m2">
+        <div class="separation"></div>
+        <h2>Visits History</h2>
+    </div>
+
+    <div id="chart"></div>
+
+@stop
+
+@section('javascript')
+<script type="text/javascript">
+    
+    jQuery(document).ready(function($) {
+        $(function () {
+        var chart;
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'chart',
+                    type: 'column',
+                    marginBottom: 85
+                },
+                title: {
+                    text: 'Number of visits made per month',
+                    x: -20 //center
+                },
+                xAxis: {
+                    categories: <?=$monthsJson;?>
+                },
+                credits : { enabled : false },
+                yAxis: {
+                    //allowDecimals : false, 
+                    gridLineWidth : 1, 
+                    title: {
+                        text: ''
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    formatter: function() {
+                            return '<b>'+ this.series.name +'</b>'
+                    }
+                },
+                plotOptions: {
+                    column : {
+                        shadow : false,
+                        borderWidth :  0,
+                    }
+                },
+                series: [{
+                    name: '{{ User::name($team->lead) }} and {{ User::name($team->companion) }}',
+                    data: {{$data}}
+                }]
+            });
+        });
+        
+    });
+    });
+</script>
 @stop

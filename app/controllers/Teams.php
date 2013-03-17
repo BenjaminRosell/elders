@@ -99,8 +99,9 @@ class Teams extends BaseController {
 	 */
 	public function show($id)
 	{
-		$view['team'] = Team::with('district')->find($id);
-		$view['homes'] = Home::all();
+		
+		$view['stats'] = $this->getTeamStats($id);
+		$view['team'] = Team::with('district', 'assignments')->find($id);
 
 		if ( !$this->admin AND $this->userTeam->id !== $view['team']->id ) return Redirect::to('teams')->with('error_message', 'You are not allowed to see this page, friend !');
 
@@ -183,6 +184,39 @@ class Teams extends BaseController {
         $team->delete();
 
         return Redirect::to('teams');
+	}
+
+
+	/**
+	 * Get a specific team stats for the last 12 months
+	 * @param  int $id A specific team id
+	 * @return Array     A tems stats in array
+	 */
+	public function getTeamStats($id){
+		
+		$oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -12 months") );
+		
+		//Gets an array of Months
+		for ($i = 1; $i <= 12; $i++) {
+		    $monthsDates[] = date("Y-m-01", strtotime( $oneYearAgo." +$i months"));
+		}
+
+		//Querries the DB for visits...
+		$visits = Visit::where('team_id', $id)->where('month', '>=', $oneYearAgo)->get();
+
+		//Set's the default visit number to 0
+		foreach($monthsDates as $month){
+			$stats[$month] = 0;
+		}
+
+		//Adds a visit to the corresponding month.
+		foreach ($visits as $visit) {
+			if ($visit->visited == true){
+				$stats[$visit->month]++;
+			}
+		}
+
+		return $stats;
 	}
 
 }
