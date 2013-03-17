@@ -206,16 +206,15 @@ class Teams extends BaseController {
 
 		//Set's the default visit number to 0
 		foreach($monthsDates as $month){
-			$stats[$month] = 0;
+			$stats[$month] = '';
 		}
 
 		//Adds a visit to the corresponding month.
 		foreach ($visits as $visit) {
-			if ($visit->visited == true){
-				$stats[$visit->month]++;
+ 			if ($visit->visited == true){
+				$stats[$visit->month][$visit->family_id] = $visit->visited;
 			}
 		}
-
 		return $stats;
 	}
 
