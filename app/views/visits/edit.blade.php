@@ -68,7 +68,6 @@ foreach ($homes as $home) {
 	    {{Form::label('visit_date', 'What was the exact date of your visit ?', array('class' => 'control-label'))}}
 		 <div class="controls">
 	    	{{Form::text('visit_date', $visit->visit_date, array('class' => 'datepicker'))}}
-
 	    </div>
 	</div>
 

@@ -203,16 +203,20 @@ class Teams extends BaseController {
 
 		//Querries the DB for visits...
 		$visits = Visit::where('team_id', $id)->where('month', '>=', $oneYearAgo)->get();
+		$team = Team::with('assignments')->find($id);
 
 		//Set's the default visit number to 0
 		foreach($monthsDates as $month){
-			$stats[$month] = '';
+			foreach ($team->assignments as $assignment) {
+
+				$stats[$assignment->id][$month] = 0;
+			}
 		}
 
 		//Adds a visit to the corresponding month.
 		foreach ($visits as $visit) {
  			if ($visit->visited == true){
-				$stats[$visit->month][$visit->family_id] = $visit->visited;
+				$stats[$visit->family_id][$visit->month] = (int) $visit->visited;
 			}
 		}
 		return $stats;

@@ -18,8 +18,9 @@
 
     $monthsJson = json_encode($monthsArray);
 
-    $data = json_encode(array_values($stats));
-
+    foreach ($stats as $family => $stat) {
+         $history[$family] = json_encode(array_values($stat));
+    }
 ?>
 
 @section('content')
@@ -34,6 +35,7 @@
     <ul class="icons">
         @foreach($team->assignments as $assignment)
         <li> <i class="icon-user"></i> <a href="../../../homes/{{$assignment->id}}">{{$assignment->name}}</a></li>
+        <?php $family_names[$assignment->id] = $assignment->name; ?>
         @endforeach
     </ul>
     @endif
@@ -82,7 +84,7 @@
                 },
                 credits : { enabled : false },
                 yAxis: {
-                    //allowDecimals : false, 
+                    allowDecimals : false, 
                     gridLineWidth : 1, 
                     title: {
                         text: ''
@@ -95,19 +97,26 @@
                 },
                 tooltip: {
                     formatter: function() {
-                            return '<b>'+ this.series.name +'</b>'
-                    }
+                    return '<b>'+ this.x +'</b><br/>'+
+                        this.series.name +': '+ this.y +'<br/>'+
+                        'Total: '+ this.point.stackTotal;
+                }
                 },
                 plotOptions: {
                     column : {
+                        stacking: 'normal',
                         shadow : false,
                         borderWidth :  0,
                     }
                 },
-                series: [{
-                    name: '{{ User::name($team->lead) }} and {{ User::name($team->companion) }}',
-                    data: {{$data}}
-                }]
+                series: [
+                    <?php 
+                    foreach ($history as $family_id => $data) {
+                        echo '{name: "' . $family_names[$family_id] .'",';
+                        echo 'data: ' . $data. '},';
+                    } ?>
+                ]
+                
             });
         });
         

@@ -69,6 +69,7 @@ Route::group(array('before' => 'authorise'), function()
 	Route::post('assignments', 'Assignments@assign');
 	Route::post('interviews/district', 'Interviews@getDistrictTeams');
 	Route::post('interviews/teams', 'Interviews@getCompleteTeams');
+	Route::post('visits/generate', 'Visits@generateVisits');
 
 	Route::resource('homes', 'Homes');
 

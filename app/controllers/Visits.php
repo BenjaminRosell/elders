@@ -28,6 +28,8 @@ class Visits extends BaseController
 		if ( $this->admin )
 	    {
 	        $data['visits'] = Visit::with(array('home', 'team.senior', 'team.junior'))->get();
+	        $data['stats'] = $this->getOverallStats();
+	        $data['percentages'] = $this->getOverallPercentages();
 
 	    } else {
 	    	
@@ -185,5 +187,106 @@ class Visits extends BaseController
 	{
 		//
 	}
+	
+	/**
+	 * Generates a set of reports for a specific month
+	 * @return redirect Redirec to the visits
+	 */
+	public function generateVisits()
+	{ 
+		$teams = Team::with('assignments', 'junior', 'senior')->get();
 
+		// Create a visit for each assignment
+		foreach ($teams as $team){
+
+			foreach ($team->assignments as $assignment) {
+				$data = array(
+		            'family_id' => $assignment->id,
+		            'team_id' => $assignment->team_id,
+		            'visited' => 0,
+		            'month' => date('Y-m-01', strtotime(Input::get('month'))),
+		            'lead_id' => $team->senior->id,
+		            'lead_id' => $team->junior->id
+		            );
+
+				$visit = Visit::create($data);
+			}
+		}
+
+		return Redirect::to('visits')->with('success_message', 'The reports have succesfully been generated for the following month : ' . date('Y-m-01', strtotime(Input::get('month'))));
+	}
+
+	/**
+	 * Calculates all stats for over 1 year of visits
+	 * @return array A collection of stats
+	 */
+	public function getOverallStats()
+	{
+		$oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -12 months") );
+		
+		//Gets an array of Months
+		for ($i = 1; $i <= 12; $i++) {
+		    $monthsDates[] = date("Y-m-01", strtotime( $oneYearAgo." +$i months"));
+		}
+
+		//Querries the DB for visits...
+		$visits = Visit::where('month', '>=', $oneYearAgo)->get();
+
+		//Set's the default visit number to 0
+		foreach($monthsDates as $month){
+			$stats[$month] = 0;
+		}
+
+		//Adds a visit to the corresponding month.
+		foreach ($visits as $visit) {
+ 			if ($visit->visited == true){
+				$stats[$visit->month]++;
+			}
+		}
+		return $stats;
+	}
+
+	/**
+	 * Calculates all percentages for over 1 year of visits
+	 * @return array A collection of stats
+	 */
+	public function getOverallPercentages()
+	{
+		$oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -12 months") );
+		
+		//Gets an array of Months
+		for ($i = 1; $i <= 12; $i++) {
+		    $monthsDates[] = date("Y-m-01", strtotime( $oneYearAgo." +$i months"));
+		}
+
+		//Querries the DB for visits...
+		$visits = Visit::where('month', '>=', $oneYearAgo)->get();
+
+		//Set's the default visit number to 0
+		foreach($monthsDates as $month){
+			$stats[$month]['assigned'] = 0;
+			$stats[$month]['visited'] = 0;
+		}
+
+		//Adds a visit to the corresponding month.
+		foreach ($visits as $visit) {
+ 			if ($visit->visited == true){
+				$stats[$visit->month]['assigned']++;
+				$stats[$visit->month]['visited']++;
+			} else {
+				$stats[$visit->month]['assigned']++;
+			}
+		}
+
+		foreach($stats as $month => $data){
+			if ($data['assigned'] > 0) {
+				$percentages[$month] = (int) round($data['visited'] / $data['assigned'] * 100);
+			} else {
+				$percentages[$month] = 0;
+			}
+				
+		}
+		
+		return $percentages;
+	}
 }
