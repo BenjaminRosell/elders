@@ -10,7 +10,3 @@
 | the console gets access to each of the command object instances.
 |
 */
-
-Artisan::add(
-  new RoutesCommand($app->router->getRoutes()->all())
-);
