@@ -59,6 +59,10 @@ Route::group(array('before' => 'authorise'), function()
 	
 	Route::get('goals/create/{id}', 'Goals@create');
 
+	Route::get('settings/edit', 'SettingsController@editSettings');
+	Route::post('settings/edit', 'SettingsController@saveSettings');
+	Route::get('settings', 'SettingsController@index');
+
 	Route::resource('goals', 'Goals', array('only' => array('index', 'show', 'store', 'edit', 'update', 'destroy')));
 });
 

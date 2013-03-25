@@ -82,6 +82,7 @@
                                                 <li><a href="../../../../assignments">Assignments interface</a></li>
                                                 <li><a href="../../../../districts">Districts and Stewards</a></li>
                                                 <li><a href="../../../../interviews">Monthly Interviews</a></li>
+                                                <li><a href="../../../../settings">Settings</a></li>
                                             </ul>
                                             @endif
                                     </li>
