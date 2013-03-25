@@ -4,6 +4,9 @@ class Visits extends BaseController
 {
 
 	protected $layout = 'layouts.master';
+	protected $user;
+	protected $admin;
+	protected $userTeam;
 
 	public function __construct()
     {

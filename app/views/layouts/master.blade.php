@@ -30,7 +30,7 @@
     </head>
     <?php 
 
-        $userData = Sentry::check();
+        $userData = Sentry::getUser();
 
         if ($userData) {
             $isAdmin =  $userData->hasAccess('admin');
