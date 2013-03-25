@@ -55,7 +55,9 @@ $app->bindInstallPaths(require __DIR__.'/paths.php');
 |
 */
 
-require $app->getBootstrapFile();
+$framework = __DIR__.'/../vendor/laravel/framework/src';
+
+require $framework.'/Illuminate/Foundation/start.php';
 
 /*
 |--------------------------------------------------------------------------
