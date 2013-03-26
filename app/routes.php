@@ -16,12 +16,6 @@ Route::get('/', function()
 	return View::make('pages.home');
 });
 
-Route::get('/test', function()
-{
-
-});
-
-
 Route::get('/error', function()
 {
 	return View::make('errors.index');
