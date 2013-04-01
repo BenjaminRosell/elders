@@ -58,46 +58,48 @@
                                 <ul class="unstyled sf-menu">
                                     @if ($userData)
                                     <li>
-                                        <a href="../../../../users/<?php echo $userData->username ?>" class="btn-menu"><i class="icon-white icon-user"></i> Welcome {{$userData->first_name}} !</a>
+                                        <a href="../../../../users/<?php echo $userData->username ?>" class="btn-menu"><i class="icon-white icon-user"></i> {{Lang::get('menu.welcome', array('name' => $userData->first_name))}}</a>
                                             <ul class="unstyled">
-                                                <li><a href="../../../../password">Change my password</a></li>
+                                                <li><a href="../../../../password">{{ Lang::get('menu.password')}}</a></li>
                                             </ul>
                                     </li>
                                     @else
                                     <li>
-                                        <a href="../../../../login" class="btn-menu"><i class="icon-white icon-off"></i> Log In</a>
+                                        <a href="../../../../login" class="btn-menu"><i class="icon-white icon-off"></i> {{Lang::get('menu.login')}}</a>
                                     </li>
                                     @endif
                                     <li>
-                                        <a href="../../../../homes" class="btn-menu"><i class="icon-white icon-home"></i> Families</a>
+                                        <a href="../../../../homes" class="btn-menu"><i class="icon-white icon-home"></i> {{Lang::get('menu.families')}}</a>
                                     </li>
+                                    @if ($isAdmin)
+                                        <ul class="unstyled">
+                                            <li><a href="../../../../visits" class="btn-menu"><i class="icon-white icon-signal"></i> {{Lang::get('menu.reports')}}</a></li>
+                                        </ul>
+                                    @endif
                                     <li>
-                                        <a href="../../../../visits" class="btn-menu"><i class="icon-white icon-signal"></i> Reports</a>
-                                    </li>
-                                    <li>
-                                        <a href="../../../../teams" class="btn-menu"><i class="icon-white icon-briefcase"></i> @if ($isAdmin)Teams @else My Team @endif</a>
-                                            @if ($isAdmin)
+                                        <a href="../../../../teams" class="btn-menu"><i class="icon-white icon-briefcase"></i> @if ($isAdmin){{Lang::get('menu.teams')}} @else {{Lang::get('menu.myTeam')}}@endif</a>
+                                        @if ($isAdmin)
                                             <ul class="unstyled">
-                                                <li><a href="../../../../teams/create">New Team</a></li>
-                                                <li><a href="../../../../assignments">Assignments interface</a></li>
-                                                <li><a href="../../../../districts">Districts and Stewards</a></li>
-                                                <li><a href="../../../../interviews">Monthly Interviews</a></li>
-                                                <li><a href="../../../../settings">Settings</a></li>
+                                                <li><a href="../../../../teams/create">{{Lang::get('menu.createTeam')}}</a></li>
+                                                <li><a href="../../../../assignments">{{Lang::get('menu.assignments')}}</a></li>
+                                                <li><a href="../../../../districts">{{Lang::get('menu.districts')}}</a></li>
+                                                <li><a href="../../../../interviews">{{Lang::get('menu.interviews')}}</a></li>
+                                                <li><a href="../../../../settings">{{Lang::get('menu.settings')}}</a></li>
                                             </ul>
-                                            @endif
+                                        @endif
                                     </li>
                                     @if ($isAdmin)
                                     <li>
-                                        <a href="../../../../users" class="btn-menu"><i class="icon-white icon-group"></i> Users</a>
+                                        <a href="../../../../users" class="btn-menu"><i class="icon-white icon-group"></i> {{Lang::get('menu.users')}}</a>
                                             <ul class="unstyled">
-                                                <li><a href="../../../../users/create">New User</a></li>
-                                                <li><a href="../../../../groups">User Groups</a></li>
+                                                <li><a href="../../../../users/create">{{Lang::get('menu.createUser')}}</a></li>
+                                                <li><a href="../../../../groups">{{Lang::get('menu.groups')}}</a></li>
                                             </ul>
                                     </li>
                                     @endif
                                     @if ($userData)
                                     <li>
-                                        <a href="../../../../logout" class="btn-menu"><i class="icon-white icon-off"></i> Log Out</a>
+                                        <a href="../../../../logout" class="btn-menu"><i class="icon-white icon-off"></i> {{Lang::get('menu.logout')}}</a>
                                     </li>
                                     @endif
                                     <!-- <li><a href="contact.html" class="btn-menu">Contact</a></li> -->

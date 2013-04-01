@@ -2,7 +2,7 @@
 
 @section('pagebar')
 	<section id="wrapper_slider" class="container">
-        <h2 class="page_name text_shadow">User Management</h2>
+        <h2 class="page_name text_shadow">{{ Lang::get('users.title') }}</h2>
         <h3 class="breadcrumb text_shadow">Home  /  Users</h3>
     </section><!-- end #wrapper_slider -->
 @stop
@@ -16,7 +16,7 @@
 		<div class="alert alert-error">{{Session::get('error_message')}}</div>
 	@endif
 
-	<h4>This is a list of our brethren</h4>
+	<h4>{{ Lang::get('users.list') }}</h4>
 	
 	<table class="table table-striped">
 		<tr>	
@@ -36,6 +36,5 @@
 		</tr>
 	@endforeach
 	</table>
-
-	<a href="../../users/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new user</a>
+	<a href="{{Request::url()}}/create" class="btn btn-inverse"><i class="icon-plus icon-white"></i> Add a new user</a>
 @stop

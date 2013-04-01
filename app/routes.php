@@ -11,9 +11,31 @@
 |
 */
 
+//Defining the site structure !
+$uriSegments = Request::segments();
+
+
+if ($uriSegments){
+	
+	if ($request = array_search($uriSegments[0], Lang::get('routes', array(), 'fr'))) {
+
+		App::setLocale('fr');
+
+	} else if ($request = array_search($uriSegments[0], Lang::get('routes', array(), 'en'))) {
+		
+		App::setLocale('en');
+
+	}
+
+	Route::resource($uriSegments[0], $request);
+
+}
+
 Route::get('/', function()
 {
+
 	return View::make('pages.home');
+
 });
 
 Route::get('/error', function()
@@ -50,7 +72,7 @@ Route::group(array('before' => 'authorise'), function()
 	Route::resource('groups', 'Groups');
 
 	Route::resource('districts', 'Districts');
-	
+
 	Route::get('goals/create/{id}', 'Goals@create');
 
 	Route::get('settings/edit', 'SettingsController@editSettings');
@@ -76,7 +98,3 @@ Route::filter('isAdmin', function()
 	if ( ! $user->hasAccess('admin')) return 'Job 38:11' ;
 });
 
-// Event::listen('laravel.query', function($sql)
-// {
-// 	return var_dump($sql);
-// });
