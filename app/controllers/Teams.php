@@ -70,24 +70,27 @@ class Teams extends BaseController {
 	 */
 	public function store()
 	{
-		$data = array(
-            'lead' => Input::get('lead'),
-            'companion' => Input::get('companion'),
-            'steward' => Input::get('steward')
-            );
+		$team = new Team;
+	
+        $team->lead = Input::get('lead');
+        $team->companion = Input::get('companion');
+        $team->steward = Input::get('steward');
         
-        $team = Team::create($data);
+        $savedTeam = $team->save();
 
-        foreach (Input::get('assignments') as $assignment)
-        {
-        	$home = Home::find($assignment);
+        if (Input::get('assignments')) {
 
-        	$home->team_id = $team->id;
+		    foreach (Input::get('assignments') as $assignment)
+		    {
+		    	$home = Home::find($assignment);
 
-        	$home->save();
+		    	$home->team_id = $team->id;
+
+		    	$home->save();
+		    }
         }
 
-        if ($team) {
+        if ($savedTeam) {
             return Redirect::to('teams')->with('success_message', 'A new team has benn added.');
         }
 	}
