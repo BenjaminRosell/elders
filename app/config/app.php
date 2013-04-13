@@ -101,6 +101,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Way\Console\GuardLaravelServiceProvider',
 		'Beinir\Builder\BuilderServiceProvider'
 	),
 
