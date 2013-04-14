@@ -2,15 +2,44 @@
 
 class Teams extends BaseController {
 
-	public function __construct()
+	protected $currentUser;
+
+	protected $team;
+	
+	protected $user;
+
+	protected $visit;
+
+	protected $auth;
+
+	/**
+	 * Using dependency Injection to add testability. See routes.php for Bindings
+	 * @param TeamRepositoryInterface $team   An interface
+	 * @param UserRepositoryInterface $user   An interface
+	 * @param AuthInterface           $auth An interface
+	 */
+	public function __construct(
+		TeamRepositoryInterface $team, 
+		UserRepositoryInterface $user, 
+		VisitRepositoryInterface $visit, 
+		AuthInterface $auth)
     {
-        $this->user = Sentry::getUser();
+        
+        $this->auth = $auth;
+        
+        $this->currentUser = $this->auth->getUser();
 
-        if ($this->user) {
+        $this->team = $team;
 
-        	$this->admin =  $this->user->hasAccess('admin');
+        $this->visit = $visit;
+        
+        $this->user = $user;
 
-        	$this->userTeam = User::findTeam($this->user->id);
+        if ($this->currentUser) {
+
+         	$this->admin =  $this->currentUser->hasAccess('admin');
+
+         	$this->userTeam = $this->user->findTeam($this->currentUser->id);
         }
     }
 
@@ -21,18 +50,19 @@ class Teams extends BaseController {
 	 */
 	public function index()
 	{
+
 		$view['admin'] = ($this->admin) ? true : false;
 
 		if( ! $this->admin and ! $this->userTeam ) return Redirect::to('error')->with('error_message', 'Unfortunatly, you have no companion yet. Please come back soon !');
 
 		if ($this->admin) {
 			
-			$view['teams'] = Team::with('assignments', 'district', 'senior', 'junior')->get();
-			$users = User::all();
+			$view['teams'] = $this->team->getAllTeamsWithData();
+			$users = $this->user->all();
 
 			if ($users) {
 				foreach ($users as $user) {
-					$user_team = User::findTeam($user->id);
+					$user_team = $this->user->findTeam($user->id);
 
 					if ($user_team == NULL) {
 						$view['unassignedUsers'][$user->id] = $user->first_name . ' ' . $user->last_name; 
@@ -42,7 +72,7 @@ class Teams extends BaseController {
 
 		} else {
 			
-			$view['teams'] = Team::with('assignments', 'district', 'senior', 'junior')->where('id', $this->userTeam->id)->get();
+			$view['teams'] = $this->team->getTeamWithData($this->userTeam->id);
 
 		}
 
@@ -70,12 +100,12 @@ class Teams extends BaseController {
 	 */
 	public function store()
 	{
-		$team = new Team;
+		$team = $this->team->newTeam();
 	
         $team->lead = Input::get('lead');
         $team->companion = Input::get('companion');
         $team->steward = Input::get('steward');
-        
+
         $savedTeam = $team->save();
 
         if (Input::get('assignments')) {
@@ -91,7 +121,7 @@ class Teams extends BaseController {
         }
 
         if ($savedTeam) {
-            return Redirect::to('teams')->with('success_message', 'A new team has benn added.');
+            return Redirect::to('teams')->with('success_message', 'A new team has been added.');
         }
 	}
 
@@ -104,7 +134,7 @@ class Teams extends BaseController {
 	{
 		
 		$view['stats'] = $this->getTeamStats($id);
-		$view['team'] = Team::with('district', 'assignments')->find($id);
+		$view['team'] = $this->team->getTeamWithData($id);
 
 		if ( !$this->admin AND $this->userTeam->id !== $view['team']->id ) return Redirect::to('teams')->with('error_message', 'You are not allowed to see this page, friend !');
 
@@ -124,8 +154,8 @@ class Teams extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$view['users'] = User::all();
-        $view['team'] = Team::with('assignments')->find($id);
+		$view['users'] = $this->user->all();
+        $view['team'] = $this->team->getTeamWithData($id);
         $view['districts'] = District::all();
         $view['homes'] = Home::all();
 
@@ -173,7 +203,7 @@ class Teams extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$team = Team::with('assignments')->find($id);
+		$team = $this->team->getTeamWithData($id);
 
 		foreach ($team->assignments as $assignment) {
 
@@ -197,7 +227,7 @@ class Teams extends BaseController {
 	 */
 	public function getTeamStats($id){
 		
-		$oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -12 months") );
+		$oneYearAgo = date("Y-m-01", strtotime( date( 'Y-m-01' )." -12 months"));
 		
 		//Gets an array of Months
 		for ($i = 1; $i <= 12; $i++) {
@@ -205,13 +235,14 @@ class Teams extends BaseController {
 		}
 
 		//Querries the DB for visits...
-		$visits = Visit::where('team_id', $id)->where('month', '>=', $oneYearAgo)->get();
-		$team = Team::with('assignments')->find($id);
+		$visits = $this->visit->getYearlyStats($id, $oneYearAgo);
+		$team = $this->team->getTeamWithData($id);
+
+		$stats = array();
 
 		//Set's the default visit number to 0
 		foreach($monthsDates as $month){
 			foreach ($team->assignments as $assignment) {
-
 				$stats[$assignment->id][$month] = 0;
 			}
 		}
@@ -222,6 +253,7 @@ class Teams extends BaseController {
 				$stats[$visit->family_id][$visit->month] = (int) $visit->visited;
 			}
 		}
+
 		return $stats;
 	}
 
