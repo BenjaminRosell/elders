@@ -3,6 +3,8 @@
 class Team extends Eloquent 
 {
 	
+  protected $fillable = array('lead', 'companion', 'steward');
+
   protected $table = 'teams';
 
   public function assignments()

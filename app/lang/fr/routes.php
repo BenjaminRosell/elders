@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-	'Visits' => 'visites',
-	'Users' => 'utilisateurs',
-	'Homes' => 'familles',
+	'visites' => array('route' => 'Visits', 'type' => 'resource', 'beforeFilter' => 'authorise'),
+	'utilisateurs' => array('route' => 'Users', 'type' => 'resource', 'beforeFilter' => 'authorise'),
+	'familles' => array('route' => 'Homes', 'type' => 'resource', 'beforeFilter' => 'authorise') ,
 );

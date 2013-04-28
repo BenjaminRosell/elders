@@ -28,7 +28,7 @@
 @stop
 
 @section('content')
-	{{ Form::open(array('action' => 'teams', 'method' => 'POST', 'class' => 'form')) }}
+	{{ Form::open(array('route' => 'teams.store', 'method' => 'POST', 'class' => 'form')) }}
 		<div class="control-group">
 		    {{Form::label('lead', 'Senior Companion', array('class' => 'control-label'))}}
 		    <div class="controls">

@@ -78,13 +78,15 @@ class Teams extends BaseController {
         
         $team = Team::create($data);
 
-        foreach (Input::get('assignments') as $assignment)
-        {
-        	$home = Home::find($assignment);
+        if (Input::get('assignments')) {
+        	foreach (Input::get('assignments') as $assignment)
+	        {
+	        	$home = Home::find($assignment);
 
-        	$home->team_id = $team->id;
+	        	$home->team_id = $team->id;
 
-        	$home->save();
+	        	$home->save();
+	        }
         }
 
         if ($team) {
@@ -219,7 +221,7 @@ class Teams extends BaseController {
 				$stats[$visit->family_id][$visit->month] = (int) $visit->visited;
 			}
 		}
-		return $stats;
+		return (isset($stats) ? $stats : false);
 	}
 
 }

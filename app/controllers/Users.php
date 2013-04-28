@@ -245,25 +245,27 @@ class Users extends BaseController {
 	public function post_login()
 	{   
 	    try
-		{
-		    // Set login credentials
-		    $credentials = array(
-		        'email' => Input::get('email'),
-	    		'password' => Input::get('password'),
-	    	);
+		{    
+			$validation = new Services\Validation\Login;
 
-		    if ($user = Sentry::authenticate($credentials))
-		    {
-		        return Redirect::to('visits');
-		    }
-		    else
-		    {
-		        echo 'You shall not pass';
-		    }
+			if ($validation->passes())
+			{
+				// Set login credentials
+			    $credentials = array(
+			        'email' => Input::get('email'),
+		    		'password' => Input::get('password'),
+		    	);
+
+			    if ($user = Sentry::authenticate($credentials))
+			    {
+			        return Redirect::to('visits');
+			    }
+			} else {
+				return Redirect::back()->withInput()->withErrors($validation->errors);	
+			}
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
-
 		    return Redirect::to('login')->with('error_message', 'User not found. Maybe your pasword is wrong.');
 		}
 		catch (Cartalyst\Sentry\Users\LoginRequiredException $e)

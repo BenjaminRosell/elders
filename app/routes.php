@@ -11,29 +11,14 @@
 |
 */
 
-//Defining the site structure !
-$uriSegments = Request::segments();
+//$builder = new Builder;
 
-
-if ($uriSegments){
-	
-	if ($request = array_search($uriSegments[0], Lang::get('routes', array(), 'fr'))) {
-
-		App::setLocale('fr');
-
-	} else if ($request = array_search($uriSegments[0], Lang::get('routes', array(), 'en'))) {
-		
-		App::setLocale('en');
-
-	}
-
-	Route::resource($uriSegments[0], $request);
-
-}
+//$builder->activate();
 
 Route::get('/', function()
 {
 
+	//return Builder::linkTo('Users');
 	return View::make('pages.home');
 
 });
@@ -84,17 +69,3 @@ Route::group(array('before' => 'authorise'), function()
 
 Route::get('/crons/visits', 'Crons@visitsCron');
 Route::get('/crons/testing', 'Crons@testing');
-
-
-Route::filter('authorise', function()
-{
-	if ( ! Sentry::check()) return Redirect::to('login');
-});
-
-Route::filter('isAdmin', function()
-{
-	$user = Sentry::getUser();
-
-	if ( ! $user->hasAccess('admin')) return 'Job 38:11' ;
-});
-

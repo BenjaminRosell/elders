@@ -16,6 +16,7 @@
 		<div class="alert alert-error">{{Session::get('error_message')}}</div>
 	@endif
 	<br>
+
 	{{ Form::open(array('url'=>'login', 'method' => 'POST', 'class' => 'form')) }}
 
 		<div class="control-group">
@@ -35,6 +36,10 @@
 		{{Form::submit('Log-in', array('class' => 'btn btn-inverse'))}}
 
 	{{ Form::close() }}
+
+	@if ($errors->any())
+		{{ implode('', $errors->all('<div class="alert alert-error">:message</div>')) }}
+	@endif
 
 	
 @stop

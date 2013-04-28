@@ -10,10 +10,10 @@ class Visits extends BaseController
 
 	public function __construct()
     {
-        $this->user = Sentry::getUser();
 
+     	$this->user = Sentry::getUser();
+     	if (!$this->user) return Redirect::to('login');
         $this->admin =  $this->user->hasAccess('admin');
-
         $this->userTeam = User::findTeam($this->user->id);
     }
 

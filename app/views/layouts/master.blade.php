@@ -10,22 +10,12 @@
         <!-- ///////////////////////////////////////////////////////////////////
         Stylesheet 
         /////////////////////////////////////////////////////////////////////-->
-        <link rel="stylesheet" href="../../../../css/bootstrap.min.css" media="screen"  />
-        <link rel="stylesheet" href="../../../../css/bootstrap-responsive.min.css" media="screen"  />
-        <link rel="stylesheet" href="../../../../css/font-awesome.min.css" media="screen"  />
-        <link rel="stylesheet" href="../../../../css/style.css">
-        <link rel="stylesheet" href="../../../../css/responsive.css">
-        <link rel="stylesheet" href="../../../../css/prettyPhoto.css">
-        <link rel="stylesheet" href="../../../../css/datepicker.css">
-        <link rel="stylesheet" href="../../../../css/jquery.fancybox.css">
-        <!-- SLIDERS -->
-		<link rel="stylesheet" href="../../../../css/royalslider.css">
-        <link rel="stylesheet" href="../../../../css/rs-default-inverted.css">
+        {{stylesheet()}}
 		<!-- FONTS -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
-        <!--[if IE 9]><link rel="stylesheet" href="css/ie9.css" type="text/css" media="screen" /><![endif]-->
-        <!--[if IE 8]><link rel="stylesheet" href="css/ie8.css" type="text/css" media="screen" /><![endif]-->
+        <!--[if IE 9]><link rel="stylesheet" href="css/ie9.min.css" type="text/css" media="screen" /><![endif]-->
+        <!--[if IE 8]><link rel="stylesheet" href="css/ie8.min.css" type="text/css" media="screen" /><![endif]-->
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
     <?php 
@@ -273,15 +263,11 @@
                     /////////////////////////////////////////////////////////////////////-->
                     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
                     <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-                    <script type="text/javascript" src="../../../../js/superfish.js" ></script>
-                    <script type="text/javascript" src="../../../../js/jquery.royalslider.min.js" ></script>
+                    {{script()}}
                     <script type="text/javascript" src="../../../../js/bootstrap.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.prettyPhoto.js" ></script>
-                    <script type="text/javascript" src="../../../../js/jquery.fancybox.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.isotope.min.js" ></script>
-                    <script type="text/javascript" src="../../../../js/jquery.tweet.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery.masqued.min.js" ></script>
-                    <script type="text/javascript" src="../../../../js/bootstrap-datepicker.js" ></script>
                     <script type="text/javascript" src="../../../../js/jquery-ui-1.10.0.custom.min.js" ></script>
                     <script type="text/javascript" src="../../../../js/main.js" ></script>
                     <script type="text/javascript">

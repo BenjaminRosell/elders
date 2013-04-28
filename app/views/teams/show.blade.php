@@ -18,8 +18,12 @@
 
     $monthsJson = json_encode($monthsArray);
 
-    foreach ($stats as $family => $stat) {
-         $history[$family] = json_encode(array_values($stat));
+    if (isset($stats) and $stats != false) {
+        foreach ($stats as $family => $stat) {
+             $history[$family] = json_encode(array_values($stat));
+        }
+    } else {
+        $history = array();
     }
 ?>
 
@@ -52,16 +56,17 @@
 	{{Form::close()}}
     @endif
 
-
+    <?php if (isset($stats) and $stats != false): ?>
     <div class="heading center m2">
         <div class="separation"></div>
         <h2>Visits History</h2>
     </div>
 
     <div id="chart"></div>
+    <?php endif; ?>
 
 @stop
-
+<?php if (isset($stats) and $stats != false): ?>
 @section('javascript')
 <script type="text/javascript">
     
@@ -124,3 +129,4 @@
     });
 </script>
 @stop
+<?php endif ?>

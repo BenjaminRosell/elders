@@ -6,7 +6,7 @@ return array(
     'login' => 'Log in',
     'families' => 'My Families',
     'reports' => 'Reports',
-    'teams' => 'teams',
+    'teams' => 'Teams',
     'myTeam' => 'My team',
     'createTeam' => 'New Team',
     'assignments' => 'Assignments interface',

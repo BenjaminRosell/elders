@@ -1,7 +1,10 @@
 {
 	"require": {
 		"laravel/framework": "4.0.*",
-		"cartalyst/sentry":"2.0.*", 
+		"cartalyst/sentry":"2.0.*"
+	},
+	"require-dev":{
+		"way/guard-laravel": "dev-master", 
 		"way/generators": "dev-master"
 	},
 	"autoload": {
@@ -11,11 +14,12 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"app/services"
 		],
 		"psr-0": {
-	        "Beinir": "app/libraries"
-	    }
+			"Beinir" : "app/libraries"
+		}
 	},
 	"scripts": {
 		"post-update-cmd": "php artisan optimize"

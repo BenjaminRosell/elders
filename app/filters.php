@@ -39,6 +39,19 @@ Route::filter('auth', function()
 });
 
 
+Route::filter('authorise', function()
+{
+	if ( ! Sentry::check()) return Redirect::to('login');
+});
+
+Route::filter('isAdmin', function()
+{
+	$user = Sentry::getUser();
+
+	if ( ! $user->hasAccess('admin')) return 'Job 38:11' ;
+});
+
+
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();
