@@ -5,6 +5,8 @@ class District extends Eloquent
 	
 	protected $table = 'districts';
 
+    protected $guarded = array();
+
 	public function team()
     {
         return $this->hasMany('Team', 'steward');

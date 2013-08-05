@@ -11,16 +11,9 @@
 |
 */
 
-//$builder = new Builder;
-
-//$builder->activate();
-
 Route::get('/', function()
 {
-
-	//return Builder::linkTo('Users');
 	return View::make('pages.home');
-
 });
 
 Route::get('/error', function()

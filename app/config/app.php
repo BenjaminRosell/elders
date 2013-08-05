@@ -182,7 +182,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Sentry' 		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-		'Builder' 		  => 'Beinir\Builder\Builder',
+		'Builder' 		  => 'Beinir\Builder\BuilderFacade',
 	),
 
 );

@@ -54,7 +54,7 @@ class Builder implements BuilderInterface
         }
     }
 
-    public static function linkTo($target, $anchorText = 'Link', array $attributes = array()) 
+    public function linkTo($target, $anchorText = 'Link', array $attributes = array()) 
     {
     	$locale = self::getLocale();
 
@@ -72,7 +72,7 @@ class Builder implements BuilderInterface
 
     }
 
-    public static function buildLink($target, $anchorText, array $attributes)
+    public function buildLink($target, $anchorText, array $attributes)
     {
     	$link = '<a href="'. $target. '" ';
 
@@ -85,7 +85,7 @@ class Builder implements BuilderInterface
 		return $link;
     }
 
-    public static function getLocale() 
+    public function getLocale() 
     {
     	return Config::get('app.locale');
     }
@@ -96,7 +96,7 @@ class Builder implements BuilderInterface
         return true;
     }
     
-    public static function getRoutes() 
+    public function getRoutes() 
     {
     	return Lang::get('routes');
     }

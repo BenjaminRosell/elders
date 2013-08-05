@@ -2,11 +2,11 @@
 
 interface BuilderInterface 
 {
-	public static function linkTo($request, $anchorText, array $attributes);
+	public function linkTo($request, $anchorText, array $attributes);
 
-	public static function buildLink($target, $anchorText, array $attributes);
+	public function buildLink($target, $anchorText, array $attributes);
 
-	public static function getLocale();
+	public function getLocale();
 	
-	public static function getRoutes();
+	public function getRoutes();
 }
