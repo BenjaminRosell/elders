@@ -23,7 +23,7 @@ class Homes extends BaseController
 	{		
 		$view['admin'] = ($this->admin) ? true : false;
 
-		if( ! $this->userTeam ) return Redirect::to('error')->with('error_message', 'You have no assigned families yet. Please come back soon !');
+		if( ! $this->userTeam and ! $this->admin ) return Redirect::to('error')->with('error_message', 'You have no assigned families yet. Please come back soon !');
 
 		if ( $this->admin )
 	    {
@@ -57,14 +57,15 @@ class Homes extends BaseController
 	 */
 	public function store()
 	{
-		$data = array(
-            'email' => Input::get('email'),
-            'name' => Input::get('name'),
-            'phone_number' => Input::get('phone'),
-            'team_id'  => Input::get('home_teachers') ? Input::get('home_teachers') : 1 ,
-            'address' => Input::get('address')
-            );
-        $home = Home::create($data);
+		$home = new Home;
+
+        $home->email = Input::get('email');
+        $home->name = Input::get('name');
+        $home->phone_number = Input::get('phone');
+        $home->team_id = Input::get('home_teachers') ? Input::get('home_teachers') : 1 ;
+        $home->address = Input::get('address');
+
+        $home->save();
 
         if ($home) {
      
