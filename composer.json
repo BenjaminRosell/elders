@@ -1,6 +1,6 @@
 {
 	"require": {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "4.1.*",
 		"cartalyst/sentry":"2.0.*"
 	},
 	"require-dev":{
@@ -19,7 +19,19 @@
 		]
 	},
 	"scripts": {
-		"post-update-cmd": "php artisan optimize"
-	},
-	"minimum-stability": "dev"
+        "post-install-cmd": [
+                "php artisan optimize"
+        ],
+        "post-update-cmd": [
+                "php artisan clear-compiled",
+                "php artisan optimize"
+        ],
+        "post-create-project-cmd": [
+                "php artisan key:generate"
+        ]
+    },
+    "config": {
+            "preferred-install": "dist"
+    },
+    "minimum-stability": "dev"
 }
