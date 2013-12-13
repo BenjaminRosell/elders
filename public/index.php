@@ -26,7 +26,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 |--------------------------------------------------------------------------
 |
 | We need to illuminate PHP development, so let's turn on the lights.
-| This bootstrap the framework and gets it ready for use, then it
+| This bootstraps the framework and gets it ready for use, then it
 | will load up this application so that we can run it and send
 | the responses back to the browser and delight these users.
 |
@@ -42,11 +42,12 @@ $app = require_once __DIR__.'/../bootstrap/start.php';
 | Once we have the application, we can simply call the run method,
 | which will execute the request and send the response back to
 | the client's browser allowing them to enjoy the creative
-| and wonderful applications we have created for them.
+| and wonderful application we have whipped up for them.
 |
 */
 
 $app->run();
+<<<<<<< HEAD
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,5 @@ $app->run();
 */
 
 $app->shutdown();
+=======
+>>>>>>> 85f096b5d72b603c50462b406cd588a8dbf823ac
