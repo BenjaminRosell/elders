@@ -76,7 +76,14 @@ Route::filter('isAdmin', function()
 	if ( ! $user->hasAccess('admin')) return 'Job 38:11' ;
 });
 
-// Event::listen('laravel.query', function($sql)
-// {
-// 	return var_dump($sql);
-// });
+
+/*
+|--------------------------------------------------------------------------
+| Application Bindings
+|--------------------------------------------------------------------------
+*/
+
+App::bind('TeamRepositoryInterface', 'EloquentTeamRepository');
+App::bind('UserRepositoryInterface', 'EloquentUserRepository');
+App::bind('VisitRepositoryInterface', 'EloquentVisitRepository');
+App::bind('AuthInterface', 'SentryAuthRepository');

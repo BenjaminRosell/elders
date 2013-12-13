@@ -25,9 +25,8 @@
 
 @section('content')
 	<h4>Home Teaching team # {{ $team->id }}</h4>
-
-    <p>The team senior companion is {{ User::name($team->lead) }} </p>
-    <p>The team junior companion is {{ User::name($team->companion) }}</p>
+    <p>The team senior companion is {{$team->senior->first_name . ' ' . $team->senior->last_name}} </p>
+    <p>The team junior companion is {{$team->junior->first_name. ' ' . $team->junior->last_name}}</p>
     <p>Their district is {{ $team->district->name }}</p>
     <p>The steward is {{ User::name($team->district->steward) }}</p>
     @if ($team->assignments)
