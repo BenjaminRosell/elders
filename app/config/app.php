@@ -26,7 +26,7 @@ return array(
 |
 */
 
-	'url' => 'http://localhost',
+	'url' => 'http://local.elders.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,7 +113,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider'
+		'Way\Generators\GeneratorsServiceProvider',
+		'Way\Console\GuardLaravelServiceProvider'
 	),
 
 	/*
