@@ -1,7 +1,6 @@
 global:
   env:
-    - LARAVEL_ENV: production
-    
+    - LARAVEL_ENV: production    
 web1:
   name: keeper
   type: php
