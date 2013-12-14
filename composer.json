@@ -1,7 +1,10 @@
 {
 	"require": {
 		"laravel/framework": "4.1.*",
-		"cartalyst/sentry":"2.0.*"
+		"cartalyst/sentry":"2.0.*",
+		"mockery/mockery": "dev-master@dev",
+		"way/guard-laravel": "dev-master", 
+		"way/generators": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
